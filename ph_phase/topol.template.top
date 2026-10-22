@@ -1,0 +1,27 @@
+; ph_phase 拓扑模板（参考用；实际 sys.top 由 build_phase.sh 按 TOP_ORDER + counts.txt 自动生成）
+; include 顺序为硬规矩：core -> ffbonded_v2 -> PC_v2 -> PE_v2 -> sterols -> MC3 -> MC3H -> solvents -> ions
+; MC3/MC3H 用 M3_Ionizable_Lipids 的 Refined_tail_Parameters 版（与 run2 体系 B 同一份 MC3.itp, sha c0fb90fd…）：
+;   Literature_known_lipids 原版用 b_C1_C4 / a_C1_C4_C4 宏，ffbonded_v2 里没有定义，和 DSPC/DOPC(PC_v2) 无法共存。
+; MC3H：NP 珠 TQ2p 电荷 +1，用 CL 中和；不需要额外 support/ionizable include（README 无要求，grompp 0 warning 已验证）。
+#include "martini_v3.0.0.itp"
+#include "martini_v3.0.0_ffbonded_v2.itp"
+#include "martini_v3.0.0_phospholipids_PC_v2.itp"
+#include "martini_v3.0.0_phospholipids_PE_v2.itp"
+#include "martini_v3.0.0_sterols_v1.itp"
+#include "MC3.itp"
+#include "MC3H.itp"
+#include "martini_v3.0.0_solvents_v1.itp"
+#include "martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+ph_phase <SYS> comp=<COMP> alpha=<ALPHA> box=<BOX> water_wt=<WATER_WT> T=<TEMP>
+
+[ molecules ]
+; 例：T50（BOX=14, WATER_WT=0.30, SALT=0.15）
+MC3   437
+MC3H  436
+CHOL  698
+DSPC  175
+W     6299
+CL    510
+NA    74
