@@ -1,0 +1,241 @@
+== J004 close 2026-10-23 07:10:39 ==
+system	host	perf_ns_day	last_step	last_time_ps	ns	prod_gro_beads	nonW_beads	phase	dims	ratios	nonlamellar	best_guess	n_water_clusters	cluster_wrap_axes	water_vox_frac	box_nm	npart_W
+POS	k03	2417.370	39851775	797035.50000	797.0	24154	17419	NA	NA	NA	NA		NA	NA	NA	NA	NA
+T67	k03	1140.675	18520050	370401.00000	370.4	75027	57090	NA	NA	NA	NA		NA	NA	NA	NA	NA
+T67_rep2	k03	1127.156	18247075	364941.50000	364.9	75027	57090	NA	NA	NA	NA		NA	NA	NA	NA	NA
+T33	k04	1307.616	21109125	422182.50000	422.2	75027	56242	NA	NA	NA	NA		NA	NA	NA	NA	NA
+T100	k04	1329.658	21454000	429080.00000	429.1	75027	57938	NA	NA	NA	NA		NA	NA	NA	NA	NA
+== k03 phase.log STATUS ==
+[2026-10-22 22:48:59 +08] STATUS T67 VERIFIED perf=
+[2026-10-23 07:00:30 +08] STATUS T0 FAILED perf= t_ps=
+[2026-10-23 07:00:30 +08] STATUS T67 PROD_SEGMENT perf=1140.675 t_ps=370401.00000
+[2026-10-23 07:00:30 +08] STATUS POS PROD_SEGMENT perf=2417.370 t_ps=797035.50000
+[2026-10-23 07:00:30 +08] STATUS T67_rep2 PROD_SEGMENT perf=1127.156 t_ps=364941.50000
+[2026-10-23 07:00:30 +08] STATUS T0_rep2 SKIPPED_SHORT perf= t_ps=
+[2026-10-23 07:00:30 +08] QUEUE-STATUS L10 F[F2] END 2026-10-23 07:00:30 rc=0
+[2026-10-23 07:00:30 +08] ==== ph_phase 接力队列结束 ====
+== k04 phase.log STATUS ==
+[2026-10-23 06:55:21 +08] STATUS T33 PROD_SEGMENT perf=1307.616 t_ps=422182.50000
+[2026-10-23 06:55:21 +08] STATUS T100 PROD_SEGMENT perf=1329.658 t_ps=429080.00000
+[2026-10-23 06:55:21 +08] STATUS T100_rep2 SKIPPED_SHORT perf= t_ps=
+[2026-10-23 06:55:21 +08] STATUS T33_rep2 SKIPPED_SHORT perf= t_ps=
+[2026-10-23 06:55:21 +08] QUEUE-STATUS L6 F[F1] 未领取
+[2026-10-23 06:55:21 +08] ==== ph_phase 接力队列结束 ====
+== close.log ==
+[2026-10-23 07:10:22] STATE WAITING
+[2026-10-23 07:10:22] 开始 host=spark-235d
+[2026-10-23 07:10:24] 两台已自然停止（无 run_phase/r.sh/gmx、无 MD 容器）
+[2026-10-23 07:10:24] 终检 k03 procs=[] cont=[]
+[2026-10-23 07:10:25] 终检 k04 procs=[] cont=[]
+[2026-10-23 07:10:25] STATE COLLECT
+cp: 对 '/home/k03/ph_phase_run/POS/prod.gro' 调用 stat 失败: 没有那个文件或目录
+ls: 无法访问 '/home/k03/ph_phase_run/POS/prod.gro': 没有那个文件或目录
+cp: 对 '/home/k03/ph_phase_run/T67/prod.gro' 调用 stat 失败: 没有那个文件或目录
+ls: 无法访问 '/home/k03/ph_phase_run/T67/prod.gro': 没有那个文件或目录
+cp: 对 '/home/k03/ph_phase_run/T67_rep2/prod.gro' 调用 stat 失败: 没有那个文件或目录
+ls: 无法访问 '/home/k03/ph_phase_run/T67_rep2/prod.gro': 没有那个文件或目录
+scp: ph_phase_run/T33/prod.gro: No such file or directory
+ls: 无法访问 '/home/k04/ph_phase_run/T33/prod.gro': 没有那个文件或目录
+scp: ph_phase_run/T100/prod.gro: No such file or directory
+ls: 无法访问 '/home/k04/ph_phase_run/T100/prod.gro': 没有那个文件或目录
+[2026-10-23 07:10:28] POS 无 prod.gro，从 xtc 取末帧
+                     :-) GROMACS - gmx trjconv, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/xfer/j004/work/POS
+Command line:
+  gmx trjconv -s /home/k03/xfer/j004/work/POS/prod.tpr -f /home/k03/ph_phase_run/POS/prod.xtc -dump 999999999 -o /home/k03/xfer/j004/work/POS/prod.gro
+
+Will write gro: Coordinate file in Gromos-87 format
+Reading file /home/k03/xfer/j004/work/POS/prod.tpr, VERSION 2026.3 (single precision)
+Reading file /home/k03/xfer/j004/work/POS/prod.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 24154 elements
+Group     1 (          Other) has 24006 elements
+Group     2 (           DOPE) has 14544 elements
+Group     3 (           CHOL) has  2727 elements
+Group     4 (              W) has  6735 elements
+Group     5 (             CL) has    74 elements
+Group     6 (             NA) has    74 elements
+Group     7 (            Ion) has   148 elements
+Select a group: Reading frame       0 time    0.000   
+Precision of /home/k03/ph_phase_run/POS/prod.xtc is 0.001 (nm)
+Reading frame       1 time  500.000   Reading frame       2 time 1000.000   Reading frame       3 time 1500.000   Reading frame       4 time 2000.000   Reading frame       5 time 2500.000   Reading frame       6 time 3000.000   Reading frame       7 time 3500.000   Reading frame       8 time 4000.000   Reading frame       9 time 4500.000   Reading frame      10 time 5000.000   Reading frame      11 time 5500.000   Reading frame      12 time 6000.000   Reading frame      13 time 6500.000   Reading frame      14 time 7000.000   Reading frame      15 time 7500.000   Reading frame      16 time 8000.000   Reading frame      17 time 8500.000   Reading frame      18 time 9000.000   Reading frame      19 time 9500.000   Reading frame      20 time 10000.000   Reading frame      30 time 15000.000   Reading frame      40 time 20000.000   Reading frame      50 time 25000.000   Reading frame      60 time 30000.000   Reading frame      70 time 35000.000   Reading frame      80 time 40000.000   Reading frame      90 time 45000.000   Reading frame     100 time 50000.000   Reading frame     110 time 55000.000   Reading frame     120 time 60000.000   Reading frame     130 time 65000.000   Reading frame     140 time 70000.000   Reading frame     150 time 75000.000   Reading frame     160 time 80000.000   Reading frame     170 time 85000.000   Reading frame     180 time 90000.000   Reading frame     190 time 95000.000   Reading frame     200 time 100000.000   Reading frame     300 time 150000.000   Reading frame     400 time 200000.000   Reading frame     500 time 250000.000   Reading frame     600 time 300000.000   Reading frame     700 time 350000.000   Reading frame     800 time 400000.000   Reading frame     900 time 450000.000   Reading frame    1000 time 500000.000   Reading frame    1100 time 550000.000   Reading frame    1200 time 600000.000   Reading frame    1300 time 650000.000   Reading frame    1400 time 700000.000   Reading frame    1500 time 750000.000   
+
+Dumping frame at t= 797000 ps
+
+Last written: frame      0 time 797000.000
+
+Note that major changes are planned in future for trjconv, to improve usability and utility.
+Select group for output
+Selected 0: 'System'
+
+GROMACS reminds you: "Confirmed" (Star Trek)
+
+[2026-10-23 07:10:29] T67 无 prod.gro，从 xtc 取末帧
+                     :-) GROMACS - gmx trjconv, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/xfer/j004/work/T67
+Command line:
+  gmx trjconv -s /home/k03/xfer/j004/work/T67/prod.tpr -f /home/k03/ph_phase_run/T67/prod.xtc -dump 999999999 -o /home/k03/xfer/j004/work/T67/prod.gro
+
+Will write gro: Coordinate file in Gromos-87 format
+Reading file /home/k03/xfer/j004/work/T67/prod.tpr, VERSION 2026.3 (single precision)
+Reading file /home/k03/xfer/j004/work/T67/prod.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 75027 elements
+Group     1 (          Other) has 72897 elements
+Group     2 (            MC3) has 10176 elements
+Group     3 (           MC3H) has 20352 elements
+Group     4 (           CHOL) has 18324 elements
+Group     5 (           DSPC) has  6108 elements
+Group     6 (              W) has 17937 elements
+Group     7 (             CL) has  1913 elements
+Group     8 (             NA) has   217 elements
+Group     9 (            Ion) has  2130 elements
+Select a group: Reading frame       0 time    0.000   
+Precision of /home/k03/ph_phase_run/T67/prod.xtc is 0.001 (nm)
+Reading frame       1 time  500.000   Reading frame       2 time 1000.000   Reading frame       3 time 1500.000   Reading frame       4 time 2000.000   Reading frame       5 time 2500.000   Reading frame       6 time 3000.000   Reading frame       7 time 3500.000   Reading frame       8 time 4000.000   Reading frame       9 time 4500.000   Reading frame      10 time 5000.000   Reading frame      11 time 5500.000   Reading frame      12 time 6000.000   Reading frame      13 time 6500.000   Reading frame      14 time 7000.000   Reading frame      15 time 7500.000   Reading frame      16 time 8000.000   Reading frame      17 time 8500.000   Reading frame      18 time 9000.000   Reading frame      19 time 9500.000   Reading frame      20 time 10000.000   Reading frame      30 time 15000.000   Reading frame      40 time 20000.000   Reading frame      50 time 25000.000   Reading frame      60 time 30000.000   Reading frame      70 time 35000.000   Reading frame      80 time 40000.000   Reading frame      90 time 45000.000   Reading frame     100 time 50000.000   Reading frame     110 time 55000.000   Reading frame     120 time 60000.000   Reading frame     130 time 65000.000   Reading frame     140 time 70000.000   Reading frame     150 time 75000.000   Reading frame     160 time 80000.000   Reading frame     170 time 85000.000   Reading frame     180 time 90000.000   Reading frame     190 time 95000.000   Reading frame     200 time 100000.000   Reading frame     300 time 150000.000   Reading frame     400 time 200000.000   Reading frame     500 time 250000.000   Reading frame     600 time 300000.000   Reading frame     700 time 350000.000   
+
+Dumping frame at t= 370000 ps
+Note that major changes are planned in future for trjconv, to improve usability and utility.
+Select group for output
+Selected 0: 'System'
+
+Last written: frame      0 time 370000.000
+
+
+GROMACS reminds you: "Your daddy ain't your daddy but your daddy don't know" (Dalahan)
+
+[2026-10-23 07:10:30] T67_rep2 无 prod.gro，从 xtc 取末帧
+                     :-) GROMACS - gmx trjconv, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/xfer/j004/work/T67_rep2
+Command line:
+  gmx trjconv -s /home/k03/xfer/j004/work/T67_rep2/prod.tpr -f /home/k03/ph_phase_run/T67_rep2/prod.xtc -dump 999999999 -o /home/k03/xfer/j004/work/T67_rep2/prod.gro
+
+Will write gro: Coordinate file in Gromos-87 format
+Reading file /home/k03/xfer/j004/work/T67_rep2/prod.tpr, VERSION 2026.3 (single precision)
+Reading file /home/k03/xfer/j004/work/T67_rep2/prod.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 75027 elements
+Group     1 (          Other) has 72897 elements
+Group     2 (            MC3) has 10176 elements
+Group     3 (           MC3H) has 20352 elements
+Group     4 (           CHOL) has 18324 elements
+Group     5 (           DSPC) has  6108 elements
+Group     6 (              W) has 17937 elements
+Group     7 (             CL) has  1913 elements
+Group     8 (             NA) has   217 elements
+Group     9 (            Ion) has  2130 elements
+Select a group: Reading frame       0 time    0.000   
+Precision of /home/k03/ph_phase_run/T67_rep2/prod.xtc is 0.001 (nm)
+Reading frame       1 time  500.000   Reading frame       2 time 1000.000   Reading frame       3 time 1500.000   Reading frame       4 time 2000.000   Reading frame       5 time 2500.000   Reading frame       6 time 3000.000   Reading frame       7 time 3500.000   Reading frame       8 time 4000.000   Reading frame       9 time 4500.000   Reading frame      10 time 5000.000   Reading frame      11 time 5500.000   Reading frame      12 time 6000.000   Reading frame      13 time 6500.000   Reading frame      14 time 7000.000   Reading frame      15 time 7500.000   Reading frame      16 time 8000.000   Reading frame      17 time 8500.000   Reading frame      18 time 9000.000   Reading frame      19 time 9500.000   Reading frame      20 time 10000.000   Reading frame      30 time 15000.000   Reading frame      40 time 20000.000   Reading frame      50 time 25000.000   Reading frame      60 time 30000.000   Reading frame      70 time 35000.000   Reading frame      80 time 40000.000   Reading frame      90 time 45000.000   Reading frame     100 time 50000.000   Reading frame     110 time 55000.000   Reading frame     120 time 60000.000   Reading frame     130 time 65000.000   Reading frame     140 time 70000.000   Reading frame     150 time 75000.000   Reading frame     160 time 80000.000   Reading frame     170 time 85000.000   Reading frame     180 time 90000.000   Reading frame     190 time 95000.000   Reading frame     200 time 100000.000   Reading frame     300 time 150000.000   Reading frame     400 time 200000.000   Reading frame     500 time 250000.000   Reading frame     600 time 300000.000   Reading frame     700 time 350000.000   
+
+Dumping frame at t= 364500 ps
+
+Last written: frame      0 time 364500.000
+
+
+GROMACS reminds you: "Ramones For Ever" (P.J. Van Maaren)
+
+Note that major changes are planned in future for trjconv, to improve usability and utility.
+Select group for output
+Selected 0: 'System'
+[2026-10-23 07:10:32] T33 无 prod.gro，从 xtc 取末帧
+                     :-) GROMACS - gmx trjconv, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/xfer/j004/work/T33
+Command line:
+  gmx trjconv -s /home/k03/xfer/j004/work/T33/prod.tpr -f /home/k03/xfer/j004/work/T33/prod.xtc -dump 999999999 -o /home/k03/xfer/j004/work/T33/prod.gro
+
+Will write gro: Coordinate file in Gromos-87 format
+Reading file /home/k03/xfer/j004/work/T33/prod.tpr, VERSION 2026.3 (single precision)
+Reading file /home/k03/xfer/j004/work/T33/prod.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 75027 elements
+Group     1 (          Other) has 73745 elements
+Group     2 (            MC3) has 20352 elements
+Group     3 (           MC3H) has 10176 elements
+Group     4 (           CHOL) has 18324 elements
+Group     5 (           DSPC) has  6108 elements
+Group     6 (              W) has 18785 elements
+Group     7 (             CL) has  1065 elements
+Group     8 (             NA) has   217 elements
+Group     9 (            Ion) has  1282 elements
+Select a group: Reading frame       0 time    0.000   
+Precision of /home/k03/xfer/j004/work/T33/prod.xtc is 0.001 (nm)
+Reading frame       1 time  500.000   Reading frame       2 time 1000.000   Reading frame       3 time 1500.000   Reading frame       4 time 2000.000   Reading frame       5 time 2500.000   Reading frame       6 time 3000.000   Reading frame       7 time 3500.000   Reading frame       8 time 4000.000   Reading frame       9 time 4500.000   Reading frame      10 time 5000.000   Reading frame      11 time 5500.000   Reading frame      12 time 6000.000   Reading frame      13 time 6500.000   Reading frame      14 time 7000.000   Reading frame      15 time 7500.000   Reading frame      16 time 8000.000   Reading frame      17 time 8500.000   Reading frame      18 time 9000.000   Reading frame      19 time 9500.000   Reading frame      20 time 10000.000   Reading frame      30 time 15000.000   Reading frame      40 time 20000.000   Reading frame      50 time 25000.000   Reading frame      60 time 30000.000   Reading frame      70 time 35000.000   Reading frame      80 time 40000.000   Reading frame      90 time 45000.000   Reading frame     100 time 50000.000   Reading frame     110 time 55000.000   Reading frame     120 time 60000.000   Reading frame     130 time 65000.000   Reading frame     140 time 70000.000   Reading frame     150 time 75000.000   Reading frame     160 time 80000.000   Reading frame     170 time 85000.000   Reading frame     180 time 90000.000   Reading frame     190 time 95000.000   Reading frame     200 time 100000.000   Reading frame     300 time 150000.000   Reading frame     400 time 200000.000   Reading frame     500 time 250000.000   Reading frame     600 time 300000.000   Reading frame     700 time 350000.000   Reading frame     800 time 400000.000   
+
+Dumping frame at t= 422000 ps
+
+Last written: frame      0 time 422000.000
+
+
+GROMACS reminds you: "I think it's very important to get more women into computing. My slogan is: Computing is too important to be left to men." (Karen Jones)
+
+Note that major changes are planned in future for trjconv, to improve usability and utility.
+Select group for output
+Selected 0: 'System'
+[2026-10-23 07:10:34] T100 无 prod.gro，从 xtc 取末帧
+                     :-) GROMACS - gmx trjconv, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/xfer/j004/work/T100
+Command line:
+  gmx trjconv -s /home/k03/xfer/j004/work/T100/prod.tpr -f /home/k03/xfer/j004/work/T100/prod.xtc -dump 999999999 -o /home/k03/xfer/j004/work/T100/prod.gro
+
+Will write gro: Coordinate file in Gromos-87 format
+Reading file /home/k03/xfer/j004/work/T100/prod.tpr, VERSION 2026.3 (single precision)
+Reading file /home/k03/xfer/j004/work/T100/prod.tpr, VERSION 2026.3 (single precision)
+Group     0 (         System) has 75027 elements
+Group     1 (          Other) has 72049 elements
+Group     2 (           MC3H) has 30528 elements
+Group     3 (           CHOL) has 18324 elements
+Group     4 (           DSPC) has  6108 elements
+Group     5 (              W) has 17089 elements
+Group     6 (             CL) has  2761 elements
+Group     7 (             NA) has   217 elements
+Group     8 (            Ion) has  2978 elements
+Select a group: Reading frame       0 time    0.000   
+Precision of /home/k03/xfer/j004/work/T100/prod.xtc is 0.001 (nm)
+Reading frame       1 time  500.000   Reading frame       2 time 1000.000   Reading frame       3 time 1500.000   Reading frame       4 time 2000.000   Reading frame       5 time 2500.000   Reading frame       6 time 3000.000   Reading frame       7 time 3500.000   Reading frame       8 time 4000.000   Reading frame       9 time 4500.000   Reading frame      10 time 5000.000   Reading frame      11 time 5500.000   Reading frame      12 time 6000.000   Reading frame      13 time 6500.000   Reading frame      14 time 7000.000   Reading frame      15 time 7500.000   Reading frame      16 time 8000.000   Reading frame      17 time 8500.000   Reading frame      18 time 9000.000   Reading frame      19 time 9500.000   Reading frame      20 time 10000.000   Reading frame      30 time 15000.000   Reading frame      40 time 20000.000   Reading frame      50 time 25000.000   Reading frame      60 time 30000.000   Reading frame      70 time 35000.000   Reading frame      80 time 40000.000   Reading frame      90 time 45000.000   Reading frame     100 time 50000.000   Reading frame     110 time 55000.000   Reading frame     120 time 60000.000   Reading frame     130 time 65000.000   Reading frame     140 time 70000.000   Reading frame     150 time 75000.000   Reading frame     160 time 80000.000   Reading frame     170 time 85000.000   Reading frame     180 time 90000.000   Reading frame     190 time 95000.000   Reading frame     200 time 100000.000   Reading frame     300 time 150000.000   Reading frame     400 time 200000.000   Reading frame     500 time 250000.000   Reading frame     600 time 300000.000   Reading frame     700 time 350000.000   Reading frame     800 time 400000.000   
+
+Dumping frame at t= 429000 ps
+
+Last written: frame      0 time 429000.000
+
+
+GROMACS reminds you: "I had trouble with physics in college. When I signed up I thought it said psychics." (Greg Tamblyn)
+
+Note that major changes are planned in future for trjconv, to improve usability and utility.
+Select group for output
+Selected 0: 'System'
+[2026-10-23 07:10:37] STATE ANALYZE
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'numpy'
+[2026-10-23 07:10:37] 宿主无 numpy，跳过判相
+[2026-10-23 07:10:37] POS nonW gro: 17419 珠 / 全体系 24154 珠
+[2026-10-23 07:10:38] T67 nonW gro: 57090 珠 / 全体系 75027 珠
+[2026-10-23 07:10:38] T67_rep2 nonW gro: 57090 珠 / 全体系 75027 珠
+[2026-10-23 07:10:39] T33 nonW gro: 56242 珠 / 全体系 75027 珠
+[2026-10-23 07:10:39] T100 nonW gro: 57938 珠 / 全体系 75027 珠
+[2026-10-23 07:10:39] STATE SUMMARY
+总计 10876
+-rw-rw-r-- 1 k03 k03   18312 10月 23 07:10 close.log
+-rw-rw-r-- 1 k03 k03     613 10月 23 07:10 j004_phase.tsv
+-rw-r--r-- 1 k03 k03  783989 10月 23 07:10 j004_POS_last_nonW.gro
+-rw-r--r-- 1 k03 k03 2607352 10月 23 07:10 j004_T100_last_nonW.gro
+-rw-r--r-- 1 k03 k03 2531038 10月 23 07:10 j004_T33_last_nonW.gro
+-rw-r--r-- 1 k03 k03 2569198 10月 23 07:10 j004_T67_last_nonW.gro
+-rw-r--r-- 1 k03 k03 2569203 10月 23 07:10 j004_T67_rep2_last_nonW.gro
+-rw-rw-r-- 1 k03 k03     567 10月 23 07:10 k03_phase_status.txt
+-rw-rw-r-- 1 k03 k03     424 10月 23 07:10 k04_phase_status.txt
+-rw-rw-r-- 1 k03 k03       8 10月 23 07:10 STATE
+-rw-rw-r-- 1 k03 k03   20023 10月 23 07:10 SUMMARY.txt
+drwxrwxr-x 7 k03 k03    4096 10月 23 07:10 work
