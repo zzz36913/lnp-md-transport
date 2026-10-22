@@ -37,9 +37,10 @@ sys_comp(){ local v="PH_COMP_$1"; echo "${!v:-$(preset_comp $1)}"; }
 sys_alpha(){ local v="PH_ALPHA_$1"; echo "${!v:-$(preset_alpha $1)}"; }
 
 CORE_ITPS="martini_v3.0.0.itp martini_v3.0.0_ffbonded_v2.itp martini_v3.0.0_phospholipids_PC_v2.itp martini_v3.0.0_sterols_v1.itp martini_v3.0.0_solvents_v1.itp martini_v3.0.0_ions_v1.itp"
-PH_ITPS="martini_v3.0.0_phospholipids_PE_v2.itp MC3.itp MC3H.itp"
-# include 顺序(硬规矩)：core -> ffbonded_v2 -> PC_v2 -> PE_v2 -> sterols -> MC3 -> MC3H -> solvents -> ions
-TOP_ORDER="martini_v3.0.0.itp martini_v3.0.0_ffbonded_v2.itp martini_v3.0.0_phospholipids_PC_v2.itp martini_v3.0.0_phospholipids_PE_v2.itp martini_v3.0.0_sterols_v1.itp MC3.itp MC3H.itp martini_v3.0.0_solvents_v1.itp martini_v3.0.0_ions_v1.itp"
+PH_ITPS="martini_v3.0.0_phospholipids_PE_v2.itp martini_v3.0.0_phospholipids_PS_v2.itp martini_v3.0.0_phospholipids_PI_v2.itp MC3.itp MC3H.itp"
+# include 顺序(硬规矩)：core -> ffbonded_v2 -> PC_v2 -> PE_v2 -> PS_v2 -> PI_v2 -> sterols -> MC3 -> MC3H -> solvents -> ions
+# PS/PI 已备好（K 可能把内体阴离子脂加成第二维，见 dd/16）；其净电荷由 phase_counts.py 自动用 NA 中和
+TOP_ORDER="martini_v3.0.0.itp martini_v3.0.0_ffbonded_v2.itp martini_v3.0.0_phospholipids_PC_v2.itp martini_v3.0.0_phospholipids_PE_v2.itp martini_v3.0.0_phospholipids_PS_v2.itp martini_v3.0.0_phospholipids_PI_v2.itp martini_v3.0.0_sterols_v1.itp MC3.itp MC3H.itp martini_v3.0.0_solvents_v1.itp martini_v3.0.0_ions_v1.itp"
 
 mkdir -p "$WORK"; LOG=${LOG:-$WORK/phase.log}
 log(){ echo "[$(date '+%F %T %Z')] $*" | tee -a "$LOG"; }

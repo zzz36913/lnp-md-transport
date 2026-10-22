@@ -6,7 +6,7 @@
 import argparse, re, sys
 
 def masses(files):
-    M, nb, cur, sec = {}, {}, None, None
+    M, nb, Q, cur, sec = {}, {}, {}, None, None
     for fn in files:
         for raw in open(fn):
             l = raw.split(';')[0].strip()
@@ -16,14 +16,15 @@ def masses(files):
                 sec = m.group(1)
                 continue
             if sec == 'moleculetype':
-                cur = l.split()[0]; M[cur] = 0.0; nb[cur] = 0; sec = 'mt_done'
+                cur = l.split()[0]; M[cur] = 0.0; nb[cur] = 0; Q[cur] = 0.0; sec = 'mt_done'
             elif sec == 'atoms' and cur:
                 f = l.split()
                 if len(f) >= 8: mass = float(f[7])
                 else:
                     t = f[1]; mass = 36.0 if t.startswith('T') else 54.0 if t.startswith('S') else 72.0
                 M[cur] += mass; nb[cur] += 1
-    return M, nb
+                if len(f) >= 7: Q[cur] += float(f[6])
+    return M, nb, Q
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--comp', required=True); ap.add_argument('--alpha', type=float, default=0.0)
@@ -31,7 +32,7 @@ ap.add_argument('--box', type=float, default=14.0); ap.add_argument('--water-wt'
 ap.add_argument('--dens', type=float, default=602.0); ap.add_argument('--salt', type=float, default=0.15)
 ap.add_argument('--itp', nargs='+', required=True)
 a = ap.parse_args()
-M, NB = masses(a.itp)
+M, NB, QQ = masses(a.itp)
 comp = [(k, float(v)) for k, v in (x.split(':') for x in a.comp.split(','))]
 tot = sum(v for _, v in comp); comp = [(k, v / tot) for k, v in comp]
 for k, _ in comp + [('W', 0), ('NA', 0), ('CL', 0)]:
@@ -51,15 +52,18 @@ for k, x in comp:
         if nh: cnt.append(('MC3H', nh))
     elif n: cnt.append((k, n))
 nmc3h = dict(cnt).get('MC3H', 0)
+qlip = round(sum(QQ[k] * n for k, n in cnt))          # 脂质净电荷（MC3H +1、PS/PI -1 等，取自 itp）
 NWtot = round(MW / M['W'])
 npair = round(a.salt * NWtot * 4 / 55.5)
-nW = NWtot - 2 * npair - nmc3h
+ncl = npair + max(qlip, 0); nna = npair + max(-qlip, 0)
+nW = NWtot - ncl - nna
 if nW <= 0: sys.exit('水珠数 <= 0，检查 water-wt/salt')
-cnt += [('W', nW), ('CL', npair + nmc3h), ('NA', npair)]
+cnt += [('W', nW), ('CL', ncl), ('NA', nna)]
+cnt = [(k, n) for k, n in cnt if n > 0]
 for k, n in cnt: print(k, n)
 beads = sum(NB[k] * n for k, n in cnt)
-q = nmc3h + npair - (npair + nmc3h)
+q = round(sum(QQ[k] * n for k, n in cnt))
 lm = sum(M[k] * n for k, n in cnt if k not in ('W', 'NA', 'CL'))
 wm = sum(M[k] * n for k, n in cnt if k in ('W', 'NA', 'CL'))
-print('# box=%.2fnm V=%.0fnm3 Nlip=%d beads=%d lipid:water(mass)=%.1f:%.1f netq=%d MC3H=%d NaCl=%d'
-      % (a.box, V, sum(n for k, n in cnt if k not in ('W', 'NA', 'CL')), beads, 100 * lm / (lm + wm), 100 * wm / (lm + wm), q, nmc3h, npair), file=sys.stderr)
+print('# box=%.2fnm V=%.0fnm3 Nlip=%d beads=%d lipid:water(mass)=%.1f:%.1f netq=%d MC3H=%d lipid_q=%+d NaCl=%d'
+      % (a.box, V, sum(n for k, n in cnt if k not in ('W', 'NA', 'CL')), beads, 100 * lm / (lm + wm), 100 * wm / (lm + wm), q, nmc3h, qlip, npair), file=sys.stderr)
