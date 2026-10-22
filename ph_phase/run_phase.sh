@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# 脂质滴定介观相 MVP 主流程。用法(k03): SYSTEMS="T0 T100 NEG" setsid bash ~/ph_phase/run_phase.sh </dev/null >~/ph_k03.out 2>&1 &
+# 脂质滴定介观相 MVP 主流程。
+# 接力队列(J004 正式用法): QUEUE_FILE=~/ph_phase/queue_k03.txt SLOTS=3 setsid bash ~/ph_phase/run_phase.sh </dev/null >/dev/null 2>&1 &
+# 固定列表/验证: SYSTEMS="T0 T67 POS" BUILD_ONLY=1 bash ~/ph_phase/run_phase.sh
 # 每个体系: build -> grompp/EM -> EQ1(5fs) -> EQ2(10fs) -> PROD(20fs, -maxh 到 MD_DEADLINE, -cpi 续跑)
 # 幂等: 每步 .done_<step>；PROD 被截断后重跑同一命令即从 prod.cpt 续跑；.failed 的体系跳过(删掉可重试)。
 # PARALLEL=1(默认): 本机所列体系同时跑、共享一块 GPU，每个 -ntomp = nproc/体系数。PARALLEL=0 顺序跑。
@@ -50,10 +52,63 @@ pipeline(){ local sys=$1 d="$WORK/$1"
     touch "$WORK/$sys.SEGDONE"
   else log "$sys: production 失败，见 $d/prod.out"; touch "$d/.failed"; return 1; fi; }
 
+QUEUE_FILE=${QUEUE_FILE:-}           # 设了就进「接力队列」模式（见 queue_k03.txt / queue_k04.txt）
+SLOTS=${SLOTS:-3}                     # 队列模式: 本机 GPU 并发槽位数
+MIN_LEFT_H=${MIN_LEFT_H:-1}           # 队列模式: 距 MD_DEADLINE 不足此小时数时不再新开 ph 作业，改取 F 作业
+
 log "==== ph_phase MVP host=$(hostname) MODE=$MODE WORK=$WORK PH=$PH FF=$FF ===="
+( cd "$PH" && sha256sum -c --quiet SHA256SUMS ) >> "$LOG" 2>&1 || die "PH 目录 SHA256SUMS 校验失败（文件被改或不全）"
+
+if [ -n "$QUEUE_FILE" ]; then
+  # ================= 接力队列模式 =================
+  # 队列文件每行一条：`ph <体系名>` 或 `F <标签> <shell 命令>`；# 后为注释。每次取作业都重新读文件，运行中可追加行。
+  # SLOTS 个槽位各自循环：取最上面一条未被领取的作业(mkdir 原子锁 $WORK/.queue_claims/L<行号>)，跑完/失败即取下一条，
+  # 直到队列空或到 MD_DEADLINE。剩余 < MIN_LEFT_H 小时时跳过 ph 行(不领取，记 SKIP)，只取 F 行。
+  [ -f "$QUEUE_FILE" ] || die "队列文件不存在: $QUEUE_FILE"
+  CLAIM="$WORK/.queue_claims"; mkdir -p "$CLAIM"
+  NT=${NT_SLOT:-$(( $(nproc) / SLOTS ))}; [ "$NT" -ge 1 ] || NT=1; export NT
+  log "QUEUE 模式 file=$QUEUE_FILE SLOTS=$SLOTS NT/槽=$NT 截止 $MD_DEADLINE MIN_LEFT_H=$MIN_LEFT_H T=${TEMP}K BOX=${BOX} WATER_WT=$WATER_WT GPUFLAGS='$GPUFLAGS'"
+  queue_lines(){ awk '{sub(/#.*/,""); gsub(/^[ \t]+|[ \t]+$/,"")} NF{print NR"\t"$0}' "$QUEUE_FILE"; }
+  next_job(){ local left=$(maxh_left); [ "$left" = 0 ] && return 1
+    local short=$(awk -v l=$left -v m=$MIN_LEFT_H 'BEGIN{print (l<m)?1:0}') n line
+    while IFS=$'\t' read -r n line; do
+      [ -d "$CLAIM/L$n" ] && continue
+      if [ "${line%% *}" = ph ] && [ "$short" = 1 ]; then
+        [ -f "$CLAIM/skip_L$n" ] || { touch "$CLAIM/skip_L$n"; log "QUEUE SKIP L$n「$line」：剩余 ${left} h < ${MIN_LEFT_H} h，改取 F 作业" >&2; }
+        continue; fi
+      mkdir "$CLAIM/L$n" 2>/dev/null || continue
+      printf '%s\t%s\n' "$n" "$line"; return 0
+    done < <(queue_lines)
+    return 1; }
+  slot(){ local k=$1 job n line typ rc
+    while job=$(next_job); do
+      n=${job%%$'\t'*}; line=${job#*$'\t'}; typ=${line%% *}
+      echo "slot$k START $(date '+%F %T')" > "$CLAIM/L$n/info"
+      log "QUEUE slot$k 取 L$n「$line」(距截止 $(maxh_left) h)"
+      case $typ in
+        ph) set -- $line; pipeline "$2"; rc=$?
+            [ -f "$WORK/$2/.failed" ] && rc=1 ;;
+        F)  set -- $line; local tag=$2; local cmd=${line#F $tag }
+            log "QUEUE slot$k F[$tag]: $cmd"; bash -c "$cmd"; rc=$? ;;
+        *)  log "QUEUE slot$k L$n 未知类型「$typ」"; rc=2 ;;
+      esac
+      echo "END $(date '+%F %T') rc=$rc" >> "$CLAIM/L$n/info"
+      log "QUEUE slot$k 结束 L$n rc=$rc，释放槽位"
+    done
+    log "QUEUE slot$k 无可取作业或已到截止 $MD_DEADLINE，退出"; }
+  for k in $(seq 1 $SLOTS); do slot $k & sleep 10; done; wait
+  while IFS=$'\t' read -r n line; do set -- $line; [ "$1" = ph ] || { log "QUEUE-STATUS L$n F[$2] $(tail -1 $CLAIM/L$n/info 2>/dev/null || echo 未领取)"; continue; }
+    d="$WORK/$2"; st=NOT_STARTED; [ -d "$CLAIM/L$n" ] && st=RUN_INCOMPLETE
+    [ -f "$d/.failed" ] && st=FAILED; [ -f "$WORK/$2.SEGDONE" ] && st=PROD_SEGMENT; [ -f "$d/.done_prod" ] && st=PROD_FULL
+    [ -f "$CLAIM/skip_L$n" ] && [ ! -d "$CLAIM/L$n" ] && st=SKIPPED_SHORT
+    log "STATUS $2 $st perf=$(awk '/Performance:/{print $2}' $d/prod.log 2>/dev/null | tail -1) t_ps=$(grep -E '^ +Step +Time' -A1 $d/prod.log 2>/dev/null | tail -1 | awk '{print $2}')"
+  done < <(queue_lines)
+  touch "$WORK/QUEUE.DONE"; log "==== ph_phase 接力队列结束 ===="; exit 0
+fi
+
+# ================= 固定列表模式（原 J004 / BUILD_ONLY 验证）=================
 log "SYSTEMS=[$SYSTEMS] PARALLEL=$PARALLEL NT=$NT T=${TEMP}K BOX=${BOX}nm(插入 x$INS_SCALE) WATER_WT=$WATER_WT SALT=${SALT}M GPUFLAGS='$GPUFLAGS' 截止 $MD_DEADLINE BUILD_ONLY=$BUILD_ONLY"
 for s in $SYSTEMS; do log "  $s: comp=$(sys_comp $s) alpha=$(sys_alpha $s)"; done
-( cd "$PH" && sha256sum -c --quiet SHA256SUMS ) >> "$LOG" 2>&1 || die "PH 目录 SHA256SUMS 校验失败（文件被改或不全）"
 if [ "$PARALLEL" = 1 ]; then
   for s in $SYSTEMS; do pipeline "$s" & sleep 5; done; wait
 else for s in $SYSTEMS; do pipeline "$s"; done; fi

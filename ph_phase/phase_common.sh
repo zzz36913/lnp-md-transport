@@ -21,20 +21,27 @@ EM_STEPS=${EM_STEPS:-20000}
 EQ1_NS=${EQ1_NS:-1}                   # dt 5 fs, tau_p 2 ps：压缩阶段
 EQ2_NS=${EQ2_NS:-4}                   # dt 10 fs
 PROD_NS=${PROD_NS:-2000}              # 上限；实际由 -maxh(截止时刻) 截断，可 -cpi 续跑
-MD_DEADLINE=${MD_DEADLINE:-07:30}     # production 必须停的 SGT 时刻（07:45 前收尾）
+MD_DEADLINE=${MD_DEADLINE:-07:00}     # production 必须停的 SGT 时刻（K 10-22：接力到 07:00；07:45 前收尾）
 NSTXTC=${NSTXTC:-25000}               # 0.5 ns/帧
 GPUFLAGS=${GPUFLAGS-"-nb gpu -update cpu"}   # 无 PME(reaction-field)；CHOL 虚位点 -> update cpu
 PINFLAGS=${PINFLAGS:-"-pin off"}      # 一机多作业共享 GPU/CPU 时不绑核
 
 # ---- 预置体系（可被 PH_COMP_<SYS>/PH_ALPHA_<SYS> 覆盖；也可只靠这两个变量定义全新体系名）----
-preset_comp(){ case $1 in
-  T0|T25|T50|T75|T100) echo "MC3:50,CHOL:40,DSPC:10";;
+# 体系名规则: T<N> = MC3:CHOL:DSPC 50:40:10、α=N/100（T33/T67 取 1/3、2/3）；POS/NEG 对照；
+# 后缀 _rep<k> = 同组成换种子的副本（种子由完整体系名哈希得到，自动不同）。
+sys_base(){ echo "${1%_rep*}"; }
+preset_comp(){ local b=$(sys_base $1); case $b in
+  T[0-9]|T[0-9][0-9]|T100) echo "MC3:50,CHOL:40,DSPC:10";;
   POS) echo "DOPE:80,CHOL:20";;
   NEG) echo "DOPC:80,CHOL:20";;
   *) echo "";; esac; }
-preset_alpha(){ case $1 in T0) echo 0;; T25) echo 0.25;; T50) echo 0.5;; T75) echo 0.75;; T100) echo 1.0;; *) echo 0;; esac; }
-sys_comp(){ local v="PH_COMP_$1"; echo "${!v:-$(preset_comp $1)}"; }
-sys_alpha(){ local v="PH_ALPHA_$1"; echo "${!v:-$(preset_alpha $1)}"; }
+preset_alpha(){ local b=$(sys_base $1); case $b in
+  T33) echo 0.333333;; T67) echo 0.666667;;
+  T[0-9]|T[0-9][0-9]|T100) awk -v n=${b#T} 'BEGIN{printf "%g", n/100}';;
+  *) echo 0;; esac; }
+# 覆盖优先级: PH_COMP_<完整名> > PH_COMP_<基名> > 预置
+sys_comp(){ local v="PH_COMP_$1" w="PH_COMP_$(sys_base $1)"; echo "${!v:-${!w:-$(preset_comp $1)}}"; }
+sys_alpha(){ local v="PH_ALPHA_$1" w="PH_ALPHA_$(sys_base $1)"; echo "${!v:-${!w:-$(preset_alpha $1)}}"; }
 
 CORE_ITPS="martini_v3.0.0.itp martini_v3.0.0_ffbonded_v2.itp martini_v3.0.0_phospholipids_PC_v2.itp martini_v3.0.0_sterols_v1.itp martini_v3.0.0_solvents_v1.itp martini_v3.0.0_ions_v1.itp"
 PH_ITPS="martini_v3.0.0_phospholipids_PE_v2.itp martini_v3.0.0_phospholipids_PS_v2.itp martini_v3.0.0_phospholipids_PI_v2.itp MC3.itp MC3H.itp"
