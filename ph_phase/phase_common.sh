@@ -41,6 +41,7 @@ preset_alpha(){ local b=$(sys_base $1); case $b in
   *) echo 0;; esac; }
 # 覆盖优先级: PH_COMP_<完整名> > PH_COMP_<基名> > 预置
 sys_comp(){ local v="PH_COMP_$1" w="PH_COMP_$(sys_base $1)"; echo "${!v:-${!w:-$(preset_comp $1)}}"; }
+sys_box(){ local v="PH_BOX_$1" w="PH_BOX_$(sys_base $1)"; echo "${!v:-${!w:-$BOX}}"; }
 sys_alpha(){ local v="PH_ALPHA_$1" w="PH_ALPHA_$(sys_base $1)"; echo "${!v:-${!w:-$(preset_alpha $1)}}"; }
 
 CORE_ITPS="martini_v3.0.0.itp martini_v3.0.0_ffbonded_v2.itp martini_v3.0.0_phospholipids_PC_v2.itp martini_v3.0.0_sterols_v1.itp martini_v3.0.0_solvents_v1.itp martini_v3.0.0_ions_v1.itp"

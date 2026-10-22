@@ -13,8 +13,11 @@ write_mdps(){ local d=$1 seed=$2
   sed "s/@NSTEPS@/$n3/; s/@TEMP@/$TEMP/g; s/@NSTXTC@/$NSTXTC/" "$PH/mdp/prod.mdp" > "$d/prod.mdp"; }
 
 build_one(){ local sys=$1 d="$WORK/$1"; mkdir -p "$d"
-  [ -f "$d/.done_build" ] && { log "$d: build 已完成，跳过"; return 0; }
-  local comp=$(sys_comp $sys) alpha=$(sys_alpha $sys)
+  local comp=$(sys_comp $sys) alpha=$(sys_alpha $sys) BOX=$(sys_box $sys)   # 盒长可按体系覆盖: PH_BOX_<SYS>
+  if [ -f "$d/.done_build" ]; then   # 已建：参数必须一致，否则拒绝复用（防止验证与正式跑参数不同）
+    local want="$sys comp=$comp alpha=$alpha box=$BOX " have=$(cut -d' ' -f1-4 "$d/SYSTEM.txt" 2>/dev/null)" "
+    [ "$have" = "$want" ] || die "$sys: 已有 build 参数不符（已有「$have」≠ 现在「$want」）；确认后删 $d 重建"
+    log "$d: build 已完成且参数一致，跳过"; return 0; fi
   [ -n "$comp" ] || die "$sys 没有组成（设 PH_COMP_$sys=...）"
   local seed=$(( SEED_BASE + $(echo -n "$sys" | cksum | cut -d' ' -f1) % 100000 ))
   for f in $CORE_ITPS; do [ -s "$FF/$f" ] || die "缺 $FF/$f"; cp "$FF/$f" "$d/"; done

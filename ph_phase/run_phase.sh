@@ -86,8 +86,11 @@ if [ -n "$QUEUE_FILE" ]; then
       echo "slot$k START $(date '+%F %T')" > "$CLAIM/L$n/info"
       log "QUEUE slot$k 取 L$n「$line」(距截止 $(maxh_left) h)"
       case $typ in
-        ph) set -- $line; pipeline "$2"; rc=$?
-            [ -f "$WORK/$2/.failed" ] && rc=1 ;;
+        ph) set -- $line; local sname=$2; shift 2
+            # 行内可带本作业专属参数 KEY=VAL（如 BOX=20 PROD_NS=300），只作用于该作业（子 shell）
+            ( for kv in "$@"; do case $kv in [A-Z_]*=*) export "$kv"; eval "${kv%%=*}=\"\${kv#*=}\"";; esac; done
+              [ $# -gt 0 ] && log "QUEUE slot$k L$n 作业参数: $*"; pipeline "$sname" ); rc=$?
+            [ -f "$WORK/$sname/.failed" ] && rc=1 ;;
         F)  set -- $line; local tag=$2; local cmd=${line#F $tag }
             log "QUEUE slot$k F[$tag]: $cmd"; bash -c "$cmd"; rc=$? ;;
         *)  log "QUEUE slot$k L$n 未知类型「$typ」"; rc=2 ;;
@@ -114,6 +117,6 @@ if [ "$PARALLEL" = 1 ]; then
 else for s in $SYSTEMS; do pipeline "$s"; done; fi
 for s in $SYSTEMS; do d="$WORK/$s"; st=RUN_INCOMPLETE
   [ -f "$d/.failed" ] && st=FAILED; [ -f "$d/.done_prod" ] && st=PROD_FULL; [ -f "$WORK/$s.SEGDONE" ] && [ ! -f "$d/.done_prod" ] && st=PROD_SEGMENT
-  [ "$BUILD_ONLY" = 1 ] && [ -f "$d/verify_eq1.tpr" ] && st=VERIFIED
+  [ "$BUILD_ONLY" = 1 ] && [ -f "$d/verify_eq1.tpr" ] && st=VERIFIED; [ -f "$d/.failed" ] && st=FAILED
   log "STATUS $s $st perf=$(awk '/Performance:/{print $2}' $d/prod.log 2>/dev/null | tail -1)"; done
 touch "$WORK/ALL.DONE"; log "==== ph_phase 本轮结束 ===="

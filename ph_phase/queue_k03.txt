@@ -1,11 +1,12 @@
 # k03 接力队列（J004，K 10-22 22:0x 定）。格式: `ph <体系名>` | `F <标签> <shell 命令>`；# 为注释；从上往下取。
 # SLOTS=3：前三条同时起，任何一条结束(跑完/FAILED)就取下一条；ph 作业 -maxh 算到 07:00；距 07:00 < 1 h 时跳过 ph 行只取 F。
+# 盒长: LNP MD 22:07 编排（转述 K 已批）α 体系 20 nm、POS 14 nm；行尾 KEY=VAL 只作用于该行作业。
 # 名字规则: T<N> → MC3:CHOL:DSPC 50:40:10, α=N/100（T67 = 2/3）；_rep2 = 换种子副本。
-ph T0
-ph T67
-ph POS
-ph T67_rep2
-ph T0_rep2
+ph T0 BOX=20
+ph T67 BOX=20
+ph POS BOX=14
+ph T67_rep2 BOX=20
+ph T0_rep2 BOX=20
 F F2 cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_a2 NREP=6 SYSTEMS=A ONLY="A/rep4 A/rep5 A/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=07:00 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k03_310k_a2.out 2>&1
 # 阴性对照 NEG 未在 K 的队列里（预注册 G-NEG 需要它）；LNP MD 决定后可去掉下一行的 # 启用：
 # ph NEG
