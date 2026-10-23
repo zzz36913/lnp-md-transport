@@ -1,0 +1,13 @@
+vermouth>=0.15.0
+mdtraj
+MDAnalysis
+numpy
+scipy
+networkx>=3
+pandas
+matplotlib
+pymbar>=4
+tqdm
+pbr
+decorator
+setuptools

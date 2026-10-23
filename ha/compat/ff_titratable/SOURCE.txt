@@ -1,0 +1,3 @@
+来源：https://github.com/marrink-lab/martini_sour_examples  commit a8f77d5c2234ea7fb388aea40f96db732d5e640b (2021-12-05)
+路径：examples/force_fields/*（原样拷贝，未改动），LICENSE 同仓库（Apache-2.0）。
+upstream_example_NpT.mdp = examples/1_acid_titration/NpT.mdp（上游示例用 PME + epsilon_r 6，与 Martini 3 蛋白常用 RF eps_r 15 不同——兼容性要点之一）。

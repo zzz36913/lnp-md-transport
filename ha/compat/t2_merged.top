@@ -1,0 +1,13 @@
+; 试验 T2：compat_merge.py 合并后的力场（GōMartini martini.itp + titratable 新类型/新配对）+ HA_post + 200 WNA + 200 H+，pH 5.00 块。
+; grompp 通过只说明语法层可合并；物理层看 compat_report.txt 的 MISSING_PAIRS（蛋白珠 × WNT/POS/DW 无显式 LJ）。
+#define pH5.00
+#define GO_VIRT
+#include "merged_post.itp"
+#include "@HA@/systems/post/HA_post.itp"
+#include "@HA@/compat/ff_titratable/molecules.itp"
+[ system ]
+T2 merged titratable + GoMartini HA_post + WNA/H+
+[ molecules ]
+HA_post 1
+WNA 200
+H+ 200

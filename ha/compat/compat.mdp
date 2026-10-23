@@ -1,0 +1,11 @@
+; 兼容性试验只跑 grompp（nsteps=0）。RF eps_r 15 = Martini 3 蛋白设置；上游 titratable 示例用 PME eps_r 6，见 ff_titratable/SOURCE.txt
+integrator               = steep
+nsteps                   = 0
+cutoff-scheme            = Verlet
+coulombtype              = reaction-field
+rcoulomb                 = 1.1
+epsilon_r                = 15
+epsilon_rf               = 0
+vdw_type                 = cut-off
+vdw_modifier             = Potential-shift-verlet
+rvdw                     = 1.1

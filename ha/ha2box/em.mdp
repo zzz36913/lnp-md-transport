@@ -1,0 +1,16 @@
+; HA2 水盒 EM：steep，Fmax 门槛在脚本里判（<1000）
+; GO_VIRT 已在 ha2box.top 里 #define，这里不再 -D（避免 grompp 警告）
+integrator               = steep
+nsteps                   = 5000
+emtol                    = 100
+emstep                   = 0.01
+cutoff-scheme            = Verlet
+nstlist                  = 20
+verlet-buffer-tolerance  = 0.005
+coulombtype              = reaction-field
+rcoulomb                 = 1.1
+epsilon_r                = 15
+epsilon_rf               = 0
+vdw_type                 = cut-off
+vdw_modifier             = Potential-shift-verlet
+rvdw                     = 1.1

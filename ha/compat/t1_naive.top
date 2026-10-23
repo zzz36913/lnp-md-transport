@@ -1,0 +1,10 @@
+; 试验 T1（预期失败）：直接用 titratable Martini 力场头 + GōMartini 蛋白 itp。
+; 预期 grompp 报 "Atomtype ... not found"（titratable 力场只带 ~24 个中性类型 + 假原子，缺蛋白珠类型与 Go 虚拟位点类型）。
+#define pH5.00
+#define GO_VIRT
+#include "@HA@/compat/ff_titratable/martini.itp"
+#include "@HA@/systems/post/HA_post.itp"
+[ system ]
+T1 naive titratable + GoMartini HA_post
+[ molecules ]
+HA_post 1

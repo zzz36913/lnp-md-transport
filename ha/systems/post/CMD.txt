@@ -1,0 +1,1 @@
+martinize2 -f ../../structures/1HTM_postfusion_HA2_clean.pdb -o HA_post.top -x HA_post_cg.pdb -ff martini3001 -dssp -cys auto -merge all -resid input -go -go-write-file contacts_post.map -name HA_post -p backbone -maxwarn 100

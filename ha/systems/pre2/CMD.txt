@@ -1,0 +1,1 @@
+martinize2 -f ../../structures/1HGF_prefusion_clean.pdb -o HA_pre2.top -x HA_pre2_cg.pdb -ff martini3001 -dssp -cys auto -merge all -resid input -go -go-write-file contacts_pre2.map -name HA_pre2 -p backbone -maxwarn 100

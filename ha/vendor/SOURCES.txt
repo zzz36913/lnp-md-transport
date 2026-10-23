@@ -1,0 +1,8 @@
+vendor/ 下均为上游原样拷贝（未改动），在 box 上 2026-10-23 从 GitHub 克隆后打包；sha256 见 ha/SHA256SUMS。
+- martini_sour-67ac029.tar.gz  = git archive of https://github.com/marrink-lab/martini_sour @ 67ac029e0201a56be7a0c9b44c4d8a48d337e394 (2021-12-05), Apache-2.0。
+  安装需 PBR_VERSION=0.0.1 pip install --no-deps（上游 setup.cfg 钉了 networkx~=2.0 / decorator==4.4.2，与 vermouth 0.15 冲突，故 --no-deps）。
+  注意：上游 conv_itp 子命令是空壳（src/conv_itp.py 只打印 "Not implemented yet."），蛋白 itp 转 titratable 不能靠它。
+- titratable_martini_tools-032da52/ = https://github.com/fgrunewald/titratable_martini_tools @ 032da52e988ac160f468957ff8f37bc64ffe5839 (2019-07-26), Apache-2.0（教程用的 convert_gro_to_titratable.py / degree_of_prot.py / fit_curve.py）。
+- GoMartini-17d2ebf/ = https://github.com/Martini-Force-Field-Initiative/GoMartini @ 17d2ebfacbfef7ac042545c8453398c8c0a5494f (2023-11-30), MIT：ContactMapGenerator C 源码 + 旧版 create_goVirt.py（仅参考；GōMartini 3 现用 martinize2 -go，vermouth 0.15.0 内置）。
+- titratable_martini_tutorial_files.zip = https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Titratable_Martini/titratable_martini_tutorial_files.zip（cgmartini.nl 教程页链接，box 实拉，sha256 e3d7fd1b34c79aee1211a4dc911a930477cca62557901c8a990b6e1b45197682）。
+- 未打包：独立 mkdssp 二进制（不装系统包，martinize2 -dssp 走 mdtraj 内置 DSSP）。

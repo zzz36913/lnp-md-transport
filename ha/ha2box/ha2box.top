@@ -1,0 +1,16 @@
+; HA-ENV-01 基准水盒：3HMG BHA 三聚体（HA1+HA2，GōMartini 3，-go 接触图）+ Martini 3 W + 0.15 M NaCl（中和 -24）
+; martini.itp 由 setup_ha_env.sh 在机器上用 ff/make_go_ff.py 从 martini_v3.0.0.itp + systems/pre/go_*.itp 重新生成（sha 已在 SHA 表里核对）
+#define GO_VIRT
+#include "../systems/pre/martini.itp"
+#include "../systems/pre/HA_pre.itp"
+#include "../ff/martini_v3.0.0_solvents_v1.itp"
+#include "../ff/martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+HA 3HMG BHA trimer GoMartini3 + W + 0.15 M NaCl
+
+[ molecules ]
+HA_pre 1
+W 15429
+NA 224
+CL 200
