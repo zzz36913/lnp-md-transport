@@ -1,4 +1,4 @@
-; EQ2: dt=10 fs，各向同性 C-rescale tau_p=4 ps
+; EQ2: dt=10 fs，C-rescale tau_p=4 ps（pcoupltype 随体系: random=isotropic, 预组装=semiisotropic）
 integrator               = md
 dt                       = 0.010
 nsteps                   = @NSTEPS@
@@ -19,9 +19,9 @@ tcoupl                   = v-rescale
 tc-grps                  = System
 tau_t                    = 1.0
 ref_t                    = @TEMP@
-pcoupltype               = isotropic
-ref_p                    = 1.0
-compressibility          = 3e-4
+pcoupltype               = @PCTYPE@
+ref_p                    = @REFP@
+compressibility          = @COMP@
 constraints              = none
 constraint_algorithm     = lincs
 lincs_order              = 8

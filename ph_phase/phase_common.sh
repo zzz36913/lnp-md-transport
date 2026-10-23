@@ -21,15 +21,35 @@ EM_STEPS=${EM_STEPS:-20000}
 EQ1_NS=${EQ1_NS:-1}                   # dt 5 fs, tau_p 2 ps：压缩阶段
 EQ2_NS=${EQ2_NS:-4}                   # dt 10 fs
 PROD_NS=${PROD_NS:-2000}              # 上限；实际由 -maxh(截止时刻) 截断，可 -cpi 续跑
-MD_DEADLINE=${MD_DEADLINE:-07:00}     # production 必须停的 SGT 时刻（K 10-22：接力到 07:00；07:45 前收尾）
+MD_DEADLINE=${MD_DEADLINE:-07:00}     # production 必须停的 SGT 时刻；可写绝对时间 'YYYY-MM-DD HH:MM'（J005 推荐）
+# J005：截止时刻在发车时一次性算成绝对时间并 export（各槽/子进程共用）。纯 HH:MM 时：今天该时刻已过 >3 h(如 10:30 发车) -> 取明天；
+# 已过 <3 h(如 07:30 误重启) -> 仍取今天(=已过截止，不开 prod)。
+if [ -z "${MD_DEADLINE_ABS:-}" ]; then
+  if [[ "$MD_DEADLINE" == *-* ]]; then MD_DEADLINE_ABS=$(date -d "$MD_DEADLINE" '+%F %H:%M')
+  else _t=$(date -d "today $MD_DEADLINE" +%s); _n=$(date +%s)
+    if [ $_t -lt $(( _n - 3*3600 )) ]; then MD_DEADLINE_ABS=$(date -d "tomorrow $MD_DEADLINE" '+%F %H:%M'); else MD_DEADLINE_ABS=$(date -d "today $MD_DEADLINE" '+%F %H:%M'); fi
+  fi; fi
+export MD_DEADLINE_ABS
 NSTXTC=${NSTXTC:-25000}               # 0.5 ns/帧
+# ---- J005 新增（默认值复现 J004 行为）----
+GEOM=${GEOM:-random}                  # random=J004 随机混合 | lam=预组装多层双层堆叠 | hii=预组装倒六角柱(体系名后缀 _bil/_HII 自动选)
+NBIL=${NBIL:-3}                       # lam: 立方盒内双层数（20 nm 盒 -> 层间距 ~6.7 nm）
+HII_A=${HII_A:-8.0}                   # hii: 六角晶格常数 nm（设定值/估算，非实验值）；盒 Lx=HII_NX*a, Ly=HII_NY*a*sqrt3, Lz=HII_LZ
+HII_NX=${HII_NX:-2}; HII_NY=${HII_NY:-1}; HII_LZ=${HII_LZ:-12.3}   # 默认 4 根柱、体积≈14^3（与 POS 14 nm 同量）
+EQ1_DT=${EQ1_DT:-0.005}; EQ1_TAUP=${EQ1_TAUP:-2.0}
+PCTYPE=${PCTYPE:-}                    # 空 = random 用 isotropic、预组装(lam/hii)用 semiisotropic
+EM_FMAX_MAX=${EM_FMAX_MAX:-}          # 设了(如 1000)：EM 的 Maximum force 必须 < 此值才往下走，否则 .failed + EM_FAIL.txt
+NSTTRR=${NSTTRR:-2500000}             # prod 全体系(含水)全精度 trr 帧间隔(步)：2500000*20 fs = 50 ns，供多帧 S(q)
 GPUFLAGS=${GPUFLAGS-"-nb gpu -update cpu"}   # 无 PME(reaction-field)；CHOL 虚位点 -> update cpu
 PINFLAGS=${PINFLAGS:-"-pin off"}      # 一机多作业共享 GPU/CPU 时不绑核
 
 # ---- 预置体系（可被 PH_COMP_<SYS>/PH_ALPHA_<SYS> 覆盖；也可只靠这两个变量定义全新体系名）----
 # 体系名规则: T<N> = MC3:CHOL:DSPC 50:40:10、α=N/100（T33/T67 取 1/3、2/3）；POS/NEG 对照；
 # 后缀 _rep<k> = 同组成换种子的副本（种子由完整体系名哈希得到，自动不同）。
-sys_base(){ echo "${1%_rep*}"; }
+sys_base(){ local b="${1%_rep*}"; b="${b%_bil}"; b="${b%_HII}"; [ "$b" = POS20 ] && b=POS; [ "$b" = NEG20 ] && b=NEG; echo "$b"; }
+# J005 名字: <基>_bil = 预组装多层双层(lam)；<基>_HII = 预组装 H_II；POS20 = POS 组成(盒长由队列行 BOX=20 给)
+sys_geom(){ local v="PH_GEOM_$1"; [ -n "${!v:-}" ] && { echo "${!v}"; return; }
+  case $1 in *_bil|*_bil_rep*) echo lam;; *_HII|*_HII_rep*) echo hii;; *) echo "$GEOM";; esac; }
 preset_comp(){ local b=$(sys_base $1); case $b in
   T[0-9]|T[0-9][0-9]|T100) echo "MC3:50,CHOL:40,DSPC:10";;
   POS) echo "DOPE:80,CHOL:20";;

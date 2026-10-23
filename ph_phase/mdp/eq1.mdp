@@ -1,6 +1,6 @@
-; EQ1: 随机混合盒压缩阶段，小 dt=5 fs，各向同性 C-rescale tau_p=2 ps
+; EQ1: 压缩阶段，dt=@DT@ ps(J004 默认 5 fs)，C-rescale tau_p=@TAUP@ ps；随机混合用 isotropic，预组装用 semiisotropic
 integrator               = md
-dt                       = 0.005
+dt                       = @DT@
 nsteps                   = @NSTEPS@
 nstxout-compressed       = 20000
 nstenergy                = 1000
@@ -19,15 +19,15 @@ tcoupl                   = v-rescale
 tc-grps                  = System
 tau_t                    = 1.0
 ref_t                    = @TEMP@
-pcoupltype               = isotropic
-ref_p                    = 1.0
-compressibility          = 3e-4
+pcoupltype               = @PCTYPE@
+ref_p                    = @REFP@
+compressibility          = @COMP@
 constraints              = none
 constraint_algorithm     = lincs
 lincs_order              = 8
 lincs_iter               = 2
 pcoupl                   = c-rescale
-tau_p                    = 2.0
+tau_p                    = @TAUP@
 gen_vel                  = yes
 gen_temp                 = @TEMP@
 gen_seed                 = @SEED@

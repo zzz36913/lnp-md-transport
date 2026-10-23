@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # 脂质滴定介观相 MVP 主流程。
+# J005 接力队列: 见 queue_k03.txt 头注释 / QUEUE.md J005 节（PH=~/ph_phase_j005 WORK=~/ph_j005_run）
 # 接力队列(J004 正式用法): QUEUE_FILE=~/ph_phase/queue_k03.txt SLOTS=3 setsid bash ~/ph_phase/run_phase.sh </dev/null >/dev/null 2>&1 &
 # 固定列表/验证: SYSTEMS="T0 T67 POS" BUILD_ONLY=1 bash ~/ph_phase/run_phase.sh
 # 每个体系: build -> grompp/EM -> EQ1(5fs) -> EQ2(10fs) -> PROD(20fs, -maxh 到 MD_DEADLINE, -cpi 续跑)
@@ -13,8 +14,7 @@ NSYS=$(echo $SYSTEMS | wc -w)
 if [ "$PARALLEL" = 1 ]; then NT=${NT:-$(( $(nproc) / NSYS ))}; else NT=${NT:-$(nproc)}; fi
 [ "$NT" -ge 1 ] || NT=1
 
-maxh_left(){ local now=$(date +%s) dl=$(date -d "today $MD_DEADLINE" +%s)
-  [ $dl -lt $(( now - 6*3600 )) ] && dl=$(date -d "tomorrow $MD_DEADLINE" +%s)
+maxh_left(){ local now=$(date +%s) dl=$(date -d "$MD_DEADLINE_ABS" +%s)   # 绝对截止时刻(phase_common 发车时算定)
   awk -v r=$(( dl-now )) 'BEGIN{h=r/3600; if(h<0.02) print 0; else printf "%.3f", h}'; }
 
 grompp_ok(){ local d=$1 name=$2   # grompp 不许有 WARNING（-maxwarn 0）；NOTE 记录
@@ -31,15 +31,20 @@ pipeline(){ local sys=$1 d="$WORK/$1"
       || { log "$sys: verify_eq1 grompp 失败，见 $d/verify_eq1.out"; touch "$d/.failed"; return 1; }
     return 0; fi
   step "$d" em "GMX mdrun -deffnm em -ntmpi 1 -ntomp $NT $PINFLAGS" || { touch "$d/.failed"; return 1; }
-  grep -qiE 'converged to (Fmax|machine precision)' "$d/em.log" || log "$sys: 警告 EM 未见收敛字样(继续，见 em.log)"
+  grep -qiE 'converged to (Fmax|machine precision)' "$d/em.log" || log "$sys: 警告 EM 未见收敛字样(见 em.log)"
+  local fmax=$(awk '/^Maximum force/{print $4}' "$d/em.log" | tail -1)
+  log "$sys: EM Fmax=${fmax:-?} (门槛 ${EM_FMAX_MAX:-无})"
+  if [ -n "$EM_FMAX_MAX" ] && ! awk -v f="${fmax:-inf}" -v m="$EM_FMAX_MAX" 'BEGIN{exit !(f+0==f && f<m)}'; then
+    echo "EM_FAIL $(date '+%F %T') Fmax=${fmax:-?} >= $EM_FMAX_MAX（或非数/inf）；不进 EQ。见 em.log" | tee "$d/EM_FAIL.txt" >> "$LOG"
+    touch "$d/.failed"; return 1; fi
   step "$d" grompp_eq1 "GMX grompp -f eq1.mdp -c em.gro -p sys.top -o eq1.tpr -maxwarn 0" || { touch "$d/.failed"; return 1; }
   step "$d" eq1 "GMX mdrun -deffnm eq1 -ntmpi 1 -ntomp $NT $PINFLAGS $GPUFLAGS -cpi eq1.cpt" || { touch "$d/.failed"; return 1; }
   step "$d" grompp_eq2 "GMX grompp -f eq2.mdp -c eq1.gro -t eq1.cpt -p sys.top -o eq2.tpr -maxwarn 0" || { touch "$d/.failed"; return 1; }
   step "$d" eq2 "GMX mdrun -deffnm eq2 -ntmpi 1 -ntomp $NT $PINFLAGS $GPUFLAGS -cpi eq2.cpt" || { touch "$d/.failed"; return 1; }
   step "$d" grompp_prod "GMX grompp -f prod.mdp -c eq2.gro -t eq2.cpt -p sys.top -o prod.tpr -maxwarn 0" || { touch "$d/.failed"; return 1; }
   local mh=$(maxh_left)
-  [ "$mh" = 0 ] && { log "$sys: 已过 MD 截止 $MD_DEADLINE，不开 production（重跑可续）"; return 0; }
-  log "$sys: production -maxh $mh (截止 $MD_DEADLINE, NT=$NT)"
+  [ "$mh" = 0 ] && { log "$sys: 已过 MD 截止 $MD_DEADLINE_ABS，不开 production（重跑可续）"; return 0; }
+  log "$sys: production -maxh $mh (截止 $MD_DEADLINE_ABS, NT=$NT)"
   # prod 不打 .done 直到 nsteps 跑满；被 -maxh 截断时留 prod.cpt，下次重跑续跑
   if run_gmx "$d" prod "GMX mdrun -deffnm prod -ntmpi 1 -ntomp $NT $PINFLAGS $GPUFLAGS -maxh $mh -cpi prod.cpt"; then
     grep -iqw 'nan' "$d/prod.log" && log "$sys: 警告 prod.log 出现 nan"
@@ -67,7 +72,7 @@ if [ -n "$QUEUE_FILE" ]; then
   [ -f "$QUEUE_FILE" ] || die "队列文件不存在: $QUEUE_FILE"
   CLAIM="$WORK/.queue_claims"; mkdir -p "$CLAIM"
   NT=${NT_SLOT:-$(( $(nproc) / SLOTS ))}; [ "$NT" -ge 1 ] || NT=1; export NT
-  log "QUEUE 模式 file=$QUEUE_FILE SLOTS=$SLOTS NT/槽=$NT 截止 $MD_DEADLINE MIN_LEFT_H=$MIN_LEFT_H T=${TEMP}K BOX=${BOX} WATER_WT=$WATER_WT GPUFLAGS='$GPUFLAGS'"
+  log "QUEUE 模式 file=$QUEUE_FILE SLOTS=$SLOTS NT/槽=$NT 截止 $MD_DEADLINE_ABS MIN_LEFT_H=$MIN_LEFT_H T=${TEMP}K BOX=${BOX} WATER_WT=$WATER_WT GPUFLAGS='$GPUFLAGS'"
   queue_lines(){ awk '{sub(/#.*/,""); gsub(/^[ \t]+|[ \t]+$/,"")} NF{print NR"\t"$0}' "$QUEUE_FILE"; }
   next_job(){ local left=$(maxh_left); [ "$left" = 0 ] && return 1
     local short=$(awk -v l=$left -v m=$MIN_LEFT_H 'BEGIN{print (l<m)?1:0}') n line
@@ -110,7 +115,7 @@ if [ -n "$QUEUE_FILE" ]; then
 fi
 
 # ================= 固定列表模式（原 J004 / BUILD_ONLY 验证）=================
-log "SYSTEMS=[$SYSTEMS] PARALLEL=$PARALLEL NT=$NT T=${TEMP}K BOX=${BOX}nm(插入 x$INS_SCALE) WATER_WT=$WATER_WT SALT=${SALT}M GPUFLAGS='$GPUFLAGS' 截止 $MD_DEADLINE BUILD_ONLY=$BUILD_ONLY"
+log "SYSTEMS=[$SYSTEMS] PARALLEL=$PARALLEL NT=$NT T=${TEMP}K BOX=${BOX}nm(插入 x$INS_SCALE) WATER_WT=$WATER_WT SALT=${SALT}M GPUFLAGS='$GPUFLAGS' 截止 $MD_DEADLINE_ABS BUILD_ONLY=$BUILD_ONLY"
 for s in $SYSTEMS; do log "  $s: comp=$(sys_comp $s) alpha=$(sys_alpha $s)"; done
 if [ "$PARALLEL" = 1 ]; then
   for s in $SYSTEMS; do pipeline "$s" & sleep 5; done; wait

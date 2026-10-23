@@ -1,12 +1,11 @@
-# k03 接力队列（J004，K 10-22 22:0x 定）。格式: `ph <体系名>` | `F <标签> <shell 命令>`；# 为注释；从上往下取。
-# SLOTS=3：前三条同时起，任何一条结束(跑完/FAILED)就取下一条；ph 作业 -maxh 算到 07:00；距 07:00 < 1 h 时跳过 ph 行只取 F。
-# 盒长: LNP MD 22:07 编排（转述 K 已批）α 体系 20 nm、POS 14 nm；行尾 KEY=VAL 只作用于该行作业。
-# 名字规则: T<N> → MC3:CHOL:DSPC 50:40:10, α=N/100（T67 = 2/3）；_rep2 = 换种子副本。
-ph T0 BOX=20
-ph T67 BOX=20
-ph POS BOX=14
-ph T67_rep2 BOX=20
-ph T0_rep2 BOX=20
-F F2 cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_a2 NREP=6 SYSTEMS=A ONLY="A/rep4 A/rep5 A/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=07:00 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k03_310k_a2.out 2>&1
-# 阴性对照 NEG 未在 K 的队列里（预注册 G-NEG 需要它）；LNP MD 决定后可去掉下一行的 # 启用：
-# ph NEG
+# k03 接力队列（J005，LNP MD 10-23 定；10:30 SGT 起跑）。格式: `ph <体系名> [KEY=VAL ...]` | `F <标签> <shell 命令>`；# 为注释；从上往下取。
+# SLOTS 默认 3（发车命令前 SLOTS=2 NT_SLOT=10 等可覆盖）；ph 作业 -maxh 算到 MD_DEADLINE（发车命令给绝对时间 2026-10-24 07:00）。
+# 优先级（两机交错分配）：POS20 > NEG > T0_bil > T100_bil > POS_HII > T33_rep2 > T100_rep2；k03 拿 1/3/5/7，k04 拿 2/4/6。
+# 名字规则: POS20=DOPE:CHOL 80:20 随机混合；*_bil=预组装 3 层双层堆叠(lam)；POS_HII=预组装 4 根倒六角水柱(hii)；_rep2=换种子副本。
+# 预组装体系: EM 最多 50000 步，Maximum force 必须 < 1000 才进 EQ，否则 .failed + EM_FAIL.txt，槽位让给下一行。
+ph POS20 BOX=20
+ph T0_bil BOX=20 EM_STEPS=50000 EM_FMAX_MAX=1000
+ph POS_HII EM_STEPS=50000 EM_FMAX_MAX=1000
+ph T100_rep2 BOX=20
+# F2（310K A rep4–6）: 10:30 前若在跑，按 QUEUE.md J005「让位规则」在 checkpoint 停；这里排队尾，有空槽才从 cpt 续。
+F F2 cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_a2 NREP=6 SYSTEMS=A ONLY="A/rep4 A/rep5 A/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=06:45 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k03_310k_a2.out 2>&1

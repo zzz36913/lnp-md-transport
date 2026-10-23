@@ -1,7 +1,6 @@
-# k04 接力队列（J004，K 10-22 22:0x 定）。格式同 queue_k03.txt。SLOTS=2。
-ph T33 BOX=20
-ph T100 BOX=20
-ph T100_rep2 BOX=20
+# k04 接力队列（J005）。格式/规则同 queue_k03.txt。SLOTS 默认 3。
+ph NEG BOX=14
+ph T100_bil BOX=20 EM_STEPS=50000 EM_FMAX_MAX=1000
 ph T33_rep2 BOX=20
-F F1 cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_b2 NREP=6 SYSTEMS=B ONLY="B/rep4 B/rep5 B/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=07:00 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k04_310k_b2.out 2>&1
-# ph NEG
+# F1（310K B rep5 续 + rep6）: 同 F2 让位规则；排队尾。
+F F1 cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_b2 NREP=6 SYSTEMS=B ONLY="B/rep4 B/rep5 B/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=06:45 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k04_310k_b2.out 2>&1

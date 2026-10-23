@@ -172,6 +172,29 @@ def connectivity(grid, box, sigma=0.5, thr=1.0):
     return out
 
 # ---------------- 主程序 ----------------
+# J005：追踪预组装起始晶格的指定反射(hkl 以当前盒为基，盒形变时指数不变)。背景 = 同 |q| 壳层除去所列反射(及其 -hkl)的均值。
+# v1 classify 在小盒(2×1 六方胞)里因 6 个等价 (10) 峰占满壳层而判 DISORDERED；此项只回答「起始反射是否仍在」，不做全局搜峰，故不会引入盒相称假峰。
+def track_hkl(S, HKL, Q, box, spec, frac=0.08, contrast=8.0, smin=25.0):
+    Qn = np.linalg.norm(Q, axis=-1); dq = 2 * np.pi / max(box); b = np.floor(Qn / dq).astype(int)
+    n = S.shape[0]; want = [tuple(int(x) for x in t.split(',')) for t in spec.split(';') if t.strip()]
+    def idx(h, k, l):
+        if l < 0: h, k, l = -h, -k, -l
+        if l >= S.shape[2]: return None
+        return (h % n, k % n, l)
+    sel = [idx(*w) for w in want]; mask = np.zeros(S.shape, bool)
+    for w in want:   # 反射与其 -hkl 都排除出背景（l=0 平面上二者是 rfft 网格中不同的点）
+        for t in (idx(*w), idx(-w[0], -w[1], -w[2])):
+            if t is not None: mask[t] = True
+    ok = (Qn > 0) & (Qn < 2 * np.pi / 1.5); smax = float(S[ok].max()); res = []
+    for w, t in zip(want, sel):
+        if t is None: res.append({'hkl': w, 'error': 'out of grid'}); continue
+        sh = (b == b[t]) & (Qn > 0) & ~mask
+        bg = float(S[sh].mean()) if sh.sum() else float('nan')
+        sv = float(S[t]); c = sv / bg if bg > 0 else float('inf')
+        res.append({'hkl': w, 'q': round(float(Qn[t]), 3), 'S': round(sv, 2), 'bg': round(bg, 2), 'contrast': round(c, 1),
+                    'n_bg': int(sh.sum()), 'strong': bool(sv >= smin and sv >= frac * smax and c >= contrast)})
+    return {'reflections': res, 'n_strong': sum(r.get('strong', False) for r in res), 'n': len(res), 'smax': round(smax, 2)}
+
 def analyze(args):
     acc = None; nf = 0; boxes = []; gacc = None
     for res, name, xyz, box in frames(args):
@@ -188,6 +211,7 @@ def analyze(args):
     HKL, Q = qvectors(box, args.grid)
     out, (qs, I) = classify(S, HKL, Q, box, args.frac, args.contrast)
     out.update(frames=nf, box_nm=[round(float(x), 3) for x in box], npart=int(m.sum()), selection=args.names or args.sel)
+    if args.hkl: out['hkl_track'] = track_hkl(S, HKL, Q, box, args.hkl, args.frac, args.contrast)
     if args.conn: out['connectivity'] = connectivity(gacc / nf, box)
     if args.sq_out:
         np.savetxt(args.sq_out, np.c_[qs, I], header='q(1/nm) S(q) radial average', fmt='%.5f')
@@ -201,8 +225,9 @@ def synth(kind, L=14.0, n_part=60000, seed=1):
         d = L / 3; keep = np.cos(k * pts[:, 2] / d) > 0.4; box = np.array([L, L, L])
     elif kind == 'LAMtilt':  # 层法向 (1,1,0)
         d = L / 3 / math.sqrt(2); keep = np.cos(k * (pts[:, 0] + pts[:, 1]) / (L / 3)) > 0.4; box = np.array([L, L, L])
-    elif kind == 'HII':    # 水柱沿 z，六方晶格 a，矩形盒 Lx=3a, Ly=2*sqrt3*a
-        a = L / 3; box = np.array([3 * a, 2 * math.sqrt(3) * a, L])
+    elif kind in ('HII', 'HIIsmall'):    # 水柱沿 z，六方晶格 a，矩形盒 Lx=3a, Ly=2*sqrt3*a；HIIsmall = J005 POS_HII 的 2×1 胞(a=8)
+        if kind == 'HII': a = L / 3; box = np.array([3 * a, 2 * math.sqrt(3) * a, L])
+        else: a = 8.0; box = np.array([2 * a, math.sqrt(3) * a, 12.3])
         pts = rng.uniform(0, 1, (n_part * 4, 3)) * box
         x, y = pts[:, 0], pts[:, 1]; r2 = np.full(len(pts), 1e9)
         for i in range(-1, 5):
@@ -239,6 +264,11 @@ def selftest():
         ok &= good
         print('%-8s expect=%-22s got=%-18s dims=%s ratios=%s %s %s' % (kind, exp, out['phase'], out.get('dims'), out.get('ratios', [])[:6],
               'PASS' if good else 'FAIL', ('conn=' + json.dumps({'n': conn['n_clusters'], 'wrap': [c['wrap_axes'] for c in conn['clusters'][:3]]})) if conn else ''))
+    for kind, want in (('HIIsmall', 3), ('RAND', 0)):   # --hkl 追踪：小盒 HII 的 (10) 族须 3/3 strong；随机须 0
+        p, box = synth(kind) if kind == 'HIIsmall' else synth('RAND', L=16.0)
+        g = cic(p, box, 64); S = sq_of(g, len(p)); HKL, Q = qvectors(box, 64)
+        tr = track_hkl(S, HKL, Q, box, '2,1,0;2,-1,0;0,2,0'); good = tr['n_strong'] == want; ok &= good
+        print('%-8s --hkl (10)族 strong=%d/3 expect=%d %s' % (kind, tr['n_strong'], want, 'PASS' if good else 'FAIL'))
     print('SELFTEST', 'PASS' if ok else 'FAIL')
     return ok
 
@@ -251,6 +281,7 @@ if __name__ == '__main__':
     ap.add_argument('--frac', type=float, default=0.08); ap.add_argument('--contrast', type=float, default=8.0)
     ap.add_argument('--conn', action='store_true', help='同时算水域连通性（辅判据）')
     ap.add_argument('--sq-out'); ap.add_argument('--selftest', action='store_true')
+    ap.add_argument('--hkl', help='追踪指定反射，如 "2,1,0;2,-1,0;0,2,0"（J005 POS_HII 起始 (10) 族）')
     a = ap.parse_args()
     if a.selftest: sys.exit(0 if selftest() else 1)
     if not (a.gro or a.traj): ap.error('需要 gro 或 --top/--traj')
