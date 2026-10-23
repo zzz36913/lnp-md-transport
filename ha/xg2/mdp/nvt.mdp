@@ -1,0 +1,26 @@
+; XG2 NVT 1 ns：sd，10 fs（G2020 / Chiariello SI p.S3），骨架位置限制（martinize2 写的 POSRES），310 K。
+define                   = -DPOSRES
+integrator               = sd
+dt                       = 0.010
+nsteps                   = @NSTEPS@
+nstxout-compressed       = 5000
+nstenergy                = 500
+nstcalcenergy            = 100
+nstlog                   = 5000
+cutoff-scheme            = Verlet
+nstlist                  = 20
+verlet-buffer-tolerance  = 0.005
+@ELEC@
+vdw_type                 = cut-off
+vdw_modifier             = Potential-shift-verlet
+rvdw                     = 1.1
+tc-grps                  = System
+tau_t                    = 1.0
+ref_t                    = 310
+pcoupl                   = no
+gen_vel                  = yes
+gen_temp                 = 310
+gen_seed                 = 20261023
+constraint_algorithm     = lincs
+lincs_order              = 8
+lincs_iter               = 2

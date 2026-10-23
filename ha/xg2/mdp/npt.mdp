@@ -1,0 +1,29 @@
+; XG2 NPT 5 ns：无位置限制。压耦**各向同性**（Chiariello 2023 SI p.S3：可滴定水配半各向同性会造成人为大盒形变），
+; τ_p 3 ps（同上）。用 C-rescale 而非 Chiariello 的 Parrinello-Rahman：起点密度未平衡，PR 易振荡；compressibility 3e-4 同 ha2box。
+integrator               = sd
+dt                       = 0.010
+nsteps                   = @NSTEPS@
+nstxout-compressed       = 5000
+nstenergy                = 500
+nstcalcenergy            = 100
+nstlog                   = 5000
+cutoff-scheme            = Verlet
+nstlist                  = 20
+verlet-buffer-tolerance  = 0.005
+@ELEC@
+vdw_type                 = cut-off
+vdw_modifier             = Potential-shift-verlet
+rvdw                     = 1.1
+tc-grps                  = System
+tau_t                    = 1.0
+ref_t                    = 310
+pcoupl                   = c-rescale
+pcoupltype               = isotropic
+tau_p                    = 3.0
+ref_p                    = 1.0
+compressibility          = 3e-4
+gen_vel                  = no
+continuation             = yes
+constraint_algorithm     = lincs
+lincs_order              = 8
+lincs_iter               = 2

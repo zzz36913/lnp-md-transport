@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# HA-XG2：k03 拉取 XG2 作业包（GitHub zzz36913/lnp-md-transport ha/xg2/ @tag）逐文件 sha256 校验 → ~/ha_env/xg2
+# 纯网络/磁盘，不占 GPU，不碰 GLM/端口/key。需先完成 HA-ENV-01（~/ha_env/ha_common.sh 存在）。k04 无外网：末尾打印 scp 命令。
+# 用法: bash fetch_ha_xg2.sh [tag]   结果 ~/ha_env/xg2/FETCH.txt，末行 "FETCH XG2 OK (N files) tag=..."
+TAG=${1:-ha-xg2-v1}; R=zzz36913/lnp-md-transport; E=${HA_ENV:-$HOME/ha_env}; D=$E/xg2
+[ -f "$E/ha_common.sh" ] || { echo "REFUSED: $E/ha_common.sh 不存在，先完成 HA-ENV-01"; exit 2; }
+mkdir -p "$D"; cd "$D" || exit 1; : > FETCH.txt
+cat > SHA256SUMS <<'SUMS'
+9ce8d9d2bccd48fbd8e36b3eba003016889955b2d794aeb846281408b47fa3b5  README.md
+94145ecf5c3b8c1a208afc55fa1cd5ed35533f6139f821e59332e13833d20cc1  build_xg2_systems.py
+b00a94c602b2ae3711c21275488ad331754264b86fbfd77fe3121e736d01666c  mdp/elec_pme.inc
+4f706b61c1e80647cb5f9ed6485e1db9e0acd6d86dbe700613d0f5cb2931ed88  mdp/elec_rf.inc
+3760a0c710da9d128051c723f4a42178263230825b96b0ade336cf1ba1b82383  mdp/em.mdp
+d4a5761fce2c076208b00e959ca258dd5192ef48b544bc85cde5be006ac819e2  mdp/npt.mdp
+cfa1d7bb8176f8828d5bc5aea391ff06c9e2c098b9e7ee026a6f0e5541652e3f  mdp/nvt.mdp
+03b7204f8c94f5cb2aad0171a108ce5b3163173586bf6be852abec6952f4c769  patch/cross_B_post.itp
+772b8e4efddbca3cf42c651d09893ca5c24a7b4aa9a94ba7af6ee8baafb64880  patch/cross_B_post.override
+58ff90e280ef119d7773c3b172404c5cd918066b7bb34fcae76f49e0476354fd  patch/cross_B_post.tsv
+375484b8893442d429e1da63bae1add08657d39c96e46c25c8372189305b9491  patch/cross_B_pre.itp
+772b8e4efddbca3cf42c651d09893ca5c24a7b4aa9a94ba7af6ee8baafb64880  patch/cross_B_pre.override
+90c475e02a11621cb30fe414f08f9b0c78b880e20b3d24e64b66504613bd9c0e  patch/cross_B_pre.tsv
+afacc0ff4dbd983e6b3712af6dcabf06f1b2eb75d40d6bde8c3eb83c9742efa1  run_xg2.sh
+48edfa9e50de11901ec8110f3e1a5a74b56b3289f29fc8d1fd4d34784b0cc98c  systems/post_wna.gro
+c23f0007a5911191b2f6f2db183c66e42b675b53c79d1c6bfa7f2a1ed1a69e24  systems/pre_wna.gro
+ff5782b01727813b47d3ed3efaea773ba5b24d540225e01b572be7fea0818fc0  systems/w_box_tutorial.gro
+fd6d84f05cfda3410d3a8fc7ef5148b7063cf689c0d6c27b701f256a225745fe  xg0_gen_cross.py
+8da053f4fcb52f749d666e4f975b4a802abd3e8a006affdaaa276fcbfb58ceb5  xg1_check.py
+a9918f57672116dd7ae043ed1d90e4f546b676183cb08681d1b64ec59adcd580  xg2_analyze.py
+3286b145cae452e677d7e34b46df0df6937e48ee6eefe435a32d219310b821b4  xg_apply.py
+SUMS
+fail=0
+while read -r sha f; do f=${f#./}; mkdir -p "$(dirname "$f")"
+  if [ -f "$f" ] && [ "$(sha256sum "$f" | cut -d' ' -f1)" = "$sha" ]; then echo "HAVE $f" >> FETCH.txt; continue; fi
+  got=""
+  for u in "https://ghproxy.net/https://raw.githubusercontent.com/$R/$TAG/ha/xg2/$f" "https://ghfast.top/https://raw.githubusercontent.com/$R/$TAG/ha/xg2/$f" \
+           "https://fastly.jsdelivr.net/gh/$R@$TAG/ha/xg2/$f" "https://cdn.jsdelivr.net/gh/$R@$TAG/ha/xg2/$f" "https://gcore.jsdelivr.net/gh/$R@$TAG/ha/xg2/$f" \
+           "https://raw.githubusercontent.com/$R/$TAG/ha/xg2/$f"; do
+    curl -sS -L --connect-timeout 15 --max-time 180 -o "$f" "$u" 2>/dev/null
+    got=$(sha256sum "$f" 2>/dev/null | cut -d' ' -f1)
+    [ "$got" = "$sha" ] && { echo "OK $f $(echo "$u" | cut -d/ -f3)" >> FETCH.txt; break; }
+  done
+  [ "$got" = "$sha" ] || { echo "FAIL $f got=$got" >> FETCH.txt; fail=1; }
+done < SHA256SUMS
+chmod +x *.sh *.py 2>/dev/null
+if [ $fail = 0 ] && sha256sum -c --quiet SHA256SUMS; then
+  echo "FETCH XG2 OK ($(wc -l < SHA256SUMS) files) tag=$TAG" | tee -a FETCH.txt
+  echo "下一步(k03，仅空闲窗口): setsid bash $D/run_xg2.sh </dev/null >/dev/null 2>&1 &   看 $D/run/XG2_SUMMARY.txt"
+  echo "k04（其 HA-ENV-01 完成后）: scp -r $D k04@10.0.0.2:~/ha_env/  &&  ssh k04@10.0.0.2 'cd ~/ha_env/xg2 && sha256sum -c --quiet SHA256SUMS && echo SUMS_OK'"
+else echo "FETCH XG2 FAILED (见 $D/FETCH.txt)" | tee -a FETCH.txt; exit 1; fi

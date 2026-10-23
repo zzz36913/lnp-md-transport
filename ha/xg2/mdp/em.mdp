@@ -1,0 +1,15 @@
+; XG2 EM：可滴定水（WNA + H+）+ HA 蛋白（GōMartini 3）。静电块 @ELEC@ 由 run_xg2.sh 替换（默认 RF eps_r 6）。
+define                   = -DPOSRES
+integrator               = steep
+nsteps                   = 10000
+emtol                    = 100
+emstep                   = 0.01
+constraint-algorithm     = lincs
+lincs-order              = 8
+lincs-iter               = 2
+cutoff-scheme            = Verlet
+nstlist                  = 20
+@ELEC@
+vdw_type                 = cut-off
+vdw_modifier             = Potential-shift-verlet
+rvdw                     = 1.1
