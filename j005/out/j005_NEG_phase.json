@@ -1,0 +1,65 @@
+{
+ "n_strong": 2,
+ "smax": 1450.239670216195,
+ "q1": 1.031207091815189,
+ "d1_nm": 6.093039271209403,
+ "dims": 1,
+ "sv": [
+  2.0,
+  0.0,
+  0.0
+ ],
+ "ratios": [
+  1.0
+ ],
+ "peaks_top": [
+  {
+   "q": 1.031,
+   "S": 1450.24,
+   "hkl": [
+    1,
+    2,
+    0
+   ]
+  },
+  {
+   "q": 1.031,
+   "S": 1450.24,
+   "hkl": [
+    -1,
+    -2,
+    0
+   ]
+  }
+ ],
+ "template_penalty": {
+  "LAM": 0,
+  "HII": 2,
+  "Pn3m": 2,
+  "Im3m": 2,
+  "Ia3d": 2
+ },
+ "phase": "LAM(single-order)",
+ "nonlamellar": false,
+ "frames": 1,
+ "box_nm": [
+  13.624,
+  13.624,
+  13.624
+ ],
+ "npart": 6735,
+ "selection": "W",
+ "connectivity": {
+  "water_vox_frac": 0.394,
+  "n_clusters": 1,
+  "clusters": [
+   {
+    "vox": 103204,
+    "wrap_axes": [
+     "y",
+     "z"
+    ]
+   }
+  ]
+ }
+}
