@@ -1,0 +1,4 @@
+Steepest Descents:
+Steepest Descents converged to Fmax < 100 in 7831 steps
+Potential Energy  = -4.8482925e+05
+Maximum force     =  8.6849922e+01 on atom 15701
