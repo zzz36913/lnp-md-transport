@@ -1,0 +1,1 @@
+{"geom": "lam", "nlip": 5089, "nwat_beads": 20067, "d_spacing": 6.667, "water_thick": 2.0, "head_z": 2.083, "tail_scale": 0.873, "apl_nm2": 0.472, "place_retries": 194, "place_forced": 0, "water_lattice_nm": 0.48, "min_intermol_nm": 0.32, "n_beads_below_dmin": 0, "beads": 75027, "molecules": {"MC3H": 2544, "CHOL": 2036, "DSPC": 509, "W": 17089, "CL": 2761, "NA": 217}, "ok": true}
