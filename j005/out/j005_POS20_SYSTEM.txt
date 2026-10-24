@@ -1,0 +1,1 @@
+POS20 comp=DOPE:80,CHOL:20 alpha=0 box=20 geom=random ins_box=25.000 water_wt=0.30 T=310 seed=20268748 beads=70422
