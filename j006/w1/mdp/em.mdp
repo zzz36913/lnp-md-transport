@@ -1,0 +1,16 @@
+; EM: Martini 3 推荐值(reaction-field, eps_r 15, rc 1.1)；FLEXIBLE 让 CHOL 约束变硬键
+define                   = -DFLEXIBLE
+integrator               = steep
+nsteps                   = @EM_STEPS@
+emtol                    = 100
+emstep                   = 0.001
+cutoff-scheme            = Verlet
+nstlist                  = 20
+verlet-buffer-tolerance  = 0.005
+coulombtype              = reaction-field
+rcoulomb                 = 1.1
+epsilon_r                = 15
+epsilon_rf               = 0
+vdw_type                 = cut-off
+vdw_modifier             = Potential-shift-verlet
+rvdw                     = 1.1
