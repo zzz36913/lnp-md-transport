@@ -1,0 +1,41 @@
+{
+ "n_strong": 0,
+ "smax": 13181.37071884208,
+ "phase": "DISORDERED",
+ "reason": "无满足强度/衬度阈值的 Bragg 峰",
+ "frames": 1,
+ "box_nm": [
+  8.188,
+  8.188,
+  107.042
+ ],
+ "npart": 19633,
+ "selection": "W",
+ "connectivity": {
+  "water_vox_frac": 0.356,
+  "n_clusters": 3,
+  "clusters": [
+   {
+    "vox": 32338,
+    "wrap_axes": [
+     "x",
+     "y"
+    ]
+   },
+   {
+    "vox": 32305,
+    "wrap_axes": [
+     "x",
+     "y"
+    ]
+   },
+   {
+    "vox": 28706,
+    "wrap_axes": [
+     "x",
+     "y"
+    ]
+   }
+  ]
+ }
+}
