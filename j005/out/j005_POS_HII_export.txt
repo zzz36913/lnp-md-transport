@@ -1,0 +1,23 @@
+STATUS PROD
+confout from prod.cpt
+frames_W.xtc 
+总计 8608
+-rw-r--r-- 1 k03 k03  530367 10月 24 07:05 confout_W.gro.gz
+-rw-rw-r-- 1 k03 k03      38 10月 24 07:05 counts.txt
+-rw-rw-r-- 1 k03 k03     159 10月 24 07:05 em_summary.txt
+-rw-rw-r-- 1 k03 k03      48 10月 24 07:05 export.txt
+-rw-r--r-- 1 k03 k03 4519796 10月 24 07:05 frames_W.xtc
+-rw-r--r-- 1 k03 k03 1184799 10月 24 07:05 last_nonW.gro
+-rw-r--r-- 1 k03 k03   94217 10月 24 07:05 nonW.ndx
+-rw-r--r-- 1 k03 k03    1137 10月 24 07:05 phase.json
+-rw-rw-r-- 1 k03 k03       0 10月 24 07:05 phase_sq.out
+-rwxrwxr-x 1 k03 k03   16414 10月 24 07:05 phase_sq.py
+-rw-rw-r-- 1 k03 k03     383 10月 24 07:05 preasm.json
+-rw-r--r-- 1 k03 k03 1810509 10月 24 07:05 prod.log
+-rw-r--r-- 1 k03 k03  590396 10月 24 07:05 prod.tpr
+-rw-rw-r-- 1 k03 k03      52 10月 24 07:05 sel.txt
+-rw-r--r-- 1 k03 k03    1293 10月 24 07:05 sq.dat
+-rw-rw-r-- 1 k03 k03     110 10月 24 07:05 SYSTEM.txt
+-rw-rw-r-- 1 k03 k03    1372 10月 24 07:05 tc_cpt.out
+-rw-rw-r-- 1 k03 k03    3060 10月 24 07:05 tc_frames.out
+-rw-rw-r-- 1 k03 k03    1927 10月 24 07:05 tc_nonW.out
