@@ -1,0 +1,28 @@
+[2026-10-23 10:45:59 +08] QUEUE 模式 file=/home/k03/ph_phase_j005/queue_k03.txt SLOTS=3 NT/槽=6 截止 2026-10-24 07:00 MIN_LEFT_H=1 T=310K BOX=14 WATER_WT=0.30 GPUFLAGS='-nb gpu -update cpu'
+[2026-10-23 10:45:59 +08] QUEUE slot1 取 L6「ph POS20 BOX=20」(距截止 20.234 h)
+[2026-10-23 10:45:59 +08] QUEUE slot1 L6 作业参数: BOX=20
+[2026-10-23 10:46:09 +08] QUEUE slot2 取 L7「ph T0_bil BOX=20 EM_STEPS=50000 EM_FMAX_MAX=1000」(距截止 20.231 h)
+[2026-10-23 10:46:09 +08] QUEUE slot2 L7 作业参数: BOX=20 EM_STEPS=50000 EM_FMAX_MAX=1000
+[2026-10-23 10:46:12 +08] T0_bil: preasm {"geom": "lam", "nlip": 5089, "nwat_beads": 20067, "d_spacing": 6.667, "water_thick": 2.0, "head_z": 2.083, "tail_scale": 0.873, "apl_nm2": 0.472, "place_retries": 80, "place_forced": 0, "water_lattice_nm": 0.48, "min_intermol_nm": 0.323, "n_beads_below_dmin": 0, "beads": 75027, "molecules": {"MC3": 2544, "CHOL": 2036, "DSPC": 509, "W": 19633, "CL": 217, "NA": 217}, "ok": true}
+[2026-10-23 10:46:19 +08] QUEUE slot3 取 L8「ph POS_HII EM_STEPS=50000 EM_FMAX_MAX=1000」(距截止 20.228 h)
+[2026-10-23 10:46:19 +08] QUEUE slot3 L8 作业参数: EM_STEPS=50000 EM_FMAX_MAX=1000
+[2026-10-23 10:46:20 +08] POS_HII: preasm {"geom": "hii", "nlip": 1506, "nwat_beads": 6840, "lattice_a": 8.0, "box": [16.0, 13.856, 12.3], "ncyl": 4, "r_water": 2.301, "r_head": 2.551, "apl_head_nm2": 0.524, "place_retries": 14, "place_forced": 0, "water_lattice_nm": 0.46, "min_intermol_nm": 0.32, "n_beads_below_dmin": 0, "beads": 24009, "molecules": {"DOPE": 1205, "CHOL": 301, "W": 6692, "CL": 74, "NA": 74}, "ok": true}
+[2026-10-23 10:46:25 +08] T0_bil: EM Fmax=5.9102252e+02 (门槛 1000)
+[2026-10-23 10:46:27 +08] POS_HII: EM Fmax=8.6849922e+01 (门槛 1000)
+[2026-10-23 10:46:51 +08] POS20: EM Fmax=1.7489263e+03 (门槛 无)
+[2026-10-24 06:47:57 +08] QUEUE slot3 结束 L8 rc=0，释放槽位
+[2026-10-24 06:47:57 +08] QUEUE SKIP L9「ph T100_rep2 BOX=20」：剩余 0.201 h < 1 h，改取 F 作业
+[2026-10-24 06:47:57 +08] QUEUE slot3 取 L11「F F2 cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_a2 NREP=6 SYSTEMS=A ONLY="A/rep4 A/rep5 A/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=06:45 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k03_310k_a2.out 2>&1」(距截止 0.201 h)
+[2026-10-24 06:47:57 +08] QUEUE slot3 F[F2]: cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_a2 NREP=6 SYSTEMS=A ONLY="A/rep4 A/rep5 A/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=06:45 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k03_310k_a2.out 2>&1
+[2026-10-24 06:47:57 +08] QUEUE slot3 结束 L11 rc=0，释放槽位
+[2026-10-24 06:47:57 +08] QUEUE slot3 无可取作业或已到截止 2026-10-24 07:00，退出
+[2026-10-24 06:48:00 +08] QUEUE slot2 结束 L7 rc=0，释放槽位
+[2026-10-24 06:48:00 +08] QUEUE slot2 无可取作业或已到截止 2026-10-24 07:00，退出
+[2026-10-24 06:48:03 +08] QUEUE slot1 结束 L6 rc=0，释放槽位
+[2026-10-24 06:48:03 +08] QUEUE slot1 无可取作业或已到截止 2026-10-24 07:00，退出
+[2026-10-24 06:48:03 +08] STATUS POS20 PROD_SEGMENT perf=1284.514 t_ps=1060308.00000
+[2026-10-24 06:48:03 +08] STATUS T0_bil PROD_SEGMENT perf=1116.094 t_ps=920502.00000
+[2026-10-24 06:48:03 +08] STATUS POS_HII PROD_SEGMENT perf=2378.132 t_ps=1972359.00000
+[2026-10-24 06:48:03 +08] STATUS T100_rep2 SKIPPED_SHORT perf= t_ps=
+[2026-10-24 06:48:03 +08] QUEUE-STATUS L11 F[F2] END 2026-10-24 06:47:57 rc=0
+[2026-10-24 06:48:03 +08] ==== ph_phase 接力队列结束 ====
