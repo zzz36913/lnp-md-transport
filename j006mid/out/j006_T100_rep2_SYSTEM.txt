@@ -1,0 +1,1 @@
+T100_rep2 comp=MC3:50,CHOL:40,DSPC:10 alpha=1 box=20 geom=random ins_box=25.000 water_wt=0.30 T=310 seed=20281586 beads=75027
