@@ -1,0 +1,1 @@
+T0_bil comp=MC3:50,CHOL:40,DSPC:10 alpha=0 box=20 geom=lam ins_box=NA water_wt=0.30 T=310 seed=20353636 beads=75027
