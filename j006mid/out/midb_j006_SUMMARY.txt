@@ -1,0 +1,31 @@
+== J006 close 2026-10-24 22:34:23 ==
+-- /home/k03/xfer/j006midb/out/j006_T100_rep2_export.txt
+STATUS PROD
+confout from prod.cpt
+frames_W.xtc Last frame 8 time 400000.000 
+总计 11000
+-rw-r--r-- 1 k03 k03 1675112 10月 24 22:34 confout_W.gro.gz
+-rw-rw-r-- 1 k03 k03      52 10月 24 22:34 counts.txt
+j006_T100_rep2_prod.log perf= last=       20100000   402000.00000
+== close.log ==
+[2026-10-24 22:34:13] STATE SLEEPING
+[2026-10-24 22:34:13] 开始 host=spark-235d 截止=2026-10-24 22:30 k03=[T100_rep2 ] k04=[] GT=无
+[2026-10-24 22:34:13] STATE WAITING
+[2026-10-24 22:34:13] 两台已自然停止
+[2026-10-24 22:34:13] STATE EXPORT
+[2026-10-24 22:34:22] STATE PACK
+总计 10656
+-rw-rw-r-- 1 k03 k03     479 10月 24 22:34 j006_k03_phase_status.txt
+-rw-rw-r-- 1 k03 k03       0 10月 24 22:34 j006_k04_phase_status.txt
+-rw-rw-r-- 1 k03 k03     667 10月 24 22:34 j006_SUMMARY.txt
+-rw-r--r-- 1 k03 k03 1675112 10月 24 22:34 j006_T100_rep2_confout_W.gro.gz
+-rw-rw-r-- 1 k03 k03      52 10月 24 22:34 j006_T100_rep2_counts.txt
+-rw-rw-r-- 1 k03 k03     160 10月 24 22:34 j006_T100_rep2_em_summary.txt
+-rw-rw-r-- 1 k03 k03    1089 10月 24 22:34 j006_T100_rep2_export.txt
+-rw-r--r-- 1 k03 k03 3156620 10月 24 22:34 j006_T100_rep2_frames_W.xtc
+-rw-r--r-- 1 k03 k03 3792387 10月 24 22:34 j006_T100_rep2_last_nonW.gro
+-rw-r--r-- 1 k03 k03     442 10月 24 22:34 j006_T100_rep2_phase.json
+-rw-r--r-- 1 k03 k03  432182 10月 24 22:34 j006_T100_rep2_prod.log
+-rw-r--r-- 1 k03 k03 1817564 10月 24 22:34 j006_T100_rep2_prod.tpr
+-rw-r--r-- 1 k03 k03     953 10月 24 22:34 j006_T100_rep2_sq.dat
+-rw-rw-r-- 1 k03 k03     126 10月 24 22:34 j006_T100_rep2_SYSTEM.txt
