@@ -1,0 +1,1 @@
+POS_HII comp=DOPE:80,CHOL:20 alpha=0 box=14 geom=hii ins_box=NA water_wt=0.30 T=310 seed=20343921 beads=24009
