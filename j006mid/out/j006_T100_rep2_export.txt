@@ -1,0 +1,22 @@
+STATUS PROD
+confout from prod.cpt
+frames_W.xtc Last frame 8 time 400000.000 
+总计 11000
+-rw-r--r-- 1 k03 k03 1675112 10月 24 22:34 confout_W.gro.gz
+-rw-rw-r-- 1 k03 k03      52 10月 24 22:34 counts.txt
+-rw-rw-r-- 1 k03 k03     160 10月 24 22:34 em_summary.txt
+-rw-rw-r-- 1 k03 k03      77 10月 24 22:34 export.txt
+-rw-r--r-- 1 k03 k03 3156620 10月 24 22:34 frames_W.xtc
+-rw-r--r-- 1 k03 k03 3792387 10月 24 22:34 last_nonW.gro
+-rw-r--r-- 1 k03 k03  323482 10月 24 22:34 nonW.ndx
+-rw-r--r-- 1 k03 k03     442 10月 24 22:34 phase.json
+-rw-rw-r-- 1 k03 k03       0 10月 24 22:34 phase_sq.out
+-rwxrwxr-x 1 k03 k03   16414 10月 24 22:34 phase_sq.py
+-rw-r--r-- 1 k03 k03  432182 10月 24 22:34 prod.log
+-rw-r--r-- 1 k03 k03 1817564 10月 24 22:34 prod.tpr
+-rw-rw-r-- 1 k03 k03      52 10月 24 22:34 sel.txt
+-rw-r--r-- 1 k03 k03     953 10月 24 22:34 sq.dat
+-rw-rw-r-- 1 k03 k03     126 10月 24 22:34 SYSTEM.txt
+-rw-rw-r-- 1 k03 k03    1385 10月 24 22:34 tc_cpt.out
+-rw-rw-r-- 1 k03 k03    2210 10月 24 22:34 tc_frames.out
+-rw-rw-r-- 1 k03 k03    2107 10月 24 22:34 tc_nonW.out
