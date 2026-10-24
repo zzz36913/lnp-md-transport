@@ -1,0 +1,6 @@
+H000w12_HII T_restart=257298.5 t_clean=282298.5 KEEP>282298.5 frames 199 t_ps 283000.0..481000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
+H050w12_HII T_restart=262132.0 t_clean=287132 KEEP>287132.0 frames 202 t_ps 288000.0..489000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
+H100w12_HII T_restart=266308.0 t_clean=291308 KEEP>291308.0 frames 206 t_ps 292000.0..497000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
+H025w12_HII T_restart=271860.0 t_clean=296860 KEEP>296860.0 frames 216 t_ps 297000.0..512000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
+H075w12_HII T_restart=278893.5 t_clean=303893.5 KEEP>303893.5 frames 221 t_ps 304000.0..524000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
+H100w07_HII T_restart=277525.0 t_clean=302525 KEEP>302525.0 frames 219 t_ps 303000.0..521000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
