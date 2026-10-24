@@ -1,0 +1,35 @@
+[2026-10-23 10:49:52 +08] QUEUE 模式 file=/home/k04/ph_phase_j005/queue_k04.txt SLOTS=3 NT/槽=6 截止 2026-10-24 07:00 MIN_LEFT_H=1 T=310K BOX=14 WATER_WT=0.30 GPUFLAGS='-nb gpu -update cpu'
+[2026-10-23 10:49:52 +08] QUEUE slot1 取 L2「ph NEG BOX=14」(距截止 20.169 h)
+[2026-10-23 10:49:52 +08] QUEUE slot1 L2 作业参数: BOX=14
+[2026-10-23 10:50:01 +08] NEG: EM Fmax=8.8313728e+01 (门槛 无)
+[2026-10-23 10:50:02 +08] QUEUE slot2 取 L3「ph T100_bil BOX=20 EM_STEPS=50000 EM_FMAX_MAX=1000」(距截止 20.166 h)
+[2026-10-23 10:50:02 +08] QUEUE slot2 L3 作业参数: BOX=20 EM_STEPS=50000 EM_FMAX_MAX=1000
+[2026-10-23 10:50:04 +08] T100_bil: preasm {"geom": "lam", "nlip": 5089, "nwat_beads": 20067, "d_spacing": 6.667, "water_thick": 2.0, "head_z": 2.083, "tail_scale": 0.873, "apl_nm2": 0.472, "place_retries": 205, "place_forced": 0, "water_lattice_nm": 0.48, "min_intermol_nm": 0.32, "n_beads_below_dmin": 0, "beads": 75027, "molecules": {"MC3H": 2544, "CHOL": 2036, "DSPC": 509, "W": 17089, "CL": 2761, "NA": 217}, "ok": true}
+[2026-10-23 10:50:12 +08] QUEUE slot3 取 L4「ph T33_rep2 BOX=20」(距截止 20.163 h)
+[2026-10-23 10:50:12 +08] QUEUE slot3 L4 作业参数: BOX=20
+[2026-10-23 10:50:24 +08] T100_bil: EM Fmax=1.0370149e+03 (门槛 1000)
+EM_FAIL 2026-10-23 10:50:24 Fmax=1.0370149e+03 >= 1000（或非数/inf）；不进 EQ。见 em.log
+[2026-10-23 10:50:24 +08] QUEUE slot2 结束 L3 rc=1，释放槽位
+[2026-10-23 10:50:24 +08] QUEUE slot2 取 L6「F F1 cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_b2 NREP=6 SYSTEMS=B ONLY="B/rep4 B/rep5 B/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=06:45 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k04_310k_b2.out 2>&1」(距截止 20.160 h)
+[2026-10-23 10:50:24 +08] QUEUE slot2 F[F1]: cd ~/lnp_run2_exp && WORK=$HOME/lnp_310k_b2 NREP=6 SYSTEMS=B ONLY="B/rep4 B/rep5 B/rep6" TEMP=310 SALT=0.15 BOX=10 PROD_NS=300 MIN_PROD_NS=150 PROD_MAXH_CAP=3.0 MD_DEADLINE=06:45 GPUFLAGS="-nb gpu -update cpu" bash r.sh >> $HOME/k04_310k_b2.out 2>&1
+[2026-10-23 10:50:27 +08] QUEUE slot2 结束 L6 rc=0，释放槽位
+[2026-10-23 10:50:27 +08] QUEUE slot2 无可取作业或已到截止 2026-10-24 07:00，退出
+[2026-10-23 10:51:04 +08] T33_rep2: EM Fmax=1.8179943e+03 (门槛 无)
+[2026-10-23 11:06:36 +08] QUEUE 模式 file=/home/k04/ph_phase_j005/queue_t100bil.txt SLOTS=1 NT/槽=6 截止 2026-10-24 07:00 MIN_LEFT_H=1 T=310K BOX=14 WATER_WT=0.30 GPUFLAGS='-nb gpu -update cpu'
+[2026-10-23 11:06:36 +08] QUEUE slot1 取 L1「ph T100_bil BOX=20 EM_STEPS=50000 EM_FMAX_MAX=1000」(距截止 19.890 h)
+[2026-10-23 11:06:36 +08] QUEUE slot1 L1 作业参数: BOX=20 EM_STEPS=50000 EM_FMAX_MAX=1000
+[2026-10-23 11:06:39 +08] T100_bil: preasm {"geom": "lam", "nlip": 5089, "nwat_beads": 20067, "d_spacing": 6.667, "water_thick": 2.0, "head_z": 2.083, "tail_scale": 0.873, "apl_nm2": 0.472, "place_retries": 194, "place_forced": 0, "water_lattice_nm": 0.48, "min_intermol_nm": 0.32, "n_beads_below_dmin": 0, "beads": 75027, "molecules": {"MC3H": 2544, "CHOL": 2036, "DSPC": 509, "W": 17089, "CL": 2761, "NA": 217}, "ok": true}
+[2026-10-23 11:07:02 +08] T100_bil: EM Fmax=5.9794977e+02 (门槛 1000)
+[2026-10-24 06:47:56 +08] QUEUE slot1 结束 L2 rc=0，释放槽位
+[2026-10-24 06:47:56 +08] QUEUE slot1 无可取作业或已到截止 2026-10-24 07:00，退出
+[2026-10-24 06:48:04 +08] QUEUE slot3 结束 L4 rc=0，释放槽位
+[2026-10-24 06:48:04 +08] QUEUE slot3 无可取作业或已到截止 2026-10-24 07:00，退出
+[2026-10-24 06:48:04 +08] STATUS NEG PROD_SEGMENT perf=2406.936 t_ps=1995255.50000
+[2026-10-24 06:48:04 +08] STATUS T100_bil RUN_INCOMPLETE perf= t_ps=924500.00000
+[2026-10-24 06:48:04 +08] STATUS T33_rep2 PROD_SEGMENT perf=1145.269 t_ps=943714.50000
+[2026-10-24 06:48:04 +08] QUEUE-STATUS L6 F[F1] END 2026-10-23 10:50:27 rc=0
+[2026-10-24 06:48:04 +08] ==== ph_phase 接力队列结束 ====
+[2026-10-24 06:48:12 +08] QUEUE slot1 结束 L1 rc=0，释放槽位
+[2026-10-24 06:48:12 +08] QUEUE slot1 无可取作业或已到截止 2026-10-24 07:00，退出
+[2026-10-24 06:48:12 +08] STATUS T100_bil PROD_SEGMENT perf=1141.093 t_ps=924881.00000
+[2026-10-24 06:48:12 +08] ==== ph_phase 接力队列结束 ====
