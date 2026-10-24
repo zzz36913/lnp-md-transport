@@ -1,0 +1,52 @@
+== J006 close 2026-10-24 22:33:46 ==
+-- /home/k03/xfer/j006mida/out/j006_H000w07_HII_export.txt
+STATUS FAILED
+confout from prod.cpt
+frames_W.xtc Last frame 13 time 260000.000 
+总计 3252
+-rw-r--r-- 1 k04 k04  375348 10月 24 22:34 confout_W.gro.gz
+-rw-rw-r-- 1 k04 k04      36 10月 24 22:34 counts.txt
+-- /home/k03/xfer/j006mida/out/j006_H000w07_HII_rep2_export.txt
+STATUS FAILED
+confout from prod.cpt
+frames_W.xtc Last frame 9 time 180000.000 
+总计 2872
+-rw-r--r-- 1 k04 k04  373814 10月 24 22:35 confout_W.gro.gz
+-rw-rw-r-- 1 k04 k04      36 10月 24 22:35 counts.txt
+j006_H000w07_HII_prod.log perf= last=       13100000   262000.00000
+j006_H000w07_HII_rep2_prod.log perf= last=        9275000   185500.00000
+== close.log ==
+[2026-10-24 22:33:37] STATE SLEEPING
+[2026-10-24 22:33:37] 开始 host=spark-235d 截止=2026-10-24 22:30 k03=[] k04=[H000w07_HII H000w07_HII_rep2 ] GT=无
+[2026-10-24 22:33:37] STATE WAITING
+[2026-10-24 22:33:37] 两台已自然停止
+[2026-10-24 22:33:37] STATE EXPORT
+[2026-10-24 22:33:46] STATE PACK
+总计 5916
+-rw-r--r-- 1 k03 k03  375348 10月 24 22:33 j006_H000w07_HII_confout_W.gro.gz
+-rw-rw-r-- 1 k03 k03      36 10月 24 22:33 j006_H000w07_HII_counts.txt
+-rw-rw-r-- 1 k03 k03     159 10月 24 22:33 j006_H000w07_HII_em_summary.txt
+-rw-rw-r-- 1 k03 k03    1147 10月 24 22:33 j006_H000w07_HII_export.txt
+-rw-r--r-- 1 k03 k03 1059900 10月 24 22:33 j006_H000w07_HII_frames_W.xtc
+-rw-r--r-- 1 k03 k03 1030178 10月 24 22:33 j006_H000w07_HII_last_nonW.gro
+-rw-r--r-- 1 k03 k03     945 10月 24 22:33 j006_H000w07_HII_phase.json
+-rw-rw-r-- 1 k03 k03     381 10月 24 22:33 j006_H000w07_HII_preasm.json
+-rw-r--r-- 1 k03 k03  288870 10月 24 22:33 j006_H000w07_HII_prod.log
+-rw-r--r-- 1 k03 k03  415152 10月 24 22:33 j006_H000w07_HII_prod.tpr
+-rw-r--r-- 1 k03 k03  373814 10月 24 22:33 j006_H000w07_HII_rep2_confout_W.gro.gz
+-rw-rw-r-- 1 k03 k03      36 10月 24 22:33 j006_H000w07_HII_rep2_counts.txt
+-rw-rw-r-- 1 k03 k03     159 10月 24 22:33 j006_H000w07_HII_rep2_em_summary.txt
+-rw-rw-r-- 1 k03 k03    1146 10月 24 22:33 j006_H000w07_HII_rep2_export.txt
+-rw-r--r-- 1 k03 k03  750212 10月 24 22:33 j006_H000w07_HII_rep2_frames_W.xtc
+-rw-r--r-- 1 k03 k03 1030182 10月 24 22:33 j006_H000w07_HII_rep2_last_nonW.gro
+-rw-r--r-- 1 k03 k03     433 10月 24 22:33 j006_H000w07_HII_rep2_phase.json
+-rw-rw-r-- 1 k03 k03     382 10月 24 22:33 j006_H000w07_HII_rep2_preasm.json
+-rw-r--r-- 1 k03 k03  210101 10月 24 22:33 j006_H000w07_HII_rep2_prod.log
+-rw-r--r-- 1 k03 k03  415160 10月 24 22:33 j006_H000w07_HII_rep2_prod.tpr
+-rw-r--r-- 1 k03 k03    3669 10月 24 22:33 j006_H000w07_HII_rep2_sq.dat
+-rw-rw-r-- 1 k03 k03     123 10月 24 22:33 j006_H000w07_HII_rep2_SYSTEM.txt
+-rw-r--r-- 1 k03 k03    6338 10月 24 22:33 j006_H000w07_HII_sq.dat
+-rw-rw-r-- 1 k03 k03     118 10月 24 22:33 j006_H000w07_HII_SYSTEM.txt
+-rw-rw-r-- 1 k03 k03    6503 10月 24 22:33 j006_k03_phase_status.txt
+-rw-rw-r-- 1 k03 k03   10044 10月 24 22:33 j006_k04_phase_status.txt
+-rw-rw-r-- 1 k03 k03    1036 10月 24 22:33 j006_SUMMARY.txt
