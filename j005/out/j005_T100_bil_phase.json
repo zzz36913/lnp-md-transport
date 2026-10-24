@@ -1,0 +1,80 @@
+{
+ "n_strong": 2,
+ "smax": 10064.79885733029,
+ "q1": 1.1411109852856027,
+ "d1_nm": 5.506200000000001,
+ "dims": 1,
+ "sv": [
+  2.0,
+  0.0,
+  0.0
+ ],
+ "ratios": [
+  1.0,
+  2.0
+ ],
+ "peaks_top": [
+  {
+   "q": 1.141,
+   "S": 10064.8,
+   "hkl": [
+    0,
+    0,
+    3
+   ]
+  },
+  {
+   "q": 2.282,
+   "S": 1728.69,
+   "hkl": [
+    0,
+    0,
+    6
+   ]
+  }
+ ],
+ "template_penalty": {
+  "LAM": 0,
+  "HII": 3,
+  "Pn3m": 3,
+  "Im3m": 3,
+  "Ia3d": 4
+ },
+ "phase": "LAM",
+ "nonlamellar": false,
+ "frames": 1,
+ "box_nm": [
+  20.12,
+  20.12,
+  16.519
+ ],
+ "npart": 17089,
+ "selection": "W",
+ "connectivity": {
+  "water_vox_frac": 0.409,
+  "n_clusters": 3,
+  "clusters": [
+   {
+    "vox": 35998,
+    "wrap_axes": [
+     "x",
+     "y"
+    ]
+   },
+   {
+    "vox": 35689,
+    "wrap_axes": [
+     "x",
+     "y"
+    ]
+   },
+   {
+    "vox": 35657,
+    "wrap_axes": [
+     "x",
+     "y"
+    ]
+   }
+  ]
+ }
+}
