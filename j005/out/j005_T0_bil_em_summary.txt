@@ -1,0 +1,4 @@
+Steepest Descents:
+Steepest Descents converged to machine precision in 6680 steps,
+Potential Energy  = -1.2337902e+06
+Maximum force     =  5.9102252e+02 on atom 30554
