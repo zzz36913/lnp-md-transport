@@ -1,0 +1,1 @@
+H000w07_HII_rep2 comp=MC3:75,CHOL:25 alpha=0.0 box=14 geom=hii ins_box=NA water_wt=0.12230 T=310 seed=20278430 beads=16707
