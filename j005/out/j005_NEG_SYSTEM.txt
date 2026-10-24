@@ -1,0 +1,1 @@
+NEG comp=DOPC:80,CHOL:20 alpha=0 box=14 geom=random ins_box=17.500 water_wt=0.30 T=310 seed=20327590 beads=24154
