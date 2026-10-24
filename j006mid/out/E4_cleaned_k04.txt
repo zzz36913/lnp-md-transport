@@ -1,0 +1,3 @@
+H025w12_HII T_restart=271860.0 t_clean=296860 KEEP>296860.0 frames 216 t_ps 297000.0..512000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
+H075w12_HII T_restart=278893.5 t_clean=303893.5 KEEP>303893.5 frames 221 t_ps 304000.0..524000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
+H100w07_HII T_restart=277525.0 t_clean=302525 KEEP>302525.0 frames 219 t_ps 303000.0..521000.0 strictly_increasing=True dt_set=[1000.0] -> OUT.clean.xtc
