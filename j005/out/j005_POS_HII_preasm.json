@@ -1,0 +1,1 @@
+{"geom": "hii", "nlip": 1506, "nwat_beads": 6840, "lattice_a": 8.0, "box": [16.0, 13.856, 12.3], "ncyl": 4, "r_water": 2.301, "r_head": 2.551, "apl_head_nm2": 0.524, "place_retries": 14, "place_forced": 0, "water_lattice_nm": 0.46, "min_intermol_nm": 0.32, "n_beads_below_dmin": 0, "beads": 24009, "molecules": {"DOPE": 1205, "CHOL": 301, "W": 6692, "CL": 74, "NA": 74}, "ok": true}
