@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# J005：k03/k04 拉取 ph_phase 全套（含 j005/close_j005.sh、up_j005.sh）并逐文件 sha256 校验。
+# 用法: bash fetch_j005.sh [tag]   -> 目标 ~/ph_phase_j005（不动 J004 的 ~/ph_phase），结果 ~/ph_phase_j005/FETCH.txt
+TAG=${1:-j005-v1}; R=zzz36913/lnp-md-transport; D=${PH_DIR:-$HOME/ph_phase_j005}
+mkdir -p "$D/ff" "$D/mdp" "$D/j005"; cd "$D" || exit 1; : > FETCH.txt
+cat > SHA256SUMS <<'SUMS'
+f04c764fac22e3afc1df261de04ccf10891fb9b1203ef7d95b88bd18d1cc22af  ./build_phase.sh
+b5553ebc2ad717e196089cee92402b621c8870d8f227faae1cae5ce2c6ef3cb3  ./build_preasm.py
+c0fb90fdda5b90e73285016857536f9b544a0a48909e1557510752bd134cdad3  ./ff/MC3.itp
+ebeedf2430a489dceee47d4bf30a8ae9c21ef5b73f7f25d0ee0ae1a88823b9a4  ./ff/MC3H.itp
+497c06ba81b47e28b95125e9bc56272f77b15f3df9acd53cc7e22339a0cc2bb2  ./ff/martini_v3.0.0_phospholipids_PE_v2.itp
+98f868d024a4f4cf4c7d83508f171bac5c2d47a79085239a894e30ea21cc4351  ./ff/martini_v3.0.0_phospholipids_PI_v2.itp
+b6af8cefb4bf4e91bea5caec37bac23b2fd6b2a334603902cce2915950fedd55  ./ff/martini_v3.0.0_phospholipids_PS_v2.itp
+5a93fec7afe3ee1083c24a0574501962b93a333e7c58f224c075bc80fc1b807f  ./ff/mol_CHOL.gro
+e7c12d2138c097136fdbeda9325312ebb45386f7d0dfae616df55e5e83274f66  ./ff/mol_CL.gro
+df2bc755bb7cf4812ab721fed153f9ac6941cb34ee6d9089890419fc9108b693  ./ff/mol_DOPC.gro
+b7a65ce38a27e24b576b91b888b0091a28776f7bb8b43cc449b0d8c471100e5a  ./ff/mol_DOPE.gro
+053d65ae6e50674f9b2ab6eeb7c33338e5e9fd719539e140baec4bd3ad18f4df  ./ff/mol_DOPS.gro
+682e0a78d0455aed7347919f4a0745929a6fc5004e240deee149ac4951f1e595  ./ff/mol_DSPC.gro
+533c7218de98eb7b99bdd5a8ce97ff5a01e16719d64063cc82bb83579791640b  ./ff/mol_MC3.gro
+1304af14cf828b483024bc54cbd4766f785c6a644b93d4cf76fe7a039461f23e  ./ff/mol_MC3H.gro
+30fe908dd2dfb5dc7e2b23efdbf824b7befbe341784aa3a8228f957182d511a1  ./ff/mol_NA.gro
+4b18d39d0ba2b32526719d7dc5f30dd23e668e04f877b64d084ddc855a9b4c17  ./ff/mol_POPC.gro
+c0e5c398e9845311b9cf9f0b14fc15742251c2a0ef24e4896daf5b5e1d6d463d  ./ff/mol_POPE.gro
+e676c7da0d972667df616982325ec8d1c9d0c26fa32f3a9340f86575c86b1c38  ./ff/mol_POPI.gro
+053e5a6e35ae8bbaafe7193efc4c0d8865be9e0daf8dd23002a58bc087450dc7  ./ff/mol_POPS.gro
+9678b64da7fe0c97bca622b4d9bedf58e8a8261467714f7f810f8df757772b9c  ./ff/mol_W.gro
+82e85acb5dab4acc9eb8b5fbc0938035617171b1b63fce5a9ada2480f13aeabc  ./j005/close_j005.sh
+b5940a839ac57d7e30f0582991f8b8aab6cd29f86b527dfa15123fdac5190921  ./j005/up_j005.sh
+ab33d25ae667c3941bb5eb26044e4ead01e23fc6d99064623f774ace98075eaf  ./mdp/em.mdp
+8d671a5e9962181023df6890e73a04f6ac5770e6c15dfd94c849a71c46945278  ./mdp/eq1.mdp
+71d3ba0b34caa252de452d6033c27a4e9688af96698984bc651f35d5574c3e66  ./mdp/eq2.mdp
+3e619df39052d839ca45a74d7595581b19c3c33aace717d156e06a86c387c20c  ./mdp/prod.mdp
+dbde1c9785d82de3ee146d662be112bb9ad3c1b110c16559d4f445784ba45d96  ./phase_common.sh
+b99f4ee3a3c9fffecb1bc3c2c38ab25180e5313689baa4fafbd9db96634ac156  ./phase_counts.py
+d30c4a0a60f630320d4f0833fa5cc622bb37a1eb158a17fb9fb8314f77973764  ./phase_sq.py
+72e691782287256303c4aab3e3f2594ead3c3efd8ef47b2abe4ac7cfe67da2e1  ./queue_k03.txt
+2edaa89c6c3ba9e9306ca23ae0e30c1490f384202c68b597456d42251c9e404d  ./queue_k04.txt
+a23c58d16e67594f4b2d95345131c531906fbef1b7ebd30bf72eb6c7f1cce92b  ./run_phase.sh
+78139a34f748b985fc7d023247a8299df71bcefbac8898007e4417e02ba357a4  ./topol.template.top
+SUMS
+fail=0
+while read -r sha f; do f=${f#./}
+  if [ -f "$f" ] && [ "$(sha256sum "$f" | cut -d' ' -f1)" = "$sha" ]; then echo "HAVE $f" >> FETCH.txt; continue; fi
+  got=""
+  for u in "https://ghproxy.net/https://raw.githubusercontent.com/$R/$TAG/ph_phase/$f" "https://ghfast.top/https://raw.githubusercontent.com/$R/$TAG/ph_phase/$f" \
+           "https://fastly.jsdelivr.net/gh/$R@$TAG/ph_phase/$f" "https://cdn.jsdelivr.net/gh/$R@$TAG/ph_phase/$f" "https://gcore.jsdelivr.net/gh/$R@$TAG/ph_phase/$f" \
+           "https://raw.githubusercontent.com/$R/$TAG/ph_phase/$f"; do
+    curl -sS -L --connect-timeout 15 --max-time 120 -o "$f" "$u" 2>/dev/null
+    got=$(sha256sum "$f" 2>/dev/null | cut -d' ' -f1)
+    [ "$got" = "$sha" ] && { echo "OK $f $(echo "$u" | cut -d/ -f3)" >> FETCH.txt; break; }
+  done
+  [ "$got" = "$sha" ] || { echo "FAIL $f got=$got" >> FETCH.txt; fail=1; }
+done < SHA256SUMS
+chmod +x *.sh *.py j005/*.sh 2>/dev/null
+if [ $fail = 0 ] && sha256sum -c --quiet SHA256SUMS; then echo "FETCH ALL OK ($(wc -l < SHA256SUMS) files) tag=$TAG" | tee -a FETCH.txt; else echo "FETCH FAILED (见 $D/FETCH.txt)" | tee -a FETCH.txt; exit 1; fi
