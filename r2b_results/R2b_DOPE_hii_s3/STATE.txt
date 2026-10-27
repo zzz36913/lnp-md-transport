@@ -1,0 +1,9 @@
+system=R2b_DOPE_hii_s3 state=DONE host=spark-afe0
+markers:
+  .done_em: 
+  .done_eq1: 
+  .done_eq2: 
+  .done_grompp_em: 
+  .done_grompp_eq1: 
+  .done_grompp_eq2: 
+  .done_grompp_prod: 
