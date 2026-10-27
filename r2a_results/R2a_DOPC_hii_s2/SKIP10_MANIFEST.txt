@@ -1,0 +1,27 @@
+# SKIP10_MANIFEST (口径 C: 回传的是每 10 帧取 1 帧的 prod_skip10.xtc; 全帧 prod.xtc 留本地)
+system=R2a_DOPC_hii_s2
+skip=10
+tool=gmx trjconv (container ghcr.io/novomcp/gromacs-md:spark)
+gmx_version=?
+host=spark-afe0
+time=2026-10-28_03:55:36
+trjconv_cmd=echo 0 | /usr/local/gromacs/bin/gmx trjconv -s prod.tpr -f prod.xtc -o prod_skip10.xtc -skip 10   (output group 0 = System)
+nstxout_compressed=50000
+dt_ps=0.02
+orig_file=prod.xtc (NOT uploaded, local: /home/k04/R2a/starts/R2a_DOPC_hii_s2/out/prod.xtc)
+orig_sha256=aed914eccdf657443f983cee8cdf53a09a3c13cb926c93d2adec7fcb2c399c7a
+orig_bytes=40757840
+orig_frames=1001
+orig_frame_interval_ps=1000
+orig_last_time_ps=1000000.000
+atoms=12393
+skip10_file=prod_skip10.xtc
+skip10_sha256=96cf647143316c79740e6a69f30602e5b73e203a93744dc782f6b1eca44f48e3
+skip10_bytes=4111332
+skip10_frames=101
+skip10_frame_interval_ps=10000
+skip10_last_time_ps=1000000.000
+frames_check=OK skip10_frames == ceil(orig_frames/10) = 101
+tpr_file=prod.tpr (NOT uploaded)
+tpr_sha256=4fe0d7ec4f9c7e4832852abd1d9c51ac95d006e9c2355326b7ab0e0f54dc1fe1
+tpr_bytes=331456
