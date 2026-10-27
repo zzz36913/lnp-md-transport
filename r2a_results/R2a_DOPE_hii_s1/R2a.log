@@ -1,0 +1,24 @@
+[2026-10-27 19:11:34] R2a_DOPE_hii_s1: == start host=spark-235d MODE=docker pin='-pin on -pinoffset 5 -pinstride 1' gpu='-nb gpu -update cpu' nsteps_target=50000000 resume_cpt_step=0 gmx=/usr/local/gromacs/bin/gmx img=ghcr.io/novomcp/gromacs-md:spark
+[2026-10-27 19:11:34] R2a_DOPE_hii_s1: grompp_em 开始
+[2026-10-27 19:11:35] R2a_DOPE_hii_s1: grompp_em 完成 (1s) warnings=0 notes=1
+[2026-10-27 19:11:35] R2a_DOPE_hii_s1: em 开始
+[2026-10-27 19:11:36] R2a_DOPE_hii_s1: em 完成 (1s) nan=0 constr_rmsd_max=0
+[2026-10-27 19:11:36] R2a_DOPE_hii_s1: EM Fmax=9.2018860e+01 (门槛 1000)
+[2026-10-27 19:11:36] R2a_DOPE_hii_s1: grompp_eq1 开始
+[2026-10-27 19:11:37] R2a_DOPE_hii_s1: FAIL grompp_eq1 grompp rc!=0 (见 /home/k03/R2a/starts/R2a_DOPE_hii_s1/out/grompp_eq1.out)
+[2026-10-27 22:33:22] R2a_DOPE_hii_s1: == start host=spark-235d MODE=docker pin='-pin on -pinoffset 5 -pinstride 1' gpu='-nb gpu -update cpu' nsteps_target=50000000 resume_cpt_step=0 gmx=/usr/local/gromacs/bin/gmx img=ghcr.io/novomcp/gromacs-md:spark
+[2026-10-27 22:33:22] R2a_DOPE_hii_s1: grompp_em 已完成, 跳过
+[2026-10-27 22:33:22] R2a_DOPE_hii_s1: em 已完成, 跳过
+[2026-10-27 22:33:22] R2a_DOPE_hii_s1: EM Fmax=9.2018860e+01 (门槛 1000)
+[2026-10-27 22:33:22] R2a_DOPE_hii_s1: grompp_eq1 开始
+[2026-10-27 22:33:23] R2a_DOPE_hii_s1: grompp_eq1 完成 (1s) warnings=0 notes=1
+[2026-10-27 22:33:23] R2a_DOPE_hii_s1: eq1 开始
+[2026-10-27 22:33:36] R2a_DOPE_hii_s1: eq1 完成 (13s) nan=0 constr_rmsd_max=0
+[2026-10-27 22:33:36] R2a_DOPE_hii_s1: grompp_eq2 开始
+[2026-10-27 22:33:36] R2a_DOPE_hii_s1: grompp_eq2 完成 (0s) warnings=0 notes=1
+[2026-10-27 22:33:36] R2a_DOPE_hii_s1: eq2 开始
+[2026-10-27 22:34:00] R2a_DOPE_hii_s1: eq2 完成 (24s) nan=0 constr_rmsd_max=0
+[2026-10-27 22:34:00] R2a_DOPE_hii_s1: grompp_prod 开始
+[2026-10-27 22:34:01] R2a_DOPE_hii_s1: grompp_prod 完成 (1s) warnings=0 notes=1
+[2026-10-27 22:34:01] R2a_DOPE_hii_s1: prod 开始: /usr/local/gromacs/bin/gmx mdrun -deffnm prod -ntmpi 1 -ntomp 5 -nb gpu -update cpu -pin on -pinoffset 5 -pinstride 1 -nsteps 50000000 -maxh 8.59 -cpi prod.cpt
+[2026-10-28 00:09:49] R2a_DOPE_hii_s1: == DONE laststep=50000000 (1000.0 ns) check=OK
