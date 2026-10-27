@@ -1,0 +1,40 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/R2b/starts/R2b_DOPE_lam_s3/out
+Command line:
+  gmx grompp -f ../prod.mdp -c eq2.gro -t eq2.cpt -p ../sys.top -o prod.tpr -n ../index.ndx -maxwarn 0
+
+
+NOTE 1 [file ../prod.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 2184.00
+Number of degrees of freedom in T-Coupling group Rest is 34989.00
+Last frame         -1 time 2000.000   
+
+There was 1 NOTE
+
+GROMACS reminds you: "The Poodle Bites" (F. Zappa)
+
+Setting the LD random seed to -335725829
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'DOPE'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Taking velocities from 'eq2.gro'
+
+Reading Coordinates, Velocities and Box size from old trajectory
+
+Will read whole trajectory
+
+Using frame at t = 2000 ps
+
+Starting time for run is 0 ps
+
+This run will generate roughly 167 Mb of data
