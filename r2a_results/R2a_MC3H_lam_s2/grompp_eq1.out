@@ -1,0 +1,33 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k04/R2a/starts/R2a_MC3H_lam_s2/out
+Command line:
+  gmx grompp -f ../eq1.mdp -c em.gro -p ../sys.top -o eq1.tpr -n ../index.ndx -maxwarn 0
+
+
+NOTE 1 [file ../eq1.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 8016.00
+Number of degrees of freedom in T-Coupling group Rest is 34989.00
+
+There was 1 NOTE
+
+GROMACS reminds you: "Microbiology Lab - Staph Only." (Anonymous)
+
+Setting the LD random seed to -134234437
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'MC3H'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+Velocities were taken from a Maxwell distribution at 320 K
+
+This run will generate roughly 2 Mb of data
