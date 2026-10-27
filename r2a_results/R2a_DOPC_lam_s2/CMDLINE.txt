@@ -1,0 +1,4 @@
+# prod.log 里的 Command line 原文 (续跑时有多段)
+Command line:
+  gmx mdrun -deffnm prod -ntmpi 1 -ntomp 5 -nb gpu -update cpu -pin on -pinoffset 5 -pinstride 1 -nsteps 100000000 -maxh 11.70 -cpi prod.cpt
+
