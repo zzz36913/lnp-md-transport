@@ -1,0 +1,33 @@
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k04/R2a/starts/R2a_DOPC_hii_s2/out
+Command line:
+  gmx mdrun -deffnm em -ntmpi 1 -ntomp 5 -pin on -pinoffset 5 -pinstride 1
+
+Compiled SIMD is ARM_NEON_ASIMD, but ARM_SVE might be faster (see log).
+Reading file em.tpr, VERSION 2026.3 (single precision)
+1 GPU selected for this run.
+Mapping of GPU IDs to the 1 GPU task in the 1 rank on this node:
+  PP:0
+PP tasks will do non-perturbed short-ranged interactions on the GPU
+PP task will update and constrain coordinates on the CPU
+Using 1 MPI thread
+Using 5 OpenMP threads 
+
+Applying core pinning offset 5
+
+Steepest Descents:
+   Tolerance (Fmax)   =  1.00000e+02
+   Number of steps    =        50000
+
+writing lowest energy coordinates.
+
+Steepest Descents converged to Fmax < 100 in 1289 steps
+Potential Energy  = -2.1950994e+05
+Maximum force     =  8.7043228e+01 on atom 10778
+Norm of force     =  3.9938446e+00
+
+GROMACS reminds you: "I don't want to achieve immortality through my work... I want to achieve it through not dying!" (Woody Allen)
+
