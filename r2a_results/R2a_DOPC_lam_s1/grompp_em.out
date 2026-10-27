@@ -1,0 +1,29 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/R2a/starts/R2a_DOPC_lam_s1/out
+Command line:
+  gmx grompp -f ../em.mdp -c ../sys.gro -p ../sys.top -o em.tpr -n ../index.ndx -maxwarn 0
+
+
+NOTE 1 [file ../em.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group rest is 37176.00
+The integrator does not provide a ensemble temperature, there is no system ensemble temperature
+
+There was 1 NOTE
+
+GROMACS reminds you: "C++ is tricky. You can do everything. You can even make every mistake." (Nicolai Josuttis, CppCon2017)
+
+Setting the LD random seed to -9056289
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'DOPC'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+This run will generate roughly 1 Mb of data
