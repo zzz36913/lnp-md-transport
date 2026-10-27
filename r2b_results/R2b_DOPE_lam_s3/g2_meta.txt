@@ -1,0 +1,21 @@
+system=R2b_DOPE_lam_s3
+host=spark-235d
+pin=-pin on -pinoffset 15 -pinstride 1
+gpuflags=-nb gpu -update cpu
+ntomp=5
+maxh=5.12
+nsteps_target=100000000
+resume_cpt_step=0
+prod_cmd=/usr/local/gromacs/bin/gmx mdrun -deffnm prod -ntmpi 1 -ntomp 5 -nb gpu -update cpu -pin on -pinoffset 15 -pinstride 1 -nsteps 100000000 -maxh 5.12 -cpi prod.cpt
+image_id=sha256:5d2a85bc8b96f65dc28375b3c2cd966b52b0c3f9b26b31b4cf055779850d8b85
+start=2026-10-28_02:02:05
+--
+rc=0
+secs=10710
+end=2026-10-28_05:01:14
+laststep=100000000
+last_t_ns=2000.00
+performance_ns_day_last_segment=16135.326
+nan_fatal_lines=0
+constr_rmsd_max=0
+finished=yes
