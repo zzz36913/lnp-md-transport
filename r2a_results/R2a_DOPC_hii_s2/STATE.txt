@@ -1,0 +1,9 @@
+system=R2a_DOPC_hii_s2 state=DONE host=spark-afe0
+markers:
+  .done_em: 
+  .done_eq1: 
+  .done_eq2: 
+  .done_grompp_em: 
+  .done_grompp_eq1: 
+  .done_grompp_eq2: 
+  .done_grompp_prod: 
