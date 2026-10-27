@@ -1,0 +1,35 @@
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k04/R2a/starts/R2a_DOPC_hii_s2/out
+Command line:
+  gmx mdrun -deffnm eq1 -ntmpi 1 -ntomp 5 -nb gpu -update cpu -pin on -pinoffset 5 -pinstride 1 -cpi eq1.cpt
+
+Compiled SIMD is ARM_NEON_ASIMD, but ARM_SVE might be faster (see log).
+Reading file eq1.tpr, VERSION 2026.3 (single precision)
+Can not increase nstlist because verlet-buffer-tolerance is not set or used
+1 GPU selected for this run.
+Mapping of GPU IDs to the 1 GPU task in the 1 rank on this node:
+  PP:0
+PP tasks will do non-perturbed short-ranged interactions on the GPU
+PP task will update and constrain coordinates on the CPU
+Using 1 MPI thread
+Using 5 OpenMP threads 
+
+Applying core pinning offset 5
+starting mdrun 'R2a_DOPC_hii_s2 prim=DOPC arm=hii wl=3 T=320'
+100000 steps,    500.0 ps.
+
+Writing final coordinates.
+
+NOTE: 15 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:       56.861       11.372      500.0
+                 (ns/day)    (hour/ns)    (ms/step)  (Matom*steps/s) 
+Performance:     3798.711        0.006        0.114          108.976 
+
+GROMACS reminds you: "Exactly" (Pulp Fiction)
+
