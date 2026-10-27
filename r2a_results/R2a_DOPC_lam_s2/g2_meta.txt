@@ -1,0 +1,21 @@
+system=R2a_DOPC_lam_s2
+host=spark-afe0
+pin=-pin on -pinoffset 5 -pinstride 1
+gpuflags=-nb gpu -update cpu
+ntomp=5
+maxh=11.70
+nsteps_target=100000000
+resume_cpt_step=0
+prod_cmd=/usr/local/gromacs/bin/gmx mdrun -deffnm prod -ntmpi 1 -ntomp 5 -nb gpu -update cpu -pin on -pinoffset 5 -pinstride 1 -nsteps 100000000 -maxh 11.70 -cpi prod.cpt
+image_id=sha256:5d2a85bc8b96f65dc28375b3c2cd966b52b0c3f9b26b31b4cf055779850d8b85
+start=2026-10-27_19:26:48
+--
+rc=0
+secs=11148
+end=2026-10-27_22:33:16
+laststep=100000000
+last_t_ns=2000.00
+performance_ns_day_last_segment=15502.470
+nan_fatal_lines=0
+constr_rmsd_max=0
+finished=yes
