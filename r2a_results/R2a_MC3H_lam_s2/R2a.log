@@ -1,0 +1,18 @@
+[2026-10-27 22:32:16] R2a_MC3H_lam_s2: == start host=spark-afe0 MODE=docker pin='-pin on -pinoffset 15 -pinstride 1' gpu='-nb gpu -update cpu' nsteps_target=100000000 resume_cpt_step=0 gmx=/usr/local/gromacs/bin/gmx img=ghcr.io/novomcp/gromacs-md:spark
+[2026-10-27 22:32:16] R2a_MC3H_lam_s2: grompp_em 开始
+[2026-10-27 22:32:17] R2a_MC3H_lam_s2: grompp_em 完成 (1s) warnings=0 notes=1
+[2026-10-27 22:32:17] R2a_MC3H_lam_s2: em 开始
+[2026-10-27 22:32:18] R2a_MC3H_lam_s2: em 完成 (1s) nan=0 constr_rmsd_max=0
+[2026-10-27 22:32:18] R2a_MC3H_lam_s2: EM Fmax=8.4258522e+01 (门槛 1000)
+[2026-10-27 22:32:18] R2a_MC3H_lam_s2: grompp_eq1 开始
+[2026-10-27 22:32:19] R2a_MC3H_lam_s2: grompp_eq1 完成 (1s) warnings=0 notes=1
+[2026-10-27 22:32:19] R2a_MC3H_lam_s2: eq1 开始
+[2026-10-27 22:32:32] R2a_MC3H_lam_s2: eq1 完成 (13s) nan=0 constr_rmsd_max=0
+[2026-10-27 22:32:32] R2a_MC3H_lam_s2: grompp_eq2 开始
+[2026-10-27 22:32:32] R2a_MC3H_lam_s2: grompp_eq2 完成 (0s) warnings=0 notes=1
+[2026-10-27 22:32:32] R2a_MC3H_lam_s2: eq2 开始
+[2026-10-27 22:32:57] R2a_MC3H_lam_s2: eq2 完成 (25s) nan=0 constr_rmsd_max=0
+[2026-10-27 22:32:57] R2a_MC3H_lam_s2: grompp_prod 开始
+[2026-10-27 22:32:58] R2a_MC3H_lam_s2: grompp_prod 完成 (1s) warnings=0 notes=1
+[2026-10-27 22:32:58] R2a_MC3H_lam_s2: prod 开始: /usr/local/gromacs/bin/gmx mdrun -deffnm prod -ntmpi 1 -ntomp 5 -nb gpu -update cpu -pin on -pinoffset 15 -pinstride 1 -nsteps 100000000 -maxh 8.61 -cpi prod.cpt
+[2026-10-28 01:53:47] R2a_MC3H_lam_s2: == DONE laststep=100000000 (2000.0 ns) check=OK
