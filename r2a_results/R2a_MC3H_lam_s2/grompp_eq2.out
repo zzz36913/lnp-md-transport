@@ -1,0 +1,42 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k04/R2a/starts/R2a_MC3H_lam_s2/out
+Command line:
+  gmx grompp -f ../eq2.mdp -c eq1.gro -t eq1.cpt -p ../sys.top -o eq2.tpr -n ../index.ndx -maxwarn 0
+
+
+NOTE 1 [file ../eq2.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 8016.00
+Number of degrees of freedom in T-Coupling group Rest is 34989.00
+Last frame         -1 time  500.000   
+
+There was 1 NOTE
+
+GROMACS reminds you: "You cannot hope to build a better world without improving the individuals." (Marie Curie)
+
+Setting the LD random seed to -111150345
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'MC3H'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+Taking velocities from 'eq1.gro'
+
+Reading Coordinates, Velocities and Box size from old trajectory
+
+Will read whole trajectory
+
+Using frame at t = 500 ps
+
+Starting time for run is 0 ps
+
+This run will generate roughly 2 Mb of data
