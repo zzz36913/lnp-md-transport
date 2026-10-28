@@ -1,0 +1,183 @@
+# R3 main collect 2026-10-29 07:39:03 +0800 (read-only summary; numbers from files on k03/k04)
+#MACHINE k03 OUT=/home/k03/R3/R3_run_k03_1028_204924
+## SUMMARY.tsv
+R3_DOPC_hii_s2	DONE	NA_HII	DONE
+R3_DOPC_lam_s1	DONE	VOID_L2	NONE
+R3_DOPC_lam_s3	DONE	VOID_L2	NONE
+R3_DOPC_lam_s8	DONE	VOID_L2	NONE
+R3_DOPE_hii_s1	DONE	NA_HII	DONE
+R3_DOPE_hii_s3	DONE	NA_HII	DONE
+R3_DOPE_lam_s14	DONE	PASS	DONE
+R3_DOPE_lam_s2	DONE	PASS	DONE
+R3_DOPE_lam_s5	DONE	PASS	DONE
+L2 void_rate DOPE(本机, lam): 0 / 3 个已读闸 (L1 见 inputs/L1_summary*.tsv)
+L2 void_rate DOPC(本机, lam): 3 / 3 个已读闸 (L1 见 inputs/L1_summary*.tsv)
+UNRESOLVED_VOID R3_DOPC_lam_s3 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+UNRESOLVED_VOID R3_DOPC_lam_s8 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+## STATUS (build/stage/attempt  STATUS)
+k03	R3_DOPC_hii_s2/gate/attempt_001	NA_HII rc=0 mode=host
+k03	R3_DOPC_hii_s2/prod/attempt_001	DONE rc=0 laststep=50000000/50000000 nan=0
+k03	R3_DOPC_hii_s2/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPC_lam_s1/gate/attempt_001	VOID_L2 rc=3 mode=host
+k03	R3_DOPC_lam_s1/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPC_lam_s1/select/attempt_001	SEL_NONE qualified=0/67 novel=0
+k03	R3_DOPC_lam_s3/gate/attempt_001	VOID_L2 rc=3 mode=host
+k03	R3_DOPC_lam_s3/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPC_lam_s3/select/attempt_001	SEL_NONE qualified=0/67 novel=0
+k03	R3_DOPC_lam_s8/gate/attempt_001	VOID_L2 rc=3 mode=host
+k03	R3_DOPC_lam_s8/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPC_lam_s8/select/attempt_001	SEL_NONE qualified=0/67 novel=0
+k03	R3_DOPE_hii_s1/gate/attempt_001	NA_HII rc=0 mode=host
+k03	R3_DOPE_hii_s1/prod/attempt_001	DONE rc=0 laststep=50000000/50000000 nan=0
+k03	R3_DOPE_hii_s1/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPE_hii_s3/gate/attempt_001	NA_HII rc=0 mode=host
+k03	R3_DOPE_hii_s3/prod/attempt_001	DONE rc=0 laststep=50000000/50000000 nan=0
+k03	R3_DOPE_hii_s3/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPE_lam_s2/gate/attempt_001	PASS rc=0 mode=host
+k03	R3_DOPE_lam_s2/prod/attempt_001	DONE rc=0 laststep=100000000/100000000 nan=0
+k03	R3_DOPE_lam_s2/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPE_lam_s2/select/attempt_001	SEL_OK t_ps=10425.00000 qualified=6/67 err=0
+k03	R3_DOPE_lam_s5/gate/attempt_001	PASS rc=0 mode=host
+k03	R3_DOPE_lam_s5/prod/attempt_001	DONE rc=0 laststep=100000000/100000000 nan=0
+k03	R3_DOPE_lam_s5/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPE_lam_s5/select/attempt_001	SEL_OK t_ps=15000.00000 qualified=46/67 err=0
+k03	R3_DOPE_lam_s14/gate/attempt_001	PASS rc=0 mode=host
+k03	R3_DOPE_lam_s14/prod/attempt_001	DONE rc=0 laststep=100000000/100000000 nan=0
+k03	R3_DOPE_lam_s14/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k03	R3_DOPE_lam_s14/select/attempt_001	SEL_OK t_ps=14100.00000 qualified=34/67 err=0
+## SELECT frames.tsv (gate_rc==0 qualified / total / ERR)
+k03	R3_DOPC_lam_s1/select/attempt_001/frames.tsv	qualified=0	total=67	err=0
+k03	R3_DOPC_lam_s3/select/attempt_001/frames.tsv	qualified=0	total=67	err=0
+k03	R3_DOPC_lam_s8/select/attempt_001/frames.tsv	qualified=0	total=67	err=0
+k03	R3_DOPE_lam_s2/select/attempt_001/frames.tsv	qualified=6	total=67	err=0
+k03	R3_DOPE_lam_s5/select/attempt_001/frames.tsv	qualified=46	total=67	err=0
+k03	R3_DOPE_lam_s14/select/attempt_001/frames.tsv	qualified=34	total=67	err=0
+## SELECTED_FRAME
+k03 R3_DOPC_lam_s1/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=NONE n_frames_window=67 n_qualified=0 n_err=0 
+k03 R3_DOPC_lam_s3/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=NONE n_frames_window=67 n_qualified=0 n_err=0 
+k03 R3_DOPC_lam_s8/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=NONE n_frames_window=67 n_qualified=0 n_err=0 
+k03 R3_DOPE_lam_s2/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=10425.00000 n_frames_window=67 n_qualified=6 n_err=0 
+k03 R3_DOPE_lam_s5/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=15000.00000 n_frames_window=67 n_qualified=46 n_err=0 
+k03 R3_DOPE_lam_s14/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=14100.00000 n_frames_window=67 n_qualified=34 n_err=0 
+## WARN.txt
+## PROD (log  first_t_ps  last_t_ps  ns  Performance  finished)
+k03	R3_DOPC_hii_s2/prod/attempt_001/prod.log	0.00000	1000000.00000	1000.000	Performance:    13899.002        0.002        0.124           98.451 	finished=1
+k03	R3_DOPE_hii_s1/prod/attempt_001/prod.log	0.00000	1000000.00000	1000.000	Performance:    13915.751        0.002        0.124           98.570 	finished=1
+k03	R3_DOPE_hii_s3/prod/attempt_001/prod.log	0.00000	1000000.00000	1000.000	Performance:    13930.480        0.002        0.124           98.674 	finished=1
+k03	R3_DOPE_lam_s2/prod/attempt_001/prod.log	0.00000	2000000.00000	2000.000	Performance:    14001.542        0.002        0.123           99.178 	finished=1
+k03	R3_DOPE_lam_s5/prod/attempt_001/prod.log	0.00000	2000000.00000	2000.000	Performance:    14445.619        0.002        0.120          102.323 	finished=1
+k03	R3_DOPE_lam_s14/prod/attempt_001/prod.log	0.00000	2000000.00000	2000.000	Performance:    15145.784        0.002        0.114          107.283 	finished=1
+## THROUGHPUT.tsv
+ts	build	stage	perf_ns_day	laststep	slot
+2026-10-28 20:52:43 +0800	R3_DOPE_lam_s2	relax	10189.986	1000000	k03_A
+2026-10-28 20:52:44 +0800	R3_DOPC_lam_s1	relax	10128.875	1000000	k03_B
+2026-10-28 20:57:24 +0800	R3_DOPC_lam_s3	relax	10088.171	1000000	k03_B
+2026-10-28 21:02:09 +0800	R3_DOPC_lam_s8	relax	9944.029	1000000	k03_B
+2026-10-28 21:06:54 +0800	R3_DOPE_hii_s1	relax	10227.701	1000000	k03_B
+2026-10-28 22:50:27 +0800	R3_DOPE_hii_s1	prod	13915.751	50000000	k03_B
+2026-10-28 22:52:37 +0800	R3_DOPE_hii_s3	relax	10044.029	1000000	k03_B
+2026-10-29 00:20:57 +0800	R3_DOPE_lam_s2	prod	14001.542	100000000	k03_A
+2026-10-29 00:23:07 +0800	R3_DOPE_lam_s5	relax	10105.847	1000000	k03_A
+2026-10-29 00:36:03 +0800	R3_DOPE_hii_s3	prod	13930.480	50000000	k03_B
+2026-10-29 00:38:14 +0800	R3_DOPC_hii_s2	relax	10022.018	1000000	k03_B
+2026-10-29 02:21:56 +0800	R3_DOPC_hii_s2	prod	13899.002	50000000	k03_B
+2026-10-29 03:44:31 +0800	R3_DOPE_lam_s5	prod	14445.619	100000000	k03_A
+2026-10-29 03:46:33 +0800	R3_DOPE_lam_s14	relax	10847.223	1000000	k03_A
+2026-10-29 06:58:43 +0800	R3_DOPE_lam_s14	prod	15145.784	100000000	k03_A
+## UNRESOLVED_VOID (orchestrator.log)
+UNRESOLVED_VOID R3_DOPC_lam_s3 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+UNRESOLVED_VOID R3_DOPC_lam_s8 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+## ANOM lines (orchestrator.log)
+## FILES
+-rw-rw-r-- 1 k03 k03 7131 Oct 29 06:58 /home/k03/R3/R3_run_k03_1028_204924/ALL_RECORDS.tsv
+-rw-rw-r-- 1 k03 k03  404 Oct 28 20:50 /home/k03/R3/R3_run_k03_1028_204924/RUN_META.txt
+-rw-rw-r-- 1 k03 k03  680 Oct 29 06:58 /home/k03/R3/R3_run_k03_1028_204924/SUMMARY.tsv
+-rw-rw-r-- 1 k03 k03 6303 Oct 29 06:58 /home/k03/R3/R3_run_k03_1028_204924/orchestrator.log
+
+#MACHINE k04 OUT=/home/k04/R3/R3_run_k04_1028_203515
+## SUMMARY.tsv
+R3_DOPC_hii_s1	DONE	NA_HII	DONE
+R3_DOPC_hii_s3	DONE	NA_HII	DONE
+R3_DOPC_lam_s2	DONE	VOID_L2	NONE
+R3_DOPC_lam_s4	DONE	VOID_L2	NONE
+R3_DOPC_lam_s7	DONE	VOID_L2	NONE
+R3_DOPE_hii_s2	DONE	NA_HII	DONE
+R3_DOPE_lam_s3	DONE	PASS	DONE
+R3_DOPE_lam_s9	DONE	PASS	DONE
+L2 void_rate DOPE(本机, lam): 0 / 2 个已读闸 (L1 见 inputs/L1_summary*.tsv)
+L2 void_rate DOPC(本机, lam): 3 / 3 个已读闸 (L1 见 inputs/L1_summary*.tsv)
+UNRESOLVED_VOID R3_DOPC_lam_s2 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+UNRESOLVED_VOID R3_DOPC_lam_s4 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+UNRESOLVED_VOID R3_DOPC_lam_s7 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+## STATUS (build/stage/attempt  STATUS)
+k04	R3_DOPC_hii_s1/gate/attempt_001	NA_HII rc=0 mode=host
+k04	R3_DOPC_hii_s1/prod/attempt_001	DONE rc=0 laststep=50000000/50000000 nan=0
+k04	R3_DOPC_hii_s1/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k04	R3_DOPC_hii_s3/gate/attempt_001	NA_HII rc=0 mode=host
+k04	R3_DOPC_hii_s3/prod/attempt_001	DONE rc=0 laststep=50000000/50000000 nan=0
+k04	R3_DOPC_hii_s3/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k04	R3_DOPC_lam_s2/gate/attempt_001	VOID_L2 rc=3 mode=host
+k04	R3_DOPC_lam_s2/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k04	R3_DOPC_lam_s2/select/attempt_001	SEL_NONE qualified=0/67 novel=0
+k04	R3_DOPC_lam_s4/gate/attempt_001	VOID_L2 rc=3 mode=host
+k04	R3_DOPC_lam_s4/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k04	R3_DOPC_lam_s4/select/attempt_001	SEL_NONE qualified=0/67 novel=0
+k04	R3_DOPC_lam_s7/gate/attempt_001	VOID_L2 rc=3 mode=host
+k04	R3_DOPC_lam_s7/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k04	R3_DOPC_lam_s7/select/attempt_001	SEL_NONE qualified=0/67 novel=0
+k04	R3_DOPE_hii_s2/gate/attempt_001	NA_HII rc=0 mode=host
+k04	R3_DOPE_hii_s2/prod/attempt_001	DONE rc=0 laststep=50000000/50000000 nan=0
+k04	R3_DOPE_hii_s2/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k04	R3_DOPE_lam_s3/gate/attempt_001	PASS rc=0 mode=host
+k04	R3_DOPE_lam_s3/prod/attempt_001	DONE rc=0 laststep=100000000/100000000 nan=0
+k04	R3_DOPE_lam_s3/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k04	R3_DOPE_lam_s3/select/attempt_001	SEL_OK t_ps=15000.00000 qualified=55/67 err=0
+k04	R3_DOPE_lam_s9/gate/attempt_001	PASS rc=0 mode=host
+k04	R3_DOPE_lam_s9/prod/attempt_001	DONE rc=0 laststep=100000000/100000000 nan=0
+k04	R3_DOPE_lam_s9/relax/attempt_001	DONE rc=0 laststep=1000000/1000000 nan=0
+k04	R3_DOPE_lam_s9/select/attempt_001	SEL_OK t_ps=14625.00000 qualified=51/67 err=0
+## SELECT frames.tsv (gate_rc==0 qualified / total / ERR)
+k04	R3_DOPC_lam_s2/select/attempt_001/frames.tsv	qualified=0	total=67	err=0
+k04	R3_DOPC_lam_s4/select/attempt_001/frames.tsv	qualified=0	total=67	err=0
+k04	R3_DOPC_lam_s7/select/attempt_001/frames.tsv	qualified=0	total=67	err=0
+k04	R3_DOPE_lam_s3/select/attempt_001/frames.tsv	qualified=55	total=67	err=0
+k04	R3_DOPE_lam_s9/select/attempt_001/frames.tsv	qualified=51	total=67	err=0
+## SELECTED_FRAME
+k04 R3_DOPC_lam_s2/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=NONE n_frames_window=67 n_qualified=0 n_err=0 
+k04 R3_DOPC_lam_s4/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=NONE n_frames_window=67 n_qualified=0 n_err=0 
+k04 R3_DOPC_lam_s7/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=NONE n_frames_window=67 n_qualified=0 n_err=0 
+k04 R3_DOPE_lam_s3/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=15000.00000 n_frames_window=67 n_qualified=55 n_err=0 
+k04 R3_DOPE_lam_s9/select/attempt_001/SELECTED_FRAME.txt: selected_t_ps=14625.00000 n_frames_window=67 n_qualified=51 n_err=0 
+## WARN.txt
+## PROD (log  first_t_ps  last_t_ps  ns  Performance  finished)
+k04	R3_DOPC_hii_s1/prod/attempt_001/prod.log	0.00000	1000000.00000	1000.000	Performance:    14000.408        0.002        0.123           99.170 	finished=1
+k04	R3_DOPC_hii_s3/prod/attempt_001/prod.log	0.00000	1000000.00000	1000.000	Performance:    13771.494        0.002        0.125           97.548 	finished=1
+k04	R3_DOPE_hii_s2/prod/attempt_001/prod.log	0.00000	1000000.00000	1000.000	Performance:    13911.056        0.002        0.124           98.537 	finished=1
+k04	R3_DOPE_lam_s3/prod/attempt_001/prod.log	0.00000	2000000.00000	2000.000	Performance:    14038.255        0.002        0.123           99.438 	finished=1
+k04	R3_DOPE_lam_s9/prod/attempt_001/prod.log	0.00000	2000000.00000	2000.000	Performance:    14490.515        0.002        0.119          102.641 	finished=1
+## THROUGHPUT.tsv
+ts	build	stage	perf_ns_day	laststep	slot
+2026-10-28 20:38:31 +0800	R3_DOPE_lam_s3	relax	10431.668	1000000	k04_A
+2026-10-28 20:38:32 +0800	R3_DOPC_lam_s2	relax	10350.733	1000000	k04_B
+2026-10-28 20:43:12 +0800	R3_DOPC_lam_s4	relax	10234.946	1000000	k04_B
+2026-10-28 20:47:59 +0800	R3_DOPC_lam_s7	relax	10190.122	1000000	k04_B
+2026-10-28 20:52:42 +0800	R3_DOPE_hii_s2	relax	10074.911	1000000	k04_B
+2026-10-28 22:36:17 +0800	R3_DOPE_hii_s2	prod	13911.056	50000000	k04_B
+2026-10-28 22:38:28 +0800	R3_DOPC_hii_s1	relax	10034.942	1000000	k04_B
+2026-10-29 00:05:42 +0800	R3_DOPE_lam_s3	prod	14038.255	100000000	k04_A
+2026-10-29 00:07:52 +0800	R3_DOPE_lam_s9	relax	10132.514	1000000	k04_A
+2026-10-29 00:21:23 +0800	R3_DOPC_hii_s1	prod	14000.408	50000000	k04_B
+2026-10-29 00:23:32 +0800	R3_DOPC_hii_s3	relax	10109.122	1000000	k04_B
+2026-10-29 02:08:10 +0800	R3_DOPC_hii_s3	prod	13771.494	50000000	k04_B
+2026-10-29 03:28:41 +0800	R3_DOPE_lam_s9	prod	14490.515	100000000	k04_A
+## UNRESOLVED_VOID (orchestrator.log)
+UNRESOLVED_VOID R3_DOPC_lam_s2 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+UNRESOLVED_VOID R3_DOPC_lam_s4 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+UNRESOLVED_VOID R3_DOPC_lam_s7 (无替补/时间不足 -> 该格 n 减少, 报告里按 NOT_EVALUABLE/n<5 处理)
+## ANOM lines (orchestrator.log)
+## FILES
+-rw-rw-r-- 1 k04 k04 6803 Oct 29 03:28 /home/k04/R3/R3_run_k04_1028_203515/ALL_RECORDS.tsv
+-rw-rw-r-- 1 k04 k04  404 Oct 28 20:36 /home/k04/R3/R3_run_k04_1028_203515/RUN_META.txt
+-rw-rw-r-- 1 k04 k04  763 Oct 29 03:28 /home/k04/R3/R3_run_k04_1028_203515/SUMMARY.tsv
+-rw-rw-r-- 1 k04 k04 6088 Oct 29 03:28 /home/k04/R3/R3_run_k04_1028_203515/orchestrator.log
+
