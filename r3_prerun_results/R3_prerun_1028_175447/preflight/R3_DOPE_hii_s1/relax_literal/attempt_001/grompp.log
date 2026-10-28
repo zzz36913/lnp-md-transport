@@ -1,0 +1,54 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/R3_prerun/R3_prerun_1028_175447/preflight/R3_DOPE_hii_s1/relax_literal/attempt_001
+Command line:
+  gmx grompp -f /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/relax_literal.mdp -c /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/start.gro -p /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/sys.top -n /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/index.ndx -o relax_literal.tpr -po relax_literal_out.mdp -maxwarn 0
+
+
+NOTE 1 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/relax_literal.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+
+WARNING 1 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/relax_literal.mdp]:
+  The Berendsen thermostat does not generate the correct kinetic energy
+  distribution, and should not be used for new production simulations (in
+  our opinion). We would recommend the V-rescale thermostat.
+
+
+WARNING 2 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/relax_literal.mdp]:
+  The Berendsen barostat does not generate any strictly correct ensemble,
+  and should not be used for new production simulations (in our opinion).
+  We recommend using the C-rescale barostat instead.
+
+Number of degrees of freedom in T-Coupling group Solvent is 2157.00
+Number of degrees of freedom in T-Coupling group Rest is 34557.00
+
+There was 1 NOTE
+
+There were 2 WARNINGs
+
+-------------------------------------------------------
+Program:     gmx grompp, version 2026.3
+Source file: src/gromacs/gmxpreprocess/grompp.cpp (line 2923)
+
+Fatal error:
+Too many warnings (2).
+If you are sure all warnings are harmless, use the -maxwarn option.
+
+For more information and tips for troubleshooting, please check the GROMACS
+website at https://manual.gromacs.org/current/user-guide/run-time-errors.html
+-------------------------------------------------------
+Setting the LD random seed to -34607141
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'DOPE'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Velocities were taken from a Maxwell distribution at 320 K
+
+This run will generate roughly 2 Mb of data
