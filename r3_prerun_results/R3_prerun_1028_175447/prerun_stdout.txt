@@ -1,0 +1,48 @@
+== run_prerun  MODE=docker STAGES=[preflight relax tp] maxwarn{preflight=0 relax_literal=0 relax_crescale=0 tp_prod=0} RUN_CRESCALE=auto RELAX_NSTEPS=tpr(1e6) RELAX_MAXH=0.6 TP_NSTEPS=2500000 TP_MAXH=0.5 NT=5 builds_A=[R3_DOPE_lam_s2 R3_DOPE_lam_s3 R3_DOPE_lam_s5] builds_B=[R3_DOPC_lam_s1 R3_DOPC_lam_s2 R3_DOPC_lam_s3] IMG=ghcr.io/novomcp/gromacs-md:spark G=/usr/local/gromacs/bin/gmx
+OUT=/home/k03/R3_prerun/R3_prerun_1028_175447 gmx=2026.3
+== preflight_R3  MODE=docker  maxwarn=0  builds: R3_DOPE_lam_s2 R3_DOPE_lam_s3 R3_DOPE_lam_s5 R3_DOPC_lam_s1 R3_DOPC_lam_s2 R3_DOPC_lam_s3 R3_DOPE_hii_s1
+OUT=/home/k03/R3_prerun/R3_prerun_1028_175447  gmx=2026.3
+R3_DOPE_lam_s2     relax_literal                            rc=1 n_warn=2 FAIL_GROMPP
+R3_DOPE_lam_s2     relax_crescale_dev                       rc=0 n_warn=0 DONE
+R3_DOPE_lam_s2     relax_hybrid_vrescaleT_berendsenP        rc=1 n_warn=1 FAIL_GROMPP
+R3_DOPE_lam_s2     prod_lam                                 rc=0 n_warn=0 DONE
+R3_DOPE_lam_s3     relax_literal                            rc=1 n_warn=2 FAIL_GROMPP
+R3_DOPE_lam_s3     relax_crescale_dev                       rc=0 n_warn=0 DONE
+R3_DOPE_lam_s3     relax_hybrid_vrescaleT_berendsenP        rc=1 n_warn=1 FAIL_GROMPP
+R3_DOPE_lam_s3     prod_lam                                 rc=0 n_warn=0 DONE
+R3_DOPE_lam_s5     relax_literal                            rc=1 n_warn=2 FAIL_GROMPP
+R3_DOPE_lam_s5     relax_crescale_dev                       rc=0 n_warn=0 DONE
+R3_DOPE_lam_s5     relax_hybrid_vrescaleT_berendsenP        rc=1 n_warn=1 FAIL_GROMPP
+R3_DOPE_lam_s5     prod_lam                                 rc=0 n_warn=0 DONE
+R3_DOPC_lam_s1     relax_literal                            rc=1 n_warn=2 FAIL_GROMPP
+R3_DOPC_lam_s1     relax_crescale_dev                       rc=0 n_warn=0 DONE
+R3_DOPC_lam_s1     relax_hybrid_vrescaleT_berendsenP        rc=1 n_warn=1 FAIL_GROMPP
+R3_DOPC_lam_s1     prod_lam                                 rc=0 n_warn=0 DONE
+R3_DOPC_lam_s2     relax_literal                            rc=1 n_warn=2 FAIL_GROMPP
+R3_DOPC_lam_s2     relax_crescale_dev                       rc=0 n_warn=0 DONE
+R3_DOPC_lam_s2     relax_hybrid_vrescaleT_berendsenP        rc=1 n_warn=1 FAIL_GROMPP
+R3_DOPC_lam_s2     prod_lam                                 rc=0 n_warn=0 DONE
+R3_DOPC_lam_s3     relax_literal                            rc=1 n_warn=2 FAIL_GROMPP
+R3_DOPC_lam_s3     relax_crescale_dev                       rc=0 n_warn=0 DONE
+R3_DOPC_lam_s3     relax_hybrid_vrescaleT_berendsenP        rc=1 n_warn=1 FAIL_GROMPP
+R3_DOPC_lam_s3     prod_lam                                 rc=0 n_warn=0 DONE
+R3_DOPE_hii_s1     relax_literal                            rc=1 n_warn=2 FAIL_GROMPP
+R3_DOPE_hii_s1     relax_crescale_dev                       rc=0 n_warn=0 DONE
+R3_DOPE_hii_s1     relax_hybrid_vrescaleT_berendsenP        rc=1 n_warn=1 FAIL_GROMPP
+R3_DOPE_hii_s1     prod_hii                                 rc=0 n_warn=0 DONE
+== preflight 完成: /home/k03/R3_prerun/R3_prerun_1028_175447/ALL_RECORDS.tsv ; 逐条警告原文见各 attempt_NNN/warnings.txt
+[B] R3_DOPC_lam_s1 literal FAIL_GROMPP rc=1 n_warn=2
+[A] R3_DOPE_lam_s2 literal FAIL_GROMPP rc=1 n_warn=2
+[A] R3_DOPE_lam_s2 crescale DONE perf=10284.198 ns/day n_warn=0
+[B] R3_DOPC_lam_s1 crescale DONE perf=10271.974 ns/day n_warn=0
+[A] R3_DOPE_lam_s3 literal FAIL_GROMPP rc=1 n_warn=2
+[B] R3_DOPC_lam_s2 literal FAIL_GROMPP rc=1 n_warn=2
+[A] R3_DOPE_lam_s3 crescale DONE perf=10078.721 ns/day n_warn=0
+[B] R3_DOPC_lam_s2 crescale DONE perf=10074.647 ns/day n_warn=0
+[A] R3_DOPE_lam_s5 literal FAIL_GROMPP rc=1 n_warn=2
+[B] R3_DOPC_lam_s3 literal FAIL_GROMPP rc=1 n_warn=2
+[A] R3_DOPE_lam_s5 crescale DONE perf=10128.100 ns/day n_warn=0
+[B] R3_DOPC_lam_s3 crescale DONE perf=10137.995 ns/day n_warn=0
+[A] tp R3_DOPE_lam_s2(from crescale) DONE perf=13896.624 ns/day
+[B] tp R3_DOPC_lam_s1(from crescale) DONE perf=13793.682 ns/day
+== 完成. 回传整个 /home/k03/R3_prerun/R3_prerun_1028_175447 (或至少 ALL_RECORDS.tsv + META_*.txt + 各 attempt 的 STATUS/*.log/relax.gro/relax.cpt/tp.log). 在 box 上: python3 collect_prerun.py <回传目录>
