@@ -1,0 +1,31 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/R3_prerun/R3_prerun_1028_175447/preflight/R3_DOPE_hii_s1/relax_crescale_dev/attempt_001
+Command line:
+  gmx grompp -f /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/relax_crescale_dev.mdp -c /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/start.gro -p /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/sys.top -n /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/index.ndx -o relax_crescale_dev.tpr -po relax_crescale_dev_out.mdp -maxwarn 0
+
+
+NOTE 1 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/relax_crescale_dev.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 2157.00
+Number of degrees of freedom in T-Coupling group Rest is 34557.00
+
+There was 1 NOTE
+
+GROMACS reminds you: "Beware of bugs in the above code; I have only proved it correct, not tried it." (Donald Knuth)
+
+Setting the LD random seed to -70529732
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'DOPE'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Velocities were taken from a Maxwell distribution at 320 K
+
+This run will generate roughly 2 Mb of data
