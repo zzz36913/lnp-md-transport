@@ -1,0 +1,11 @@
+WARNING 1 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/relax_literal.mdp]:
+  The Berendsen thermostat does not generate the correct kinetic energy
+  distribution, and should not be used for new production simulations (in
+  our opinion). We would recommend the V-rescale thermostat.
+
+
+WARNING 2 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPE_hii_s1/relax_literal.mdp]:
+  The Berendsen barostat does not generate any strictly correct ensemble,
+  and should not be used for new production simulations (in our opinion).
+  We recommend using the C-rescale barostat instead.
+
