@@ -1,0 +1,44 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/R3_prerun/R3_prerun_1028_175447/tp/R3_DOPE_lam_s2/from_crescale/attempt_001
+Command line:
+  gmx grompp -f /home/k03/R3_prerun_pkg/inputs/R3_DOPE_lam_s2/prod_lam.mdp -c /home/k03/R3_prerun/R3_prerun_1028_175447/relax/R3_DOPE_lam_s2/crescale/attempt_001/relax.gro -p /home/k03/R3_prerun_pkg/inputs/R3_DOPE_lam_s2/sys.top -n /home/k03/R3_prerun_pkg/inputs/R3_DOPE_lam_s2/index.ndx -o tp.tpr -po tp_out.mdp -t /home/k03/R3_prerun/R3_prerun_1028_175447/relax/R3_DOPE_lam_s2/crescale/attempt_001/relax.cpt -maxwarn 0
+
+
+NOTE 1 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPE_lam_s2/prod_lam.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 2157.00
+Number of degrees of freedom in T-Coupling group Rest is 34557.00
+Last frame         -1 time 15000.000   
+
+There was 1 NOTE
+
+GROMACS reminds you: "Baseball Heroes Only" (P.J. Harvey)
+
+Setting the LD random seed to 1942928087
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'DOPE'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'DOPE'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Taking velocities from '/home/k03/R3_prerun/R3_prerun_1028_175447/relax/R3_DOPE_lam_s2/crescale/attempt_001/relax.gro'
+
+Reading Coordinates, Velocities and Box size from old trajectory
+
+Will read whole trajectory
+
+Using frame at t = 15000 ps
+
+Starting time for run is 0 ps
+
+This run will generate roughly 165 Mb of data
