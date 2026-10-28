@@ -1,0 +1,37 @@
+                      :-) GROMACS - gmx mdrun, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/R3_prerun/R3_prerun_1028_175447/tp/R3_DOPE_lam_s2/from_crescale/attempt_001
+Command line:
+  gmx mdrun -deffnm tp -ntmpi 1 -ntomp 5 -nb gpu -update cpu -pin on -pinoffset 15 -pinstride 1 -nsteps 2500000 -maxh 0.5
+
+Compiled SIMD is ARM_NEON_ASIMD, but ARM_SVE might be faster (see log).
+Reading file tp.tpr, VERSION 2026.3 (single precision)
+Overriding nsteps with value passed on the command line: 2500000 steps, 5e+04 ps
+Can not increase nstlist because verlet-buffer-tolerance is not set or used
+
+1 GPU selected for this run.
+Mapping of GPU IDs to the 1 GPU task in the 1 rank on this node:
+  PP:0
+PP tasks will do non-perturbed short-ranged interactions on the GPU
+PP task will update and constrain coordinates on the CPU
+Using 1 MPI thread
+Using 5 OpenMP threads 
+
+Applying core pinning offset 15
+starting mdrun 'R3_DOPE_lam_s2 prim=DOPE arm=lam wl=3 T=320'
+2500000 steps,  50000.0 ps.
+
+Writing final coordinates.
+
+NOTE: 14 % of the run time was spent in pair search,
+      you might want to increase nstlist (this has no effect on accuracy)
+
+               Core t (s)   Wall t (s)        (%)
+       Time:     1554.334      310.867      500.0
+                 (ns/day)    (hour/ns)    (ms/step)  (Matom*steps/s) 
+Performance:    13896.624        0.002        0.124           98.434 
+
+GROMACS reminds you: "They don't have half hours in the north" (Carl Caleman)
+
