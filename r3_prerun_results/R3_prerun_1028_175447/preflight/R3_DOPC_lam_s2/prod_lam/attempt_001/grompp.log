@@ -1,0 +1,35 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/R3_prerun/R3_prerun_1028_175447/preflight/R3_DOPC_lam_s2/prod_lam/attempt_001
+Command line:
+  gmx grompp -f /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s2/prod_lam.mdp -c /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s2/start.gro -p /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s2/sys.top -n /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s2/index.ndx -o prod_lam.tpr -po prod_lam_out.mdp -maxwarn 0
+
+
+NOTE 1 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s2/prod_lam.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 2157.00
+Number of degrees of freedom in T-Coupling group Rest is 34557.00
+
+There was 1 NOTE
+
+GROMACS reminds you: "I am rarely happier than when spending an entire day programming my computer to perform automatically a task that it would otherwise take me a good ten seconds to do by hand." (Douglas Adams)
+
+Setting the LD random seed to -9471521
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'DOPC'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'DOPC'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Taking velocities from '/home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s2/start.gro', all velocities are zero
+
+This run will generate roughly 165 Mb of data
