@@ -1,0 +1,8 @@
+TS_dir=/home/k03/R3_prerun/R3_prerun_1028_175447
+start=2026-10-28T17:54:48+0800
+host=spark-235d
+gmx_version=2026.3
+settings=MODE=docker STAGES=[preflight relax tp] maxwarn{preflight=0 relax_literal=0 relax_crescale=0 tp_prod=0} RUN_CRESCALE=auto RELAX_NSTEPS=tpr(1e6) RELAX_MAXH=0.6 TP_NSTEPS=2500000 TP_MAXH=0.5 NT=5 builds_A=[R3_DOPE_lam_s2 R3_DOPE_lam_s3 R3_DOPE_lam_s5] builds_B=[R3_DOPC_lam_s1 R3_DOPC_lam_s2 R3_DOPC_lam_s3] IMG=ghcr.io/novomcp/gromacs-md:spark G=/usr/local/gromacs/bin/gmx
+pkg_manifest_sha256=8c6ff794bb9f64c280ac9fdef7397844f9e455e8b289bbba86a42a4ceae1457d
+run_prerun.sh_sha256=9f190188119d0f46e8d3d4122a9d5704e3cd889e1e87a6617c1375ba0b9eb63d
+NVIDIA GB10, 580.159.03
