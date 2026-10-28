@@ -1,0 +1,52 @@
+                      :-) GROMACS - gmx grompp, 2026.3 (-:
+
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /home/k03/R3_prerun/R3_prerun_1028_175447/preflight/R3_DOPC_lam_s3/relax_hybrid_vrescaleT_berendsenP/attempt_001
+Command line:
+  gmx grompp -f /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s3/relax_hybrid_vrescaleT_berendsenP.mdp -c /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s3/start.gro -p /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s3/sys.top -n /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s3/index.ndx -o relax_hybrid_vrescaleT_berendsenP.tpr -po relax_hybrid_vrescaleT_berendsenP_out.mdp -maxwarn 0
+
+
+NOTE 1 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s3/relax_hybrid_vrescaleT_berendsenP.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+
+WARNING 1 [file /home/k03/R3_prerun_pkg/inputs/R3_DOPC_lam_s3/relax_hybrid_vrescaleT_berendsenP.mdp]:
+  The Berendsen barostat does not generate any strictly correct ensemble,
+  and should not be used for new production simulations (in our opinion).
+  We recommend using the C-rescale barostat instead.
+
+Number of degrees of freedom in T-Coupling group Solvent is 2157.00
+Number of degrees of freedom in T-Coupling group Rest is 34557.00
+
+There was 1 NOTE
+
+There was 1 WARNING
+
+-------------------------------------------------------
+Program:     gmx grompp, version 2026.3
+Source file: src/gromacs/gmxpreprocess/grompp.cpp (line 2923)
+
+Fatal error:
+Too many warnings (1).
+If you are sure all warnings are harmless, use the -maxwarn option.
+
+For more information and tips for troubleshooting, please check the GROMACS
+website at https://manual.gromacs.org/current/user-guide/run-time-errors.html
+-------------------------------------------------------
+Setting the LD random seed to -320056
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'DOPC'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'DOPC'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Velocities were taken from a Maxwell distribution at 320 K
+
+This run will generate roughly 2 Mb of data
