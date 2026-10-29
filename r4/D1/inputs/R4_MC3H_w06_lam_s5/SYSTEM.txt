@@ -1,0 +1,1 @@
+R4_MC3H_w06_lam_s5 prim=MC3H arm=lam seed_id=5 T=320 nlip=960 W=1440 CL=960 wl_real=6.000 beads=13920 builder_seed=20304496 builder_min_intermol=0.322 forced=0 gmx_used=/workspace/ha_src/gmxenv/bin/gmx

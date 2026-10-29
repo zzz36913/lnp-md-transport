@@ -1,0 +1,4 @@
+box relax 起点资格证据 (R4_DOPC_w12_lam_s1), 2026-10-29 17:5x–18:20 +0800, gmx 2025.4 (box, -ntomp 4), 输入 = 包内 inputs/R4_DOPC_w12_lam_s1/{start.gro,sys.top,index.ndx,relax_crescale_dev.mdp} + nstxout=nstvout=5000 (75 ps, 同 SEL 规则取帧)
+gen_seed (box 运行, 与 Spark 运行相同 mdp → 相同 seed; 但 gmx 版本/线程数不同, 轨迹不会逐位相同): gen_seed                 = 20308840
+原始轨迹 (box, 不入包): /workspace/r4_build/relaxtest/R4_DOPC_w12_lam_s1/relax.trr sha256 3b8efea0cd4a2432817b8a91077f7d7df0a66c284e717da9835e396f250b52c0 (69489720 B)
+扫描: tools/relax_scan.py start.gro relax.trr expect.env out.tsv --every-ns 0.075 (gate/t0_gate_launch.py prod0 级, 阈值未改)

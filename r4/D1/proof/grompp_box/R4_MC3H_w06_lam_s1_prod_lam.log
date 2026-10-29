@@ -1,0 +1,41 @@
+                :-) GROMACS - gmx grompp, 2025.4-conda_forge (-:
+
+Executable:   /workspace/ha_src/gmxenv/bin.AVX2_256/gmx
+Data prefix:  /workspace/ha_src/gmxenv
+Working dir:  /workspace/lnp-md/scan/R4_recipe/D1
+Command line:
+  gmx grompp -f inputs/R4_MC3H_w06_lam_s1/prod_lam.mdp -c inputs/R4_MC3H_w06_lam_s1/start.gro -r inputs/R4_MC3H_w06_lam_s1/start.gro -p inputs/R4_MC3H_w06_lam_s1/sys.top -n inputs/R4_MC3H_w06_lam_s1/index.ndx -o /tmp/tmp.qMptKKKNNr/x.tpr -po /tmp/tmp.qMptKKKNNr/o.mdp -maxwarn 0
+
+
+NOTE 1 [file inputs/R4_MC3H_w06_lam_s1/prod_lam.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 7197.00
+Number of degrees of freedom in T-Coupling group Rest is 34557.00
+
+There was 1 NOTE
+
+Back Off! I just backed up /tmp/tmp.qMptKKKNNr/x.tpr to /tmp/tmp.qMptKKKNNr/#x.tpr.41#
+
+GROMACS reminds you: "We cannot wait for Nature's good graces - to take them from her is our goal" (Ivan Michurin)
+
+Setting the LD random seed to -272958473
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'MC3H'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+Excluding 1 bonded neighbours molecule type 'MC3H'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+Taking velocities from 'inputs/R4_MC3H_w06_lam_s1/start.gro', all velocities are zero
+
+This run will generate roughly 47 Mb of data

@@ -1,0 +1,1 @@
+R4_DOPE_w12_lam_s2 prim=DOPE arm=lam seed_id=2 T=320 nlip=960 W=2880 CL=0 wl_real=12.000 beads=14400 builder_seed=20379589 builder_min_intermol=0.32 forced=0 gmx_used=/workspace/ha_src/gmxenv/bin/gmx

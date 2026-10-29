@@ -1,0 +1,8 @@
+R4 闸门 polar 选择的取舍证据 (box, 2026-10-29, gmx 2025.4 构建的 start.gro; 连通 cutoff 0.8 nm, 同 R3)
+polar 选择                                                     MC3_w06_s1  MC3_w12_s1  MC3H_w06_s1  MC3H_w06_s5  DOPE_w06_s1
+A: R3 头珠 + W + CL NA + MC3 头/酯珠 NP N1 GLA (npol)           42(w06)      2           6            8            2
+B: R3 头珠 + W + CL NA  (npol)  <- 采用                          2            2           2            2            2
+所有 wpol=2. A 下 npol>2 来自少数 MC3/MC3H 分子的头/酯珠位于尾区 (中性 MC3 头基入油区是物理行为, 也是本实验的测量对象), 不是水层断裂.
+B 对 DOPE/DOPC 与 R3 原闸门逐字等价 (这两种体系无 CL/NA).
+Cz (层状对比度, 0.25 nm bin std/mean) 的头珠: DOPE/DOPC = PO4 (同 R3); MC3/MC3H = GLA (酯连接珠, 两种电荷态同一珠型 SN4a, 可直接对比).
+起点读数: Cz(GLA) MC3_w06_s1 1.54, MC3_w12_s1 2.13, MC3H_w06_s1 1.99, MC3H_w06_s5 2.00; Cz(PO4) DOPE_w06_s1 2.10.
