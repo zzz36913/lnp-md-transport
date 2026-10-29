@@ -1,0 +1,9 @@
+; lk_v1_macros.itp — gate 用：仅含 6 个 LK itp 实际引用的 7 个命名键/角宏，逐行原样取自
+; refs/M3_Ionizable_Lipids/Case_studies/Lipid_Nanoparticle_construction/Inverse_Hexagonal_core_LNP/MC3_Particle/martini_v3.0_ffbonded.itp (sha256 e82b365e…b566)
+#define b_C1_C4           1       0.47    3800 ; C1_C4h_mid
+#define b_C4_C1           1       0.47    3800 ; C4h_C1_end
+#define b_C4_C4           1       0.47    3800 ; C4h_C4h_mid_end
+#define b_ET_C1_glyc      1       0.37    5000 ; C1_SN4ah
+#define a_C1_C4_C4      2       100.0   10.0 ; C1_C4h_C4h
+#define a_C4_C4_C1      2       100.0   10.0 ; C4h_C4h_C1
+#define a_ET_C1_C4_glyc 2       150.0   25.0 ; SN4ah_C1_C4h From fragment called ether_link_unsat

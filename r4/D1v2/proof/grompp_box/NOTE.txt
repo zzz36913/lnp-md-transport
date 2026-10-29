@@ -1,0 +1,4 @@
+grompp_maxwarn0.tsv: 40 build × (relax_crescale_dev, prod_lam) 全部 rc=0, 0 warning, 1 note (box gmx 2025.4, -maxwarn 0)。
+注意: 这一轮里一部分 build 的 prod_lam 用的是改 nsteps 之前的 500 ns mdp (builder 先于模板改动生成; 19:4x 已把 inputs/*/prod_lam.mdp 的 nsteps 统一改为 20000000 = 400 ns)。
+grompp_prod400_maxwarn0.tsv: 用最终 inputs/*/prod_lam.mdp (nsteps 20000000) 对 40 个 build 全部重做 prod grompp: 40/40 rc=0, 0 warning, 1 note; nsteps 列取自 grompp 输出 mdp。以此为准。
+R4_MC3H_h100_lam_s1_prod_lam.log 为旧 (500 ns) 一轮的日志, R4_MC3H_h100_lam_s1_prod400_grompp.log 为最终版。

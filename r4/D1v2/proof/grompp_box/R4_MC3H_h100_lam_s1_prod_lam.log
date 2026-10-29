@@ -1,0 +1,39 @@
+                :-) GROMACS - gmx grompp, 2025.4-conda_forge (-:
+
+Executable:   /workspace/ha_src/gmxenv/bin.AVX2_256/gmx
+Data prefix:  /workspace/ha_src/gmxenv
+Working dir:  /tmp/gp_v2/R4_MC3H_h100_lam_s1
+Command line:
+  gmx grompp -f prod_lam.mdp -c start.gro -p sys.top -n index.ndx -o prod_lam.tpr -po prod_lam_out.mdp -maxwarn 0
+
+
+NOTE 1 [file prod_lam.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 26277.00
+Number of degrees of freedom in T-Coupling group Rest is 34557.00
+
+There was 1 NOTE
+
+GROMACS reminds you: "If you have any trouble sounding condescending, find a UNIX user to show you how it's done." (Scott Adams, Dilbert Cartoonist)
+
+Setting the LD random seed to -75497521
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'MC3H'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+Excluding 1 bonded neighbours molecule type 'MC3H'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+Taking velocities from 'start.gro', all velocities are zero
+
+This run will generate roughly 64 Mb of data

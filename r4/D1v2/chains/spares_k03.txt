@@ -1,0 +1,9 @@
+# L2 替补 (按格; 文件顺序=取用顺序). 全部 L1 PASS. k03 只放 s4, 避免两机同取. 只看起点读数, 不看 prod 结果.
+R4_DOPE_h050_lam_s4
+R4_DOPC_h050_lam_s4
+R4_MC3H_h050_lam_s4
+R4_MC3_h050_lam_s4
+R4_DOPE_h100_lam_s4
+R4_DOPC_h100_lam_s4
+R4_MC3H_h100_lam_s4
+R4_MC3_h100_lam_s4

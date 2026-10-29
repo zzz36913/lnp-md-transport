@@ -1,0 +1,1 @@
+R4_DOPC_h050_lam_s4 prim=DOPC arm=lam tier=50 seed_id=4 T=320 nlip=960 W=3900 CL=0 wl_real=16.250 beads=15420 builder_seed=20347929 builder_min_intermol=0.371 forced=0 gmx_used=/workspace/ha_src/gmxenv/bin/gmx

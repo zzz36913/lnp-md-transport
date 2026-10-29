@@ -1,0 +1,1 @@
+source: /workspace/lnp-md/scan/R3_remediation/main_results/raw/R3_run_k04_1028_203515/builds/R3_DOPC_lam_s2/relax/attempt_001/relax.gro (R3 k04 主跑 DOPC_lam_s2 relax 末帧, R3 判 VOID_L2)

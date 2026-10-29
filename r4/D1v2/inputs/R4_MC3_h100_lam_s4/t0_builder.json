@@ -1,0 +1,63 @@
+{
+ "file": "inputs/R4_MC3_h100_lam_s4/start.gro",
+ "level": "builder",
+ "frame": 0,
+ "arm": "lam",
+ "readings": {
+  "0.65": {
+   "v1": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "v2": [
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  "0.75": {
+   "v1": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "v2": [
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  "0.95": {
+   "v1": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "v2": [
+    2,
+    2,
+    2,
+    2
+   ]
+  }
+ },
+ "composition": {
+  "n_lipid_res": 960,
+  "n_W": 7800,
+  "n_CL": 0
+ },
+ "composition_expected": {
+  "lipids": 960,
+  "W": 7800
+ },
+ "composition_ok": true,
+ "gate": "ncl/wind/npol/wpol=2/2/2/2 @ cutoff 0.65/0.75/0.95 (polar \u56fa\u5b9a 0.8, \u540c Claude \u5206\u6790\u5668\u9ed8\u8ba4) \u4e14 v1==v2",
+ "applicable": true,
+ "verdict": "PASS"
+}

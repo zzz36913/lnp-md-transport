@@ -1,0 +1,1 @@
+R4_MC3H_h100_lam_s4 prim=MC3H arm=lam tier=100 seed_id=4 T=320 nlip=960 W=7800 CL=960 wl_real=32.500 beads=20280 builder_seed=20355610 builder_min_intermol=0.321 forced=0 gmx_used=/workspace/ha_src/gmxenv/bin/gmx

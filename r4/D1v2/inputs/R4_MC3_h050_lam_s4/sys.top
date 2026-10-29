@@ -1,0 +1,17 @@
+#include "martini_v3.0.0.itp"
+#include "martini_v3.0.0_ffbonded_v2.itp"
+#include "martini_v3.0.0_phospholipids_PC_v2.itp"
+#include "martini_v3.0.0_phospholipids_PE_v2.itp"
+#include "lk_v1_macros.itp"
+#include "MC3_MC3H.itp"
+#include "martini_v3.0.0_solvents_v1.itp"
+#include "martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+R4_MC3_h050_lam_s4 prim=MC3 arm=lam tier=50 wl=16.2500 T=320
+
+[ molecules ]
+MC3 480
+W 1950
+MC3 480
+W 1950

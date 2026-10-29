@@ -1,0 +1,45 @@
+; R4 D1 prod 500 ns lam: c-rescale semiisotropic tau_p=4, nstpcouple=5 (2026.3: tau_p >= 25*nstpcouple*dt = 2.5 ps OK)
+; 来源: R3_pkg/mdp/prod_lam.mdp 逐字, 仅改 nsteps/nsttcouple/nstpcouple/pcoupl/pcoupltype/tau_p/ref_p/compressibility (= R2a prod 的 c-rescale semi tau_p=4, 但 nstpcouple 20->5 以满足 2026.3)
+; 来源/规则见 make_mdps.py 文件头; 非键项逐字同 R2a/官方 martini_v3.0_prod.mdp
+integrator               = md
+dt                       = 0.02
+nsteps                   = 20000000   ; D1v2: 400 ns (D1 为 500 ns); K 10-29 18:52 相对水合度后体系变大, 见 README_R4_D1v2.md 容量估算
+nstxout                  = 1000000
+nstvout                  = 0
+nstfout                  = 0
+nstxout-compressed       = 50000
+compressed-x-precision   = 100
+nstenergy                = 5000
+nstlog                   = 25000
+cutoff-scheme            = Verlet
+nstlist                  = 20
+rlist                    = 1.35
+verlet-buffer-tolerance  = -1
+pbc                      = xyz
+coulombtype              = reaction-field
+rcoulomb                 = 1.1
+epsilon_r                = 15
+epsilon_rf               = 0
+vdw_type                 = cutoff
+vdw-modifier             = Potential-shift-verlet
+rvdw                     = 1.1
+nsttcouple               = 5
+nstpcouple               = 5
+tcoupl                   = v-rescale
+tc-grps                  = Solvent Rest
+tau_t                    = 1.0 1.0
+ref_t                    = 320 320
+gen_vel                  = no
+gen_temp                 = 320
+gen_seed                 = 20379591
+continuation             = yes
+pcoupl                   = c-rescale
+pcoupltype               = semiisotropic
+tau_p                    = 4.0
+ref_p                    = 1.0 1.0
+compressibility          = 3e-4 3e-4
+refcoord_scaling         = all
+comm-mode                = Linear
+nstcomm                  = 100
+comm-grps                = Rest Solvent
+constraints              = none

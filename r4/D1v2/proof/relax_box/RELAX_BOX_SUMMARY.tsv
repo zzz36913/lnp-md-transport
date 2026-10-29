@@ -1,0 +1,9 @@
+build	frames_last5ns	qualified	last_qualified_t_ns	ncl==1_frames	Lx_end_nm	Lz_end_nm	predicted_L2
+R4_DOPC_h050_lam_s1	67	18	13.875	0	12.668	10.624	SEL_OK
+R4_DOPC_h100_lam_s1	67	13	13.575	0	12.752	13.488	SEL_OK
+R4_DOPE_h050_lam_s1	67	20	13.275	0	12.156	9.672	SEL_OK
+R4_DOPE_h100_lam_s1	67	23	14.625	0	12.515	10.526	SEL_OK
+R4_MC3H_h050_lam_s1	67	18	14.475	0	12.903	9.273	SEL_OK
+R4_MC3H_h100_lam_s1	67	4	15.000	0	13.294	11.380	SEL_OK
+R4_MC3_h050_lam_s1	67	0	-	0	3.126	165.490	VOID_L2
+R4_MC3_h100_lam_s1	67	0	-	0	3.150	211.573	VOID_L2

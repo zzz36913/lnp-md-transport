@@ -1,0 +1,39 @@
+                :-) GROMACS - gmx grompp, 2025.4-conda_forge (-:
+
+Executable:   /workspace/ha_src/gmxenv/bin.AVX2_256/gmx
+Data prefix:  /workspace/ha_src/gmxenv
+Working dir:  /tmp/gp_v2/R4_MC3H_h100_lam_s1
+Command line:
+  gmx grompp -f relax_crescale_dev.mdp -c start.gro -p sys.top -n index.ndx -o relax_crescale_dev.tpr -po relax_crescale_dev_out.mdp -maxwarn 0
+
+
+NOTE 1 [file relax_crescale_dev.mdp]:
+  verlet-buffer-pressure-tolerance is ignored when verlet-buffer-tolerance
+  < 0
+
+Number of degrees of freedom in T-Coupling group Solvent is 26277.00
+Number of degrees of freedom in T-Coupling group Rest is 34557.00
+
+There was 1 NOTE
+
+GROMACS reminds you: "I never thought about breaking barriers, I was just interested in what I was doing and kept going." (Barbara Liskov)
+
+Setting the LD random seed to -536887301
+
+Generated 844 of the 356590 non-bonded parameter combinations
+
+Excluding 1 bonded neighbours molecule type 'MC3H'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+Excluding 1 bonded neighbours molecule type 'MC3H'
+
+Excluding 1 bonded neighbours molecule type 'W'
+
+Excluding 1 bonded neighbours molecule type 'CL'
+
+Velocities were taken from a Maxwell distribution at 320 K
+
+This run will generate roughly 3 Mb of data

@@ -1,0 +1,10 @@
+build: R4_DOPC_h100_lam_s1 (box 预跑, 每体系每档 s1 一条; 不是 Spark 结果)
+gmx: /workspace/ha_src/gmxenv/bin/gmx (GROMACS 2025.4, box CPU)
+grompp: gmx grompp -f relax.mdp -c start.gro -r start.gro -p sys.top -n index.ndx -o relax.tpr -maxwarn 0
+mdrun: gmx mdrun -deffnm relax -ntmpi 1 -ntomp 1 -pin on -pinstride 1 (8 条并行; 18:58:58 起 -cpi 续跑一次, 见 RUNBOOK)
+relax.mdp = inputs/R4_DOPC_h100_lam_s1/relax_crescale_dev.mdp + nstxout=nstvout=5000 (75 ps; 与 run_R4 TRR-AMEND 相同); 副本: R4_DOPC_h100_lam_s1_relax.mdp
+gen_seed: 20312031
+relax.trr sha256: 258122180eb527927b0a2da8832d7d22a46dfaa5a297f6d217d2fb9499a17548
+start.gro sha256: 304bcbabd5832bf1b63fdc0115c55d3aecfe3173ce040b3e85fc651ab4a8e6d5
+scan: tools/relax_scan.py inputs/R4_DOPC_h100_lam_s1/start.gro relax.trr inputs/R4_DOPC_h100_lam_s1/expect.env R4_DOPC_h100_lam_s1_relax_scan_last5ns.tsv --every-ns 0.075 --t-min-ns 10  (gate/t0_gate_launch.py prod0 级, 阈值未改)
+Finished mdrun on rank 0 Thu Oct 29 19:58:02 2026
