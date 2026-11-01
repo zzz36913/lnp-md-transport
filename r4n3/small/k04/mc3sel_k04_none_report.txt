@@ -1,0 +1,5 @@
+MISS_BUILD s11 (builds/*_MC3_h022_T350_hii_s11 不存在)
+MISS_BUILD s14 (builds/*_MC3_h022_T350_hii_s14 不存在)
+MISS_BUILD s12 (builds/*_MC3_h022_T350_hii_s12 不存在)
+MISS_BUILD s13 (builds/*_MC3_h022_T350_hii_s13 不存在)
+--- FIND 全 run 下 *MC3_h022_T350_hii* 的 relax.gro / frames.tsv / SELECTED_FRAME.txt (交叉核对):
