@@ -1,0 +1,18 @@
+R4N1_DOPE_h100_T350_lam_s2	DONE	PASS	DONE
+R4N1_DOPE_h100_T350_lam_s3	DONE	PASS	DONE
+R4N1_MC3H_h100_T350_lam_s1	DONE	PASS	DONE
+R4N1_MC3H_h100_T350_lam_s2	DONE	VOID_L2	NONE
+R4N1_MC3H_h100_T350_lam_s3	DONE	VOID_L2	NONE
+R4N1_MC3H_h100_T350_lam_s4	DONE	VOID_L2	NONE
+R4N1_MC3_h100_T350_lam_s1	DONE	VOID_L2	NONE
+R4N1_MC3_h100_T350_lam_s2	DONE	VOID_L2	NONE
+R4N1_MC3_h100_T350_lam_s3	DONE	VOID_L2	NONE
+R4N1_MC3_h100_T350_lam_s4	DONE	VOID_L2	NONE
+L2 void_rate DOPE_h100_T350_lam(本机): 0 / 2 个已读闸 (L1 见 inputs/L1_summary.tsv)
+L2 void_rate MC3H_h100_T350_lam(本机): 3 / 4 个已读闸 (L1 见 inputs/L1_summary.tsv)
+L2 void_rate MC3_h100_T350_lam(本机): 4 / 4 个已读闸 (L1 见 inputs/L1_summary.tsv)
+UNRESOLVED_VOID R4N1_MC3H_h100_T350_lam_s3 (无替补/时间不足 -> 该格 n 减少, 判读按 PREREG_R4_3day NOT_EVALUABLE/n<3 处理)
+UNRESOLVED_VOID R4N1_MC3H_h100_T350_lam_s4 (无替补/时间不足 -> 该格 n 减少, 判读按 PREREG_R4_3day NOT_EVALUABLE/n<3 处理)
+UNRESOLVED_VOID R4N1_MC3_h100_T350_lam_s2 (无替补/时间不足 -> 该格 n 减少, 判读按 PREREG_R4_3day NOT_EVALUABLE/n<3 处理)
+UNRESOLVED_VOID R4N1_MC3_h100_T350_lam_s3 (无替补/时间不足 -> 该格 n 减少, 判读按 PREREG_R4_3day NOT_EVALUABLE/n<3 处理)
+UNRESOLVED_VOID R4N1_MC3_h100_T350_lam_s4 (无替补/时间不足 -> 该格 n 减少, 判读按 PREREG_R4_3day NOT_EVALUABLE/n<3 处理)

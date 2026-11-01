@@ -1,0 +1,8 @@
+S k04 --- spark-afe0 2026-11-01 12:26:25 run_R4N2=0 gmx=0 R4N2ctr=0 mps=0
+S k04 RUNS=[R4N2/R4N2_run_k04_1031_145709] 本机全部: R4N2/R4N2_run_k04_1031_145709
+S k04 R4N2_run_k04_1031_145709: rec=36 done=1 HALT=no prod: 3 DONE
+S k04 perf prod/ext rows=3 min=13506.8 max=14509.6 low<10000=0
+S k04 mps_events: 9 own 1 own_started | 2026-10-31 16:30:34 +0800 stop: quit 已发, x_mps.env -> x_mps.env.stopped_1031_163028 (�
+S k04 SIZE 70MB (74293585B) files=1479 xtc=3 tpr=3 sha_out=3 log=27 limit=2048MB df_free=2272039MB
+S k04 TAR rc=0 0 0 parts=5 in_tar=1479/1479 cat_sha=93c25771fda29581 tee_sha=93c25771fda29581
+S k04 PACK k04 OK=yes

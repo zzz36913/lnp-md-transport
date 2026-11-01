@@ -1,0 +1,11 @@
+2026-10-31 14:58:24 +0800 k04_B R4N1_DOPE_h100_T350_lam_s2 own_started /home/k04/mps_R4N2/k04_1031_145821_1 (pid=2356415 pipe 可用)
+2026-10-31 14:58:24 +0800 k04_A R4N1_DOPE_h100_T350_lam_s3 own pid=2356415 pipe 可用
+2026-10-31 15:42:43 +0800 k04_A R4N1_MC3H_h100_T350_lam_s1 own pid=2356415 pipe 可用
+2026-10-31 15:42:47 +0800 k04_B R4N1_MC3_h100_T350_lam_s1 own pid=2356415 pipe 可用
+2026-10-31 15:49:05 +0800 k04_B R4N1_MC3_h100_T350_lam_s4 own pid=2356415 pipe 可用
+2026-10-31 15:55:23 +0800 k04_B R4N1_MC3H_h100_T350_lam_s2 own pid=2356415 pipe 可用
+2026-10-31 16:00:32 +0800 k04_B R4N1_MC3H_h100_T350_lam_s4 own pid=2356415 pipe 可用
+2026-10-31 16:05:46 +0800 k04_B R4N1_MC3_h100_T350_lam_s2 own pid=2356415 pipe 可用
+2026-10-31 16:12:14 +0800 k04_B R4N1_MC3H_h100_T350_lam_s3 own pid=2356415 pipe 可用
+2026-10-31 16:17:25 +0800 k04_B R4N1_MC3_h100_T350_lam_s3 own pid=2356415 pipe 可用
+2026-10-31 16:30:34 +0800 stop: quit 已发, x_mps.env -> x_mps.env.stopped_1031_163028 (未删)
