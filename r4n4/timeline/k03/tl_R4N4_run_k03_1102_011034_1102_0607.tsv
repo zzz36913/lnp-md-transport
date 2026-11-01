@@ -1,0 +1,4 @@
+run	machine	attempt	prod_status	dt_ps	file	frames	t_first_ps	t_last_ps	bytes	relax_gro	note
+R4N1_DOPE_h100_T350_hii_s213	k03	prod/attempt_001	DONE	100000	tl_100ns.xtc	13	0.000	1200000.000	671572	y	-
+R4N1_DOPE_h100_T350_hii_s312	k03	prod/attempt_001	DONE	100000	tl_100ns.xtc	13	0.000	1200000.000	671148	y	-
+R4N1_DOPE_h100_T350_hii_s313	k03	prod/attempt_001	DONE	100000	tl_100ns.xtc	13	0.000	1200000.000	671384	y	-
