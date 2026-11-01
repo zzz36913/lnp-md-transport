@@ -1,0 +1,9 @@
+2026-10-31 15:03:50 +0800 k03_B R4N1_MC3H_h100_T350_hii_s1 own_started /home/k03/mps_R4N2/k03_1031_150346_1 (pid=3324922 pipe 可用)
+2026-10-31 15:03:50 +0800 k03_A R4N1_MC3_h100_T350_hii_s1 own pid=3324922 pipe 可用
+2026-10-31 15:08:01 +0800 k03_A R4N1_MC3_h100_T350_hii_s4 own pid=3324922 pipe 可用
+2026-10-31 15:08:04 +0800 k03_B R4N1_MC3H_h100_T350_hii_s4 own pid=3324922 pipe 可用
+2026-10-31 15:12:18 +0800 k03_A R4N1_MC3H_h100_T350_hii_s2 own pid=3324922 pipe 可用
+2026-10-31 15:12:19 +0800 k03_B R4N1_MC3_h100_T350_hii_s2 own pid=3324922 pipe 可用
+2026-10-31 15:16:28 +0800 k03_A R4N1_MC3H_h100_T350_hii_s3 own pid=3324922 pipe 可用
+2026-10-31 15:16:36 +0800 k03_B R4N1_MC3_h100_T350_hii_s3 own pid=3324922 pipe 可用
+2026-10-31 15:20:58 +0800 stop: quit 已发, x_mps.env -> x_mps.env.stopped_1031_152053 (未删)

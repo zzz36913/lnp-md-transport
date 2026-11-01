@@ -1,0 +1,8 @@
+S k03 --- spark-235d 2026-11-01 12:24:30 run_R4N2=0 gmx=0 R4N2ctr=0 mps=0
+S k03 RUNS=[R4N2/R4N2_run_k03_1031_150232] 本机全部: R4N2/R4N2_run_k03_1031_150232
+S k03 R4N2_run_k03_1031_150232: rec=27 done=1 HALT=no prod: 
+S k03 perf prod/ext rows=0 min= max= low<10000=0
+S k03 mps_events: 7 own 1 own_started | 2026-10-31 15:20:58 +0800 stop: quit 已发, x_mps.env -> x_mps.env.stopped_1031_152053 (�
+S k03 SIZE 1MB (1970562B) files=1174 xtc=0 tpr=0 sha_out=0 log=20 limit=2048MB df_free=2014105MB
+S k03 TAR rc=0 0 0 parts=1 in_tar=1174/1174 cat_sha=5dbf8d11f0e4ec3f tee_sha=5dbf8d11f0e4ec3f
+S k03 PACK k03 OK=yes
