@@ -7,3 +7,6 @@
 5. 判读包装只改条件格、种子映射、按档分开、规则 3 借用; 测试 T10/T11 断言冻结文件 sha 与"包装里无阈值字面量"。
 6. 新增判据: 无。盒形只作描述, 不进判读 (PREREG_N4 §4)。
 复核局限: 本复核由出包同一执行方以脚本完成 (未另起独立的人/代理); GPU 上的 PR 档速度未实测。
+
+## v2 复审处理 (2026-11-01 UTC+8)
+- 复审必改 1 处 (docker ps 行注释吞代码) 已修, 负测试见 selfcheck/NEG_dockerps.txt; 同类扫描见 selfcheck/SCAN_inline_comments.txt。其余 v2 改动见 SELFCHECK.md "v2" 节。

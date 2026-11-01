@@ -1,7 +1,7 @@
 #!/bin/bash
 # [R4N4] 小包收集 (由 R4N3 版复制, 只改路径/包装名; 放在包内 xfer_small/) (在 k03/k04 上跑; 只读 run 目录, 只写 $DEST). 不碰任何 token / 口令 / 上传: 上传仍走既有 ZCode 流程.
 # 用法: bash collect_small.sh <OUT=$HOME/R4N4/R4N4_run_<机>_*目录> [DEST=$HOME/R4N4/xfer]   环境: PKG=<R4N4 包目录, 默认本脚本上一级> GATE_PY=<含 MDAnalysis 的 python> COLLECT=1|0
-# 内容 (每个 build): 最新一段 (ext2000 > prod) 的 末帧 gro (DONE 用 confout.gro; TRUNC 用 cpt 末态 -> gmx trjconv -dump 末帧) + STATUS + SHA256_out.txt + md log 末 60 行
+# 内容 (每个 build): 最新一段 (按 ext2000 > ext1200 > prod 取先存在的; 本包无续跑段, 实际即 prod) 的 末帧 gro (DONE 用 confout.gro; TRUNC 用 cpt 末态 -> gmx trjconv -dump 末帧) + STATUS + SHA256_out.txt + md log 末 60 行
 #       relax select 的 gate_frames (L2 判据原始读数) + runner 的 ledger/slots 日志 + runs.tsv;
 #       COLLECT=1 时另跑冻结 collect (verdict_N4_wrap.py collect; 判读再跑 verdict_N4_wrap.py judge, 按档分目录) 出每 run 的 series tsv (判读只要它, 不要 xtc).
 # 02:00 "早完先传": 同一脚本, 只收已 DONE/TRUNC 的段; 还在跑的段在 MANIFEST 里记 RUNNING, 不打断、不读写其文件.
