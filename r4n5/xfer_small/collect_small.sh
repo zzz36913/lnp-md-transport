@@ -1,9 +1,9 @@
 #!/bin/bash
 # [R4N5] 第 5 包小包收集. 由 R4N4 fix1101 版 (repo r4n4/xfer_small/collect_small.sh, sha256 6644f57367794d4a...ef35604f) 复制, 只改: R4N4->R4N5 路径/名, verdict_N4_wrap->verdict_N5_wrap,
 #   PKG 默认 = 本脚本上一级 (本脚本在包内 xfer_small/), collect 成功后多跑一次 verdict_N5_wrap.py judge (只读 series, 写进小包).
-# 时刻表 (PREREG_N5 §7): 11-03 02:00 中途 COLLECT=0 bash collect_small.sh $HOME/R4N5/R4N5_run_<机>_<TS>   (只收状态/日志/末帧, 不跑冻结 collect, 不判)
-#                        11-03 07:00 收尾 COLLECT=1 bash collect_small.sh $HOME/R4N5/R4N5_run_<机>_<TS>   (另跑冻结 collect 出 series + N5 判读草稿)
-#   两台各自跑 (k03 = DOPE, k04 = DOPC); 产物在 $HOME/R4N5/xfer/. 上传仍按旧流程 (k04 经 k03).
+# [R4N5v2 K 11-02 13:46] 时刻表 (PREREG_N5 §7/§9): 11-02 ~20:30 与 11-03 ~01:00 中途 COLLECT=0 (分支检查点), 11-03 07:00 收尾 COLLECT=1. (02:00 那次取消)
+#   COLLECT=0 现在也尽力跑冻结 collect + N5 判读, 标 INTERIM (N5_INTERIM=1; 正在写的 xtc 末帧可能残缺 -> 失败只记 _collect FAIL, 小包照出). 每 run 的相描述量时间序列 = collect/series/<build>.csv (t_ns,ncl,wind,wpol,n_tube,Cz,C_max).
+#   COLLECT=1 = 最终; 判读草稿 judge_N5.log/VERDICT_N5.md. 两种模式都删 xtc, 只留 series/状态/日志/末帧.
 # 原注释 (R4N4 fix1101):
 # [R4N5] 小包收集 (由 R4N3 版复制, 只改路径/包装名; 放在包内 xfer_small/) (在 k03/k04 上跑; 只读 run 目录, 只写 $DEST). 不碰任何 token / 口令 / 上传: 上传仍走既有 ZCode 流程.
 # 用法: bash collect_small.sh <OUT=$HOME/R4N5/R4N5_run_<机>_*目录> [DEST=$HOME/R4N5/xfer]   环境: PKG=<R4N5 包目录, 默认本脚本上一级> GATE_PY=<含 MDAnalysis 的 python> COLLECT=1|0
@@ -38,7 +38,7 @@ for bd in $OUT/builds/R4N1_*; do b=$(basename $bd); seg=; for s in ext2000 ext12
   ls $bd/select/attempt_*/gate_frames >/dev/null 2>&1 && { mkdir -p $W/builds/$b/select; cp -r $(ls -d $bd/select/attempt_* | sort | tail -1)/gate_frames $W/builds/$b/select/; cp $bd/select/STATUS $W/builds/$b/select/ 2>/dev/null; }
   echo -e "$b\t$seg\t${st%% *}\t$lf\t$nt" >> $M; done
 for f in ledger slots runs.tsv RUN_META.txt; do [ -e $OUT/$f ] && cp -r $OUT/$f $W/; done
-if [ "$COLLECT" = 1 ] && [ -n "$PKG" ]; then cs=OK; cn=-
+if [ "$COLLECT" != off ] && [ -n "$PKG" ]; then cs=OK; cn=-; export N5_INTERIM=$([ "$COLLECT" = 1 ] && echo 0 || echo 1); echo -e "_interim\t-\t$N5_INTERIM\t-\tCOLLECT=$COLLECT" >> $M
   $GATE_PY $PKG/verdict_N5_wrap.py collect $OUT --inputs $PKG/inputs --out $W/collect --jobs 2 > $W/collect.log 2>&1; rc=$?; echo "collect rc=$rc" >> $W/collect.log
   [ $rc = 0 ] && cn="$(grep '^wrote' $W/collect.log | tail -1 | cut -c1-120)" || { cs=FAIL; cn="rc=$rc: $(grep -v '^collect rc' $W/collect.log | tail -1 | cut -c1-160)"; }
   echo -e "_collect\t-\t$cs\t-\t$cn" >> $M

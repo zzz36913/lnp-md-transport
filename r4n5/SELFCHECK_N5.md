@@ -26,3 +26,8 @@ proof/neg_selftest_bridged.gro 直接喂闸门: rc=3, 读数 1/3/3/2 → 判不�
 
 ## 5 未做 (需在 Spark 上做, 本任务禁止)
 - 真机 CHECK (MODE=docker, 真 MPS, 真容器). 启动前按 README_R4N5 先跑 CHECK=1.
+
+## v2 自检 (2026-11-02, box 本地, 未起跑任何东西)
+- grompp: 38 build × (relax_crescale_dev, prod_lam) = 76 次, 全部 rc=0, 0 WARNING, 1 NOTE (verlet-buffer-pressure-tolerance ignored); ref_t: T330 ×16, T350 ×44, T360 ×16 (selfcheck/grompp/SUMMARY.tsv).
+- tests: test_verdict_N5 16/16 OK (含 8 个 v2 例); test_slotB_mps ALL_OK; test_mps_n2_onN5 / test_mps_wait_n4_onN5 ALL PASS (selfcheck/test_*.txt).
+- 本地 launch-guard CHECK k03/k04 (MODE=local) 与 DRY (BRANCH 未设 / BRANCH=b) 输出: selfcheck/v2_check_k0?.txt, selfcheck/v2_dry*_k0?.txt. 真机 CHECK 尚未跑.

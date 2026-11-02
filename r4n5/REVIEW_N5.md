@@ -24,9 +24,15 @@
 | 13 | verdict_N5_wrap.py | 新 (取代 verdict_N4_wrap.py): 种子 50x→1..4, CONDS=C4r, 满窗 TRUNC_N5, 规则 P/N, 总判 | PREREG_N5 §5 | tests/test_verdict_N5.py 8 例 ALL_OK |
 | 14 | xfer_small/collect_small.sh | 换成 R4N4 fix1101 版 (repo r4n4/xfer_small, sha 6644f573…) 再改: R4N4→R4N5, verdict_N4→N5, PKG 默认 = 上一级, collect 后跑 N5 judge | 时刻表 02:00 COLLECT=0 / 07:00 COLLECT=1 | bash -n OK; 未在 Spark 上实跑 |
 | 15 | 删 | verdict_N4_wrap.py, PREREG_N3/N4, PLAN_N4, README_R4N4, REVIEW_N4, SELFCHECK, R4N4 hii inputs, R4N4_builds.tsv, tests/ 旧件, proof/grompp_box | 本包不用 | — |
-| 16 | VARIANT | night5_lam_ctrl | 标识 | — |
+| 16 | VARIANT | night5_lam_ctrl (v2: night5_lam_ctrl_v2_mc3_branch) | 标识 | — |
 | 17 | tests/ | 新: test_verdict_N5.py, test_slotB_mps.sh; 从 R4N4 复制 mock/ 并 R4N4→R4N5 改名得 test_mps_n2_onN5.sh, test_mps_wait_n4_onN5.sh (证明 MPS 逻辑改名后行为不变) | 回归 | 4 个全过, 见 SELFCHECK_N5 |
-
+| 18 | chains/supp_k0{3,4}, spares_k0{3,4} | [v2] supp: 尺子 s501-503 后接 MC3H(k03)/MC3(k04) s501-503; spares 加 MC3H/MC3/T360/T330 的 s504 | K 13:46 加 MC3 | 尺子仍先领; 替补只顶 VOID |
+| 19 | chains/branch_{a,b,c}_k0{3,4}.txt | [v2] 新: 分支队列 (a: MC3H/MC3 s505-507; b: T360 DOPE/DOPC s501-503; c: T330 同) | PREREG §9 | 默认不领 |
+| 20 | run_R4N5.sh | [v2] branch_now/branch_q/brall; claim_supp 在 supp 之后接 $(branch_q) (每次领取现读 $J/BRANCH, 否则 env BRANCH); CHECK 各核对循环含全部分支 build; DRY 列分支队列 | 同上 | BRANCH 未设 = v1 行为 |
+| 21 | inputs/ +30 build | [v2] tools/derive_R4N5v2.py 派生 (种子/ref_t/gen_temp/EXP_TEMP, 断言); 76 次 grompp rc=0 0 警告 | 同上 | 只改温度/种子 |
+| 22 | verdict_N5_wrap.py | [v2] 多档 T350/T360/T330 同规则; MC3 Δ_lam (冻结 DELTA_SEP=2, 尺子 CONTRAST_PASS 才判); s505-507 只描述; N5_INTERIM 标记 | PREREG §8-§9 | 冻结脚本 sha 不变 |
+| 23 | xfer_small/collect_small.sh | [v2] COLLECT=0 也尽力跑冻结 collect + INTERIM 判读 (series csv); 时刻表 20:30/01:00/07:00 | K 要求实时迭代 | 失败只记 FAIL |
+| 24 | tests/test_verdict_N5.py | [v2] +8 例 (Δ 三向/尺子未过/MC3 全 VOID/加种子不进门/T360/T330) | — | 16/16 OK |
 ## C 刻意没改
 - 冻结判读/闸门/阈值; MAXWARN 0/0; MINRUN/SUPP_MARGIN/PROD_MIN; MPS 起停逻辑 (只在 B 槽领取前加判断); WAIT_MAIN=none 时「机上有 ^R4N2_ 容器 FAIL」照旧.
 - 不自动续跑, 不加 ext/fill.
@@ -37,3 +43,10 @@
 3. 吞吐数字是估计 (按珠数从 14258 ns/day@15420 珠折算); 2 槽 MPS 下每槽吞吐未在本体系实测.
 4. collect_small 的 N5 judge 在容器里跑, 只作草稿; 正式判读在 box 上重跑.
 5. 第 1 晚 DOPE lam 只跑了 s1 (s2–s4 NOT_RUN), 所以 DOPE s502–s504 的起点构建虽过 L1, 从未跑过 relax/L2; 若 L2 VOID, 替补只有 1 个.
+
+### D-v2 新增风险
+- 中性 MC3 片层: D1v2 (320 K) 10/10 VOID_L2; 本档若同样 → MC3 格 VOID, Δ NOT_EVALUABLE.
+- 中途 collect 读正在写的 xtc, 末帧可能残缺 → 那次 collect FAIL (小包照出).
+- 分支 a 的种子复用 s1-s3 起点结构 (只换速度), 只描述.
+- 两槽结束后才选分支 → 需 NEW_RUN=1 BRANCH=x ONLY=... 新起.
+- 时间是 PERF_NOM 估计; 2 槽 MPS 下单槽速率若明显下降, MC3 末几条会被 supp_fits 跳过.

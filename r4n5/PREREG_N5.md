@@ -53,6 +53,30 @@
 - 两者同时 → 方法失败.
 - 不因结果改阈值、换视界、换种子或补跑非替补种子. 替补只按冻结 select_cell 顶起点级 VOID.
 
-## §7 收集
-- 11-03 02:00 中途: `COLLECT=0 bash xfer_small/collect_small.sh $HOME/R4N5/R4N5_run_<机>_<TS>` (只收状态/日志/末帧).
-- 11-03 07:00 收尾: `COLLECT=1 ...` (另跑冻结 collect + verdict_N5_wrap judge 草稿); 正式判读在 box 上 `python3 verdict_N5_wrap.py judge <out>` 再跑一遍.
+## §7 收集 (v2 改: 去掉 02:00, 改两个中途检查点)
+- 11-02 ~20:30 与 11-03 ~01:00 中途 (分支检查点, §9): `COLLECT=0 bash xfer_small/collect_small.sh $HOME/R4N5/R4N5_run_<机>_<TS>` — 收状态/日志/末帧, 并尽力跑冻结 collect + `verdict_N5_wrap.py judge` (标 INTERIM; 未满 1200 ns 的跑一律 TRUNC, 不成立结论). 小包含每 run 相描述量时间序列 `collect/series/<build>.csv` (t_ns,ncl,wind,wpol,n_tube,Cz,C_max). 正在写的 xtc 末帧可能残缺 → 那次 collect 记 FAIL, 小包照出.
+- 11-03 07:00 收尾: `COLLECT=1 ...` (冻结 collect + verdict_N5_wrap judge 草稿); 正式判读在 box 上 `python3 verdict_N5_wrap.py judge <out>` 再跑一遍.
+
+---
+# 增补 v2 (K 11-02 13:46 提出, 起跑前冻结; 不改 §1-§6 任何门槛)
+
+## §8 加 MC3H (全质子化) 与中性 MC3 片层起点
+- 配方与尺子逐字相同: 片层起点 (同 R4N1 lam start.gro/sys.top), 350 K, h100, relax 15 ns semi c-rescale + 同一 L2 闸门, prod_lam.mdp 档 5 (LAMSEMI) 1200 ns 单段. 每体系 n=3 (s501-503) + 替补 s504 (只顶 VOID). 由 `tools/derive_R4N5v2.py` 从 D2/N1x/inputs 派生, 只改种子 (gen_seed=20301030+cksum(name)%100000) 与温度相关三处 (ref_t, gen_temp, expect.env EXP_TEMP), 均断言.
+- 队列 (每机, 顺序=优先级): k03 = DOPE s501-503 → MC3H s501-503; k04 = DOPC s501-503 → MC3 s501-503. 尺子先跑.
+- 判读 (冻结 §5 Δ 规则移到片层臂, 同一阈值 DELTA_SEP=2): Δ_lam = n_EVENT(MC3) − n_EVENT(MC3H) (选中跑 = s1-3 + 替补, 冻结 select_cell). ≥+2 SEP_EXPECTED, ≤−2 SEP_REVERSE, 其余 NO_SEP.
+  **只在 T350 尺子总判 = CONTRAST_PASS 且两格都 EVALUABLE 时判**; 尺子未过 → NOT_JUDGED, MC3 结果只作描述. 不新设阈值.
+- 已知风险: D1v2 中性 MC3 片层 (320 K) 10/10 VOID_L2; 本档若同样全 VOID → 格 VOID → Δ NOT_EVALUABLE (照实报, 不改闸门).
+
+## §9 半夜迭代分支 (检查点 ~20:30 与 ~01:00; 只换下一批跑什么, 不改任何门槛)
+依据: 检查点的 INTERIM 判读 (§7). 选定后调度在各机写文件 `$HOME/R4N5/BRANCH` (内容 a|b|c), 运行器每次领新作业时现读; 分支队列排在主补跑队列之后. 默认无分支.
+- (a) T350 尺子已出 CONTRAST_PASS (或 INTERIM 下 DOPE ≥2/3 EVENT 且 DOPC 0 事件): 加 MC3 种子 — k03 MC3H s505-507, k04 MC3 s505-507. 起点复用 lam_s1..s3 结构, 只换速度种子 (**不是新起点结构**). 只作描述 (事件比例); §8 的 Δ 仍只用 n=3 主格.
+- (b) DOPE 无转变 (INTERIM: 已过 ≥400 ns 的 DOPE 跑都无事件) 且 DOPC 干净: 加压一档 **360 K** (DOPE+DOPC 对, 各 n=3 + 替补 s504; k03 DOPE, k04 DOPC). 理由: +10 K 是最小的一步加驱动 (与 330 档对称取小步); 只换温度, 加压/闸门/时长不变.
+- (c) DOPC 出事件 (METHOD_OVERDRIVEN): 降一档 **330 K** (DOPE+DOPC 对, 各 n=3 + 替补). 理由: −20 K 明确降驱动, Martini 水在 330 K 远离冻结.
+- 分支档用同一 P/N/总判规则单独判 (verdict_N5_wrap.py 输出 T360/T330 块), 只回答「该档尺子是否成立」, 不改 T350 结论, 不回头改 §5.
+- 全部分支输入已在包里, 76 次 grompp (38 build × relax/prod) rc=0、0 警告 (selfcheck/grompp/SUMMARY.tsv).
+- 若选分支时某机两槽已结束 (估计约 23:00 后): 用 `NEW_RUN=1 BRANCH=x ONLY="<分支格名, 如 DOPE_h100_T360_lam>" bash run_R4N5.sh <机>` 新起一次 (照常 CHECK 先过). 同一晚只选一个分支; 选择与时刻写进 RUNBOOK.
+
+## §10 时间 (估计, DRY 按 PERF_NOM 珠数缩放, 非实测; 假设 14:45 起跑)
+- 单条 need (含 relax+闸门+prod, 估计): DOPE 2.27 h, DOPC 2.82 h, MC3 2.82 h, MC3H 2.95 h; 每次领取另留 0.75 h 余量.
+- 2 槽: k03 尺子约 19:20 跑完, MC3H 约 23:00 跑完; k04 尺子约 20:25, MC3 约 23:15. 06:50 前有约 7.5 h × 2 槽可给分支.
+- 1 槽兜底: 尺子先跑, MC3 由 supp_fits 逐条判断能否在 06:50 前跑完, 估计每机只能再跑 2 条 MC3 → MC3 格 n=2 → Δ NOT_EVALUABLE (只描述).
