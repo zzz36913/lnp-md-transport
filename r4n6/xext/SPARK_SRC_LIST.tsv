@@ -1,0 +1,27 @@
+# [R4N6 13:47] XEXT 续跑所需 Spark 断点文件 (请调度核实存在 + sha256 相符; sha 取自 box 上 R4N5 收尾小包 D5/N5_final 里的 SHA256_out.txt)
+machine	dir	file	sha256_recorded
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s501/prod/attempt_001	prod.tpr	5c6deb7d6f7924ecd87cb0779edd81b22a05ef604df9e62d5a4e28fc83e5445e
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s501/prod/attempt_001	prod.cpt	b61f605520cd1b7292d54bfaabb2130131e00c39de23c8ba2d5fb4e767a7e119
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s501/prod/attempt_001	prod.xtc	a5d9b01e6ac90415d55aeaa410d2539ccff407eb3ddb4a504877e4a2b4459f39
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s501/prod/attempt_001	STATUS	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s501/prod/attempt_001	SHA256_out.txt	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s502/prod/attempt_001	prod.tpr	bd581b08bd15498ef140d1db31110cedf2cfdd4edd20c196959c1962f20fc592
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s502/prod/attempt_001	prod.cpt	1a553ea0276107b38b32f9106c280c91bcad8425981a69218c20ed8fbacc805a
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s502/prod/attempt_001	prod.xtc	a983952d598a392ffde2322fed3abaf9021514f45187f434c9aa22592edcc895
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s502/prod/attempt_001	STATUS	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s502/prod/attempt_001	SHA256_out.txt	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s504/prod/attempt_001	prod.tpr	de7567245cc241ceee93b5c9b5a52843a5f88685a0f6ab87fcdb6475c5327573
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s504/prod/attempt_001	prod.cpt	4a7cfa2d07f5304a69e5bf44f7c91104f20f54de2d175b3c7c3a692147fd1d47
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s504/prod/attempt_001	prod.xtc	3d55d274a96fee1f9c958ab98ca4e954c8f3440afdb6a1f18011f6f82b477f2c
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s504/prod/attempt_001	STATUS	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k03	$HOME/R4N5/R4N5_run_k03_1102_195944/builds/R4N1_DOPE_h100_T360_lam_s504/prod/attempt_001	SHA256_out.txt	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s502/prod/attempt_001	prod.tpr	99d0a01ed1b6b0853b8d65e58814edba2b1ff2f0ea1161981008cb5149965437
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s502/prod/attempt_001	prod.cpt	396465288cc0987dfa9ccbb10ef8f63e16f64ab78e61642ff34c994448d2a565
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s502/prod/attempt_001	prod.xtc	feb09237cfed5aec662da98b69edca71a727c66d77fe62b82063c18e792761a1
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s502/prod/attempt_001	STATUS	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s502/prod/attempt_001	SHA256_out.txt	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s503/prod/attempt_001	prod.tpr	17c22a68b863cd5ed680e43e35700f5833f7ab4aed665f638db83cc4da7b24ac
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s503/prod/attempt_001	prod.cpt	aa99927bd0503a8e599cccf55a841bb59157b039dd6a6660f022dd60dddbb353
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s503/prod/attempt_001	prod.xtc	80a8e035bbb445d2eedec3369a0919acfd0e2b9bcc56f9c0e13d66a76294e87c
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s503/prod/attempt_001	STATUS	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
+k04	$HOME/R4N5/R4N5_run_k04_1102_200531/builds/R4N1_DOPC_h100_T360_lam_s503/prod/attempt_001	SHA256_out.txt	(内容须 DONE laststep=60000000/60000000; SHA256_out.txt 须含上列 sha)
